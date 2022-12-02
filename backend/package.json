@@ -1,0 +1,33 @@
+{
+  "name": "gestion-dirved",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicoLarson/gestion-dirved.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicoLarson/gestion-dirved/issues"
+  },
+  "homepage": "https://github.com/NicoLarson/gestion-dirved#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^4.12.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.4.1"
+  }
+}
