@@ -1,0 +1,27 @@
+{
+  "name": "gestion-dirved",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicoLarson/gestion-dirved.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicoLarson/gestion-dirved/issues"
+  },
+  "homepage": "https://github.com/NicoLarson/gestion-dirved#readme"
+  ,
+  "scripts": {
+    "start:backend": "cd ./backend && npx nodemon server.js",
+    "start:frontend": "cd ./frontend && npm start",
+    "install:backend": "cd ./backend && npm i",
+    "install:frontend": "cd ./frontend && npm i"
+  }
+}
