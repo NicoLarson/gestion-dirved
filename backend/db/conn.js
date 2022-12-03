@@ -9,7 +9,7 @@ let dbConnection;
 
 module.exports = {
   connectToServer: function (callback) {
-    client.connect(function (err, db) {
+    client.connect( (err, db) => {
       if (err || !db) {
         return callback(err);
       }

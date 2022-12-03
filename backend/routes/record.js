@@ -8,6 +8,17 @@ const recordRoutes = express.Router();
 // This will help us connect to the database
 const dbo = require('../db/conn');
 
+// Recherche par num operation
+recordRoutes.get('/conventions/:id', (req, res, next) => {
+  let db_connect = dbo.getDb();
+  if (db_connect) {
+    db_connect.collection("conventions").findOne({ num_operation: req.params.id }, (err, result) => {
+      if (err) throw err;
+      res.json(result);
+    });
+  }
+})
+
 // This section will help you get a list of all the records.
 recordRoutes.route('/conventions').get(async function (_req, res) {
   const dbConnect = dbo.getDb();
@@ -86,19 +97,19 @@ recordRoutes.route('/listings/updateLike').post(function (req, res) {
 
 // This section will help you delete a record.
 recordRoutes.route('/listings/delete/:id').delete((req, res) => {
-    const dbConnect = dbo.getDb();
-    const listingQuery = { listing_id: req.body.id };
+  const dbConnect = dbo.getDb();
+  const listingQuery = { listing_id: req.body.id };
 
-dbConnect
+  dbConnect
     .collection('listingsAndReviews')
     .deleteOne(listingQuery, function (err, _result) {
-    if (err) {
+      if (err) {
         res
           .status(400)
           .send(`Error deleting listing with id ${listingQuery.listing_id}!`);
-    } else {
+      } else {
         console.log('1 document deleted');
-    }
+      }
     });
 });
 
