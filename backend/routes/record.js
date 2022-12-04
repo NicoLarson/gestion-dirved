@@ -1,25 +1,11 @@
 const express = require('express');
-
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /listings.
 const recordRoutes = express.Router();
-
-// This will help us connect to the database
 const dbo = require('../db/conn');
 
-// Recherche par num operation
-recordRoutes.get('/conventions/:id', (req, res, next) => {
-  let db_connect = dbo.getDb();
-  if (db_connect) {
-    db_connect.collection("conventions").findOne({ num_operation: req.params.id }, (err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
-  }
-})
 
-// This section will help you get a list of all the records.
+/*
+* READ
+*/
 recordRoutes.route('/conventions').get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
@@ -49,6 +35,32 @@ recordRoutes.route('/paiements').get(async function (_req, res) {
       }
     });
 });
+
+/*
+* READ BY ID
+*/
+recordRoutes.get('/conventions/:id', (req, res, next) => {
+  let db_connect = dbo.getDb();
+  if (db_connect) {
+    db_connect.collection("conventions").findOne({ num_operation: req.params.id }, (err, result) => {
+      if (err) throw err;
+      res.json(result);
+    });
+  }
+})
+
+recordRoutes.route('/paiements/:id').get(async function (_req, res) {
+  let db_connect = dbo.getDb();
+  if (db_connect) {
+    db_connect.collection("paiements").findOne({ num_operation: req.params.id }, (err, result) => {
+      if (err) throw err;
+      res.json(result);
+    });
+  }
+});
+
+// TODO : Add a route to add new convention
+// TODO : Add a route to add new paiement
 
 // This section will help you create a new record.
 recordRoutes.route('/listings/recordSwipe').post(function (req, res) {
