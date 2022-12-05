@@ -1,8 +1,9 @@
 const express = require('express');
 const recordRoutes = express.Router();
 const dbo = require('../db/conn');
-
-
+const mongoose = require('mongoose');
+const multer = require("multer");
+const upload = multer({ dest: './uploads/' })
 /*
 * READ
 */
@@ -58,26 +59,52 @@ recordRoutes.route('/paiements/:id').get(async function (_req, res) {
   }
 });
 
-// TODO : Add a route to add new convention
-// TODO : Add a route to add new paiement
-
 // This section will help you create a new record.
-recordRoutes.route('/conventions/recordSwipe').post(function (req, res) {
+recordRoutes.route('/convention/create').post(upload.single('piece_jointe'), (req, res, next) => {
+  const Convention = new mongoose.model('Convention', {
+    num_operation: String,
+    nom_responsable: {
+      nom: String,
+      prenom: String,
+      fonction: String,
+      email: String,
+    },
+    nom_operation: String,
+    date_debut: Date,
+    date_fin: Date,
+    montant: Number,
+    montant_encaisse: Number,
+    piece_jointe: String,
+    categories: [String],
+    partenaires: [String],
+    date_creation: Date,
+  })
+
   const dbConnect = dbo.getDb();
-  const matchDocument = {
-    convention_id: req.body.id,
-    last_modified: new Date(),
-    session_id: req.body.session_id,
-    direction: req.body.direction,
-  };
+  const matchConvention = new Convention({
+    num_operation: req.body.num_operation,
+    nom_responsable: req.body.nom_responsable,
+    nom_operation: req.body.nom_operation,
+    date_debut: req.body.date_debut,
+    date_fin: req.body.date_fin,
+    montant: req.body.montant,
+    montant_encaisse: req.body.montant_encaisse,
+    piece_jointe: req.body.piece_jointe,
+    categories: req.body.categorie,
+    partenaires: req.body.partenaire,
+    date_creation: new Date(),
+  })
+
+
 
   dbConnect
-    .collection('matches')
-    .insertOne(matchDocument, function (err, result) {
+    .collection('conventions')
+    .insertOne(matchConvention, function (err, result) {
       if (err) {
         res.status(400).send('Error inserting matches!');
       } else {
-        console.log(`Added a new match with id ${result.insertedId}`);
+        console.log(`Added a new match with id ${result.insertedId}`)
+        console.log(req.file, req.body)
         res.status(204).send();
       }
     });

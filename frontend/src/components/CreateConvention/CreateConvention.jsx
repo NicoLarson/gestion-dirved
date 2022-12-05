@@ -25,14 +25,14 @@ export default function Create() {
         e.preventDefault();
 
         // When a post request is sent to the create url, we'll add a new record to the database.
-        const newPerson = { ...form };
+        const newConvention = { ...form };
 
-        await fetch("http://localhost:5000/record/add", {
+        await fetch("http://localhost:5000/convention/create", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newPerson),
+            body: JSON.stringify(newConvention),
         })
             .catch(error => {
                 window.alert(error);
@@ -47,7 +47,7 @@ export default function Create() {
     return (
         <div>
             <h3>Ajouter une convention</h3>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} method="post" enctype="multipart/form-data">
                 <div className="form-group">
                     <label htmlFor="num_operation">Numéro d'opération</label>
                     <input
@@ -66,6 +66,16 @@ export default function Create() {
                         id="nom_responsable"
                         value={form.nom_responsable}
                         onChange={(e) => updateForm({ nom_responsable: e.target.value })}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="nom_operation">Nom opération</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="nom_operation"
+                        value={form.nom_operation}
+                        onChange={(e) => updateForm({ nom_operation: e.target.value })}
                     />
                 </div>
                 <div className="form-group">
@@ -101,42 +111,47 @@ export default function Create() {
                     />
                 </div>
                 <div className="form-group">
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionIntern"
-                            value="Intern"
-                            checked={form.level === "Intern"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionJunior"
-                            value="Junior"
-                            checked={form.level === "Junior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionSenior"
-                            value="Senior"
-                            checked={form.level === "Senior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-                    </div>
+                    <label htmlFor="montant_encaisse">Montant encaissé</label>
+                    <input
+                        type="number"
+                        min="0"
+                        step="any"
+                        className="form-control"
+                        id="montant_encaisse"
+                        value={form.montant_encaisse}
+                        onChange={(e) => updateForm({ montant_encaisse: e.target.value })}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="piece_jointe">Pièce jointe</label>
+                    <input
+                        name="piece_jointe"
+                        type="file"
+                        className="form-control"
+                        id="piece_jointe"
+                        value={form.piece_jointe}
+                        onChange={(e) => updateForm({ piece_jointe: e.target.value })}
+                    />
+                </div >
+                <div className="form-group">
+                    <label htmlFor="categorie">Catégorie</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="categorie"
+                        value={form.categorie}
+                        onChange={(e) => updateForm({ categorie: e.target.value })}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="partenaire">Partenaire</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="partenaire"
+                        value={form.partenaire}
+                        onChange={(e) => updateForm({ partenaire: e.target.value })}
+                    />
                 </div>
                 <div className="form-group">
                     <input
@@ -145,7 +160,7 @@ export default function Create() {
                         className="btn btn-primary"
                     />
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     );
 }
