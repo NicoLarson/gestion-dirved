@@ -6,19 +6,25 @@ import './App.scss';
 
 import Navbar from '../components/Navbar/Navbar';
 import Home from '../pages/Home/Home';
-import ConventionList from '../components/ConventionList/ConventionList'
-import CreateConvention from '../components/CreateConvention/CreateConvention'
+import ConventionList from '../components/ConventionList/ConventionList';
+import CreateConvention from '../components/CreateConvention/CreateConvention';
+import AddResponsable from '../components/AddResponsable/AddResponsable';
+
 export default function App() {
   return (
     <Router>
       <Navbar></Navbar>
-      <div className='display'>
+      <div className="display">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/convention/create" element={<CreateConvention />} />
           <Route path="/convention/list" element={<ConventionList />} />
+          <Route
+            path="/convention/add/responsable"
+            element={<AddResponsable />}
+          />
         </Routes>
       </div>
     </Router>
-  )
+  );
 }

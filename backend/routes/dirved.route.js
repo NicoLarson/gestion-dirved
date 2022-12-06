@@ -2,6 +2,7 @@ const express = require("express");
 const recordRoutes = express.Router();
 const dbo = require("../db/conn");
 const mongoose = require("mongoose");
+
 /*
  * READ
  */
@@ -110,6 +111,32 @@ recordRoutes.route("/convention/create").post((req, res, next) => {
     });
 });
 
+recordRoutes.route("/convention/add/responsable").post((req, res, next) => {
+  const dbConnect = dbo.getDb();
+
+  const Responsable = new mongoose.model("Responsable", {
+    res_nom: String,
+    res_prenom: String,
+    res_email: String,
+  });
+  const matchResponsable = new Responsable({
+    res_nom: req.body.res_nom,
+    res_prenom: req.body.res_prenom,
+    res_email: req.body.res_email,
+  });
+
+  dbConnect
+    .collection("responsables")
+    .insertOne(matchResponsable, function (err, result) {
+      if (err) {
+        res.status(400).send("Error inserting matches!");
+      } else {
+        console.log(`Added a new match with id ${result.insertedId}`);
+        console.log(req.file, req.body);
+        res.status(204).send();
+      }
+    });
+});
 // This section will help you update a record by id.
 recordRoutes.route("/conventions/updateLike").post(function (req, res) {
   const dbConnect = dbo.getDb();
