@@ -23,7 +23,7 @@ export default function AddResponsable() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newResponsable = { ...form };
 
-    await fetch('http://localhost:5000/convention/add/responsable', {
+    await fetch('http://localhost:5000/add/responsable', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

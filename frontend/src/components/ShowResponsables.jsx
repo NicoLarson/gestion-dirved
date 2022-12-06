@@ -6,7 +6,7 @@ const Responsable = (props) => (
     <td>{props.responsable.res_prenom}</td>
     <td>{props.responsable.res_email}</td>
     <td>
-      <Link className="btn btn-link" to={`/edit/${props.responsable._id}`}>
+      <Link className="btn btn-link" to={`/convention/update/responsable/${props.responsable._id}`}>
         Edit
       </Link>{' '}
       |
@@ -29,7 +29,7 @@ export default function ShowResponsable() {
   useEffect(() => {
     async function getResponsables() {
       const response = await fetch(
-        `http://localhost:5000/convention/show/responsable`
+        `http://localhost:5000/show/responsable`
       );
 
       if (!response.ok) {

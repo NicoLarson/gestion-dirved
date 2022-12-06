@@ -19,7 +19,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="button btn btn-success" to="/convention/list">
+            <NavLink className="button btn btn-success" to="/convention/show/conventions">
               Afficher
             </NavLink>
           </li>
@@ -53,7 +53,7 @@ export default function Navbar() {
           <li className="nav-item">
             <NavLink
               className="button btn btn-secondary"
-              to="/convention/show/responsable"
+              to="/convention/show/responsables"
             >
               Afficher <br />
               Responsable
