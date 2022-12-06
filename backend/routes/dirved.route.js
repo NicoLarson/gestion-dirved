@@ -1,35 +1,33 @@
-const express = require('express');
+const express = require("express");
 const recordRoutes = express.Router();
-const dbo = require('../db/conn');
-const mongoose = require('mongoose');
-const multer = require("multer");
-const upload = multer({ dest: './uploads/' })
+const dbo = require("../db/conn");
+const mongoose = require("mongoose");
 /*
-* READ
-*/
-recordRoutes.route('/convention/list').get(async function (_req, res) {
+ * READ
+ */
+recordRoutes.route("/convention/list").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect
-    .collection('conventions')
+    .collection("conventions")
     .find({})
     .toArray(function (err, result) {
       if (err) {
-        res.status(400).send('Error fetching conventions!');
+        res.status(400).send("Error fetching conventions!");
       } else {
         res.json(result);
       }
     });
 });
 
-recordRoutes.route('/paiement/list').get(async function (_req, res) {
+recordRoutes.route("/paiement/list").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
-    .collection('paiements')
+    .collection("paiements")
     .find({})
     .toArray(function (err, result) {
       if (err) {
-        res.status(400).send('Error fetching conventions!');
+        res.status(400).send("Error fetching conventions!");
       } else {
         res.json(result);
       }
@@ -37,31 +35,35 @@ recordRoutes.route('/paiement/list').get(async function (_req, res) {
 });
 
 /*
-* READ BY ID
-*/
-recordRoutes.get('/conventions/:id', (req, res, next) => {
+ * READ BY ID
+ */
+recordRoutes.get("/conventions/:id", (req, res, next) => {
   let db_connect = dbo.getDb();
   if (db_connect) {
-    db_connect.collection("conventions").findOne({ num_operation: req.params.id }, (err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
+    db_connect
+      .collection("conventions")
+      .findOne({ num_operation: req.params.id }, (err, result) => {
+        if (err) throw err;
+        res.json(result);
+      });
   }
-})
+});
 
-recordRoutes.route('/paiements/:id').get(async function (_req, res) {
+recordRoutes.route("/paiements/:id").get(async function (_req, res) {
   let db_connect = dbo.getDb();
   if (db_connect) {
-    db_connect.collection("paiements").findOne({ num_operation: req.params.id }, (err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
+    db_connect
+      .collection("paiements")
+      .findOne({ num_operation: req.params.id }, (err, result) => {
+        if (err) throw err;
+        res.json(result);
+      });
   }
 });
 
 // This section will help you create a new record.
-recordRoutes.route('/convention/create').post(upload.single('piece_jointe'), (req, res, next) => {
-  const Convention = new mongoose.model('Convention', {
+recordRoutes.route("/convention/create").post((req, res, next) => {
+  const Convention = new mongoose.model("Convention", {
     num_operation: String,
     nom_responsable: {
       nom: String,
@@ -78,7 +80,7 @@ recordRoutes.route('/convention/create').post(upload.single('piece_jointe'), (re
     categories: [String],
     partenaires: [String],
     date_creation: Date,
-  })
+  });
 
   const dbConnect = dbo.getDb();
   const matchConvention = new Convention({
@@ -93,25 +95,23 @@ recordRoutes.route('/convention/create').post(upload.single('piece_jointe'), (re
     categories: req.body.categorie,
     partenaires: req.body.partenaire,
     date_creation: new Date(),
-  })
-
-
+  });
 
   dbConnect
-    .collection('conventions')
+    .collection("conventions")
     .insertOne(matchConvention, function (err, result) {
       if (err) {
-        res.status(400).send('Error inserting matches!');
+        res.status(400).send("Error inserting matches!");
       } else {
-        console.log(`Added a new match with id ${result.insertedId}`)
-        console.log(req.file, req.body)
+        console.log(`Added a new match with id ${result.insertedId}`);
+        console.log(req.file, req.body);
         res.status(204).send();
       }
     });
 });
 
 // This section will help you update a record by id.
-recordRoutes.route('/conventions/updateLike').post(function (req, res) {
+recordRoutes.route("/conventions/updateLike").post(function (req, res) {
   const dbConnect = dbo.getDb();
   const conventionQuery = { _id: req.body.id };
   const updates = {
@@ -121,32 +121,36 @@ recordRoutes.route('/conventions/updateLike').post(function (req, res) {
   };
 
   dbConnect
-    .collection('conventionsAndReviews')
+    .collection("conventionsAndReviews")
     .updateOne(conventionQuery, updates, function (err, _result) {
       if (err) {
         res
           .status(400)
-          .send(`Error updating likes on convention with id ${conventionQuery.id}!`);
+          .send(
+            `Error updating likes on convention with id ${conventionQuery.id}!`
+          );
       } else {
-        console.log('1 document updated');
+        console.log("1 document updated");
       }
     });
 });
 
 // This section will help you delete a record.
-recordRoutes.route('/convention/delete/:id').delete((req, res) => {
+recordRoutes.route("/convention/delete/:id").delete((req, res) => {
   const dbConnect = dbo.getDb();
   const conventionQuery = { convention_id: req.body.id };
 
   dbConnect
-    .collection('conventionsAndReviews')
+    .collection("conventionsAndReviews")
     .deleteOne(conventionQuery, function (err, _result) {
       if (err) {
         res
           .status(400)
-          .send(`Error deleting convention with id ${conventionQuery.convention_id}!`);
+          .send(
+            `Error deleting convention with id ${conventionQuery.convention_id}!`
+          );
       } else {
-        console.log('1 document deleted');
+        console.log("1 document deleted");
       }
     });
 });
