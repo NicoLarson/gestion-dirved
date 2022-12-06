@@ -93,6 +93,61 @@ recordRoutes.route("/update/responsable/:id").post(function (req, response) {
 });
 
 // TODO
+
+// This section will help you create a new record.
+recordRoutes.route("/add/convention").post((req, res, next) => {
+  const Convention = new mongoose.model("Convention", {
+    con_num_operation: String,
+    con_nom_operation: String,
+    con_responsable: {
+      con_nom_responsable: String,
+      con_prenom_responsable: String,
+      con_fonction: String,
+      con_email_responsable: String,
+    },
+    con_date_debut: Date,
+    con_date_fin: Date,
+    con_montant: Number,
+    con_montant_encaisse: Number,
+    con_piece_jointes: String,
+    con_categories: [String],
+    con_partenaires: [String],
+    con_date_creation: Date,
+  });
+
+  const dbConnect = dbo.getDb();
+  const matchConvention = new Convention({
+    con_num_operation: req.body.con_num_operation,
+    con_nom_operation: req.body.con_nom_operation,
+    con_responsable: {
+      con_nom_responsable: req.body.con_nom_responsable,
+      con_prenom_responsable: req.body.con_prenom_responsable,
+      con_fonction: req.body.con_fonction,
+      con_email_responsable: req.body.con_email_responsable,
+    },
+    con_date_debut: req.body.con_date_debut,
+    con_date_fin: req.body.con_date_fin,
+    con_montant: req.body.con_montant,
+    con_montant_encaisse: req.body.con_montant_encaisse,
+    con_piece_jointes: req.body.con_piece_jointes,
+    con_categories: req.body.con_categories,
+    con_partenaires: req.body.con_partenaires,
+    con_date_creation: new Date(),
+  });
+
+  dbConnect
+    .collection("conventions")
+    .insertOne(matchConvention, function (err, result) {
+      if (err) {
+        res.status(400).send("Error inserting matches!");
+      } else {
+        console.log(`Added a new match with id ${result.insertedId}`);
+        console.log(req.file, req.body);
+        res.status(204).send();
+      }
+    });
+});
+
 recordRoutes.route("/paiement/list").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
@@ -129,55 +184,6 @@ recordRoutes.route("/paiements/:id").get(async function (_req, res) {
         res.json(result);
       });
   }
-});
-
-// This section will help you create a new record.
-recordRoutes.route("/convention/create").post((req, res, next) => {
-  const Convention = new mongoose.model("Convention", {
-    num_operation: String,
-    nom_responsable: {
-      nom: String,
-      prenom: String,
-      fonction: String,
-      email: String,
-    },
-    nom_operation: String,
-    date_debut: Date,
-    date_fin: Date,
-    montant: Number,
-    montant_encaisse: Number,
-    piece_jointe: String,
-    categories: [String],
-    partenaires: [String],
-    date_creation: Date,
-  });
-
-  const dbConnect = dbo.getDb();
-  const matchConvention = new Convention({
-    num_operation: req.body.num_operation,
-    nom_responsable: req.body.nom_responsable,
-    nom_operation: req.body.nom_operation,
-    date_debut: req.body.date_debut,
-    date_fin: req.body.date_fin,
-    montant: req.body.montant,
-    montant_encaisse: req.body.montant_encaisse,
-    piece_jointe: req.body.piece_jointe,
-    categories: req.body.categorie,
-    partenaires: req.body.partenaire,
-    date_creation: new Date(),
-  });
-
-  dbConnect
-    .collection("conventions")
-    .insertOne(matchConvention, function (err, result) {
-      if (err) {
-        res.status(400).send("Error inserting matches!");
-      } else {
-        console.log(`Added a new match with id ${result.insertedId}`);
-        console.log(req.file, req.body);
-        res.status(204).send();
-      }
-    });
 });
 
 // This section will help you update a record by id.

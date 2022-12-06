@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function AddConvention() {
   const [form, setForm] = useState({
-    num_operation: '',
-    nom_responsable: '',
-    date_debut: '',
-    date_fin: '',
-    montant: '',
-    montant_encaisse: '',
-    piece_jointes: [],
+    con_num_operation: '',
+    con_nom_operation: '',
+    con_responsable: {
+      con_nom_responsable: '',
+      con_prenom_responsable: '',
+      con_fonction: '',
+      con_email_responsable: '',
+    },
+    con_date_debut: '',
+    con_con_date_fin: '',
+    con_montant: '',
+    con_con_montant_encaisse: '',
+    con_con_piece_jointess: [],
+    con_con_categoriess: '',
+    con_con_partenairess: [],
   });
+
   const navigate = useNavigate();
 
   // These methods will update the state properties.
@@ -27,7 +36,7 @@ export default function AddConvention() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newConvention = { ...form };
 
-    await fetch('http://localhost:5000/convention/create', {
+    await fetch('http://localhost:5000/add/convention', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,114 +51,149 @@ export default function AddConvention() {
     navigate('/');
   }
 
+
   // This following section will display the form that takes the input from the user.
   return (
     <div>
       <h3>Ajouter une convention</h3>
+
       <form onSubmit={onSubmit} method="post" enctype="multipart/form-data">
         <div className="form-group">
-          <label htmlFor="num_operation">Numéro d'opération</label>
+          <label htmlFor="con_num_operation">Numéro d'opération</label>
           <input
             type="text"
             className="form-control"
-            id="num_operation"
-            value={form.num_operation}
-            onChange={(e) => updateForm({ num_operation: e.target.value })}
+            id="con_num_operation"
+            value={form.con_num_operation}
+            onChange={(e) => updateForm({ con_num_operation: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="nom_responsable">Responsable</label>
+          <label htmlFor="con_nom_operation">Opération</label>
           <input
             type="text"
             className="form-control"
-            id="nom_responsable"
-            value={form.nom_responsable}
-            onChange={(e) => updateForm({ nom_responsable: e.target.value })}
+            id="con_nom_operation"
+            value={form.con_nom_operation}
+            onChange={(e) => updateForm({ con_nom_operation: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="nom_operation">Nom opération</label>
-          <input
-            type="text"
-            className="form-control"
-            id="nom_operation"
-            value={form.nom_operation}
-            onChange={(e) => updateForm({ nom_operation: e.target.value })}
-          />
+          <h3>Responsable</h3>
+          <div className="form-group">
+            <label htmlFor="con_nom_responsable">Nom</label>
+            <input
+              type="text"
+              className="form-control"
+              id="con_nom_responsable"
+              value={form.con_nom_responsable}
+              onChange={(e) => updateForm({ con_nom_responsable: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="con_prenom_responsable">Prénom</label>
+            <input
+              type="text"
+              className="form-control"
+              id="con_prenom_responsable"
+              value={form.con_prenom_responsable}
+              onChange={(e) => updateForm({ con_prenom_responsable: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="con_fonction_responsable">Fonction</label>
+            <input
+              type="text"
+              className="form-control"
+              id="con_fonction_responsable"
+              value={form.con_fonction_responsable}
+              onChange={(e) => updateForm({ con_fonction_responsable: e.target.value })}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="con_email_responsable">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              id="con_email_responsable"
+              value={form.con_email_responsable}
+              onChange={(e) => updateForm({ con_email_responsable: e.target.value })}
+            />
+          </div>
         </div>
         <div className="form-group">
-          <label htmlFor="date_debut">Date de début</label>
+          <label htmlFor="con_date_debut">Date de début</label>
           <input
             type="date"
             className="form-control"
-            id="date_debut"
-            value={form.date_debut}
-            onChange={(e) => updateForm({ date_debut: e.target.value })}
+            id="con_date_debut"
+            value={form.con_date_debut}
+            onChange={(e) => updateForm({ con_date_debut: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="date_fin">Date de fin</label>
+          <label htmlFor="con_date_fin">Date de fin</label>
           <input
             type="date"
             className="form-control"
-            id="date_fin"
-            value={form.date_fin}
-            onChange={(e) => updateForm({ date_fin: e.target.value })}
+            id="con_date_fin"
+            value={form.con_date_fin}
+            onChange={(e) => updateForm({ con_date_fin: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="montant">Montant</label>
+          <label htmlFor="con_montant">Montant</label>
           <input
             type="number"
             min="0"
             step="any"
             className="form-control"
-            id="montant"
-            value={form.montant}
-            onChange={(e) => updateForm({ montant: e.target.value })}
+            id="con_montant"
+            value={form.con_montant}
+            onChange={(e) => updateForm({ con_montant: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="montant_encaisse">Montant encaissé</label>
+          <label htmlFor="con_montant_encaisse">Montant encaissé</label>
           <input
             type="number"
             min="0"
             step="any"
             className="form-control"
-            id="montant_encaisse"
-            value={form.montant_encaisse}
-            onChange={(e) => updateForm({ montant_encaisse: e.target.value })}
+            id="con_montant_encaisse"
+            value={form.con_montant_encaisse}
+            onChange={(e) => updateForm({ con_montant_encaisse: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="piece_jointe">Pièce jointe</label>
+          <label htmlFor="con_piece_jointes">Pièce jointe</label>
           <input
-            name="piece_jointe"
+            name="con_piece_jointes"
             type="file"
             className="form-control"
-            id="piece_jointe"
-            value={form.piece_jointe}
-            onChange={(e) => updateForm({ piece_jointe: e.target.value })}
+            id="con_piece_jointes"
+            value={form.con_piece_jointes}
+            onChange={(e) => updateForm({ con_piece_jointes: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="categorie">Catégorie</label>
+          <label htmlFor="con_categories">Catégorie</label>
           <input
             type="text"
             className="form-control"
-            id="categorie"
-            value={form.categorie}
-            onChange={(e) => updateForm({ categorie: e.target.value })}
+            id="con_categories"
+            value={form.con_categories}
+            onChange={(e) => updateForm({ con_categories: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="partenaire">Partenaire</label>
+          <label htmlFor="con_partenaires">Partenaire</label>
           <input
             type="text"
             className="form-control"
-            id="partenaire"
-            value={form.partenaire}
-            onChange={(e) => updateForm({ partenaire: e.target.value })}
+            id="con_partenaires"
+            value={form.con_partenaires}
+            onChange={(e) => updateForm({ con_partenaires: e.target.value })}
           />
         </div>
         <div className="form-group">
