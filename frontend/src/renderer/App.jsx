@@ -7,7 +7,7 @@ import './App.scss';
 import Navbar from '../components/Navbar/Navbar';
 import Home from '../pages/Home/Home';
 import ConventionList from '../components/ConventionList/ConventionList';
-import CreateConvention from '../components/CreateConvention/CreateConvention';
+import CreateConvention from '../components/AddConvention/AddConvention';
 import AddResponsable from '../components/AddResponsable/AddResponsable';
 
 export default function App() {

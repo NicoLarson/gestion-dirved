@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
-export default function Create() {
+export default function AddConvention() {
   const [form, setForm] = useState({
     num_operation: '',
     nom_responsable: '',
