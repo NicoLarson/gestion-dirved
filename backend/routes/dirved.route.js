@@ -137,6 +137,23 @@ recordRoutes.route("/convention/add/responsable").post((req, res, next) => {
       }
     });
 });
+
+recordRoutes
+  .route("/convention/show/responsable")
+  .get(async function (req, res) {
+    const dbConnect = dbo.getDb();
+    dbConnect
+      .collection("responsables")
+      .find({})
+      .limit(50)
+      .toArray(function (err, result) {
+        if (err) {
+          res.status(400).send("Error fetching listings!");
+        } else {
+          res.json(result);
+        }
+      });
+  });
 // This section will help you update a record by id.
 recordRoutes.route("/conventions/updateLike").post(function (req, res) {
   const dbConnect = dbo.getDb();

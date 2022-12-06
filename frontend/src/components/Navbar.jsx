@@ -43,10 +43,19 @@ export default function Navbar() {
           </li>
           <li className="nav-item">
             <NavLink
-              className="button btn btn-danger"
+              className="button btn btn-secondary"
               to="/convention/add/responsable"
             >
               Ajouter <br />
+              Responsable
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className="button btn btn-secondary"
+              to="/convention/show/responsable"
+            >
+              Afficher <br />
               Responsable
             </NavLink>
           </li>

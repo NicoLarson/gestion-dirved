@@ -4,11 +4,12 @@ import '../assets/css/theme.css';
 import '../assets/css/style.css';
 import './App.scss';
 
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../components/Navbar';
 import Home from '../pages/Home/Home';
-import ConventionList from '../components/ConventionList/ConventionList';
-import CreateConvention from '../components/AddConvention/AddConvention';
-import AddResponsable from '../components/AddResponsable/AddResponsable';
+import ConventionList from '../components/ConventionList';
+import CreateConvention from '../components/AddConvention';
+import AddResponsable from '../components/AddResponsable';
+import ShowResponsable from '../components/ShowResponsable';
 
 export default function App() {
   return (
@@ -22,6 +23,10 @@ export default function App() {
           <Route
             path="/convention/add/responsable"
             element={<AddResponsable />}
+          />
+          <Route
+            path="/convention/show/responsable"
+            element={<ShowResponsable />}
           />
         </Routes>
       </div>
