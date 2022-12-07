@@ -14,14 +14,45 @@ const dateIsDefined = (date) => {
 const showResponsableName = (responsable) => {
     console.log("TEST showResponsableName")
     try {
-        if (responsable !== null) {
-            console.log(responsable.con_nom_responsable)
+        if (responsable["con_nom_responsable"] !== null) {
+            console.log(responsable)
         }
     } catch (e) {
         console.error("Erreur: " + e)
         return 0
     }
     return responsable["con_nom_responsable"]
+}
+
+const timeLeft = (date) => {
+    try {
+        new Date(date)
+        console.log(new Date(date))
+    } catch (e) {
+        console.error("Erreur: " + e)
+        return 0
+    }
+    if (date == null) {
+        return "?";
+    } else {
+        const today = new Date();
+        const dateFin = new Date(date);
+        const timeDiff = dateFin.getTime() - today.getTime();
+        const daysLeft = Math.round(timeDiff / (1000 * 3600 * 24))
+        return daysLeft;
+    }
+}
+
+const timeLeftClassName = (daysLeft) => {
+    if (daysLeft < 0) {
+        return "badge rounded-pill bg-danger";
+    } else if (daysLeft < 30) {
+        return "badge rounded-pill bg-warning";
+    } else if (daysLeft > 30) {
+        return "badge rounded-pill bg-success";
+    } else {
+        return "badge rounded-pill bg-light";
+    }
 }
 
 const Convention = (props) => (
@@ -31,6 +62,10 @@ const Convention = (props) => (
         <td>{showResponsableName(props.convention.con_responsable)}</td>
         <td>{dateIsDefined(props.convention.con_date_debut)}</td>
         <td>{dateIsDefined(props.convention.con_date_fin)}</td>
+        <td>
+            <span className={timeLeftClassName(timeLeft(props.convention.con_date_fin))}>{timeLeft(props.convention.con_date_fin)}</span>
+        </td>
+
         <td>{props.convention.con_montant} €</td>
         <td>{props.convention.con_montant_encaisse} €</td>
         <td>{props.convention.con_piece_jointes}</td>
@@ -100,6 +135,7 @@ export default function ConventionList() {
                         <th>Responsable</th>
                         <th>Date de début</th>
                         <th>Date de fin</th>
+                        <th>Temps restant</th>
                         <th>Montant</th>
                         <th>Montant encaissé</th>
                         <th>Pieces jointes</th>
