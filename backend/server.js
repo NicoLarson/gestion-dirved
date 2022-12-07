@@ -11,10 +11,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(require("./routes/record"));
+app.use(require("./routes/dirved.route"));
 
 // Global error handling
-app.use(function (err, _req, res) {
+app.use(function (err, _req, res, next) {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });

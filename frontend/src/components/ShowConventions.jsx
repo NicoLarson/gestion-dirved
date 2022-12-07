@@ -31,7 +31,7 @@ export default function ConventionList() {
     // This method fetches the conventions from the database.
     useEffect(() => {
         async function getConventions() {
-            const response = await fetch(`http://localhost:5000/convention/list`);
+            const response = await fetch(`http://localhost:5000/show/conventions/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
