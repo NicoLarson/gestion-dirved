@@ -16,7 +16,7 @@ export default function Navbar() {
           <dd>
             <ul>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/convention/show/conventions">
+                <NavLink className="nav-link" to="/show/conventions">
                   <i class="fa-solid fa-list"></i> Afficher
                 </NavLink>
               </li>

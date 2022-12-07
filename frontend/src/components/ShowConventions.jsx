@@ -3,27 +3,28 @@ import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
 import './ShowConventions.scss';
 
-// const haveResponsable = (convention) => {
-//     if (convention.con_responsable.con_nom_responsable) {
-//         return convention.con_responsable.con_nom_responsable
-//     } else {
-//         return "Pas de responsable"
-//     }
-// }
+const dateIsDefined = (date) => {
+    if (date === null) {
+        return "?";
+    } else {
+        return dateFormat(date, "dd-mm-yyyy")
+    }
+}
+
 const Convention = (props) => (
     <tr>
         <td>{props.convention.con_num_operation}</td>
         <td>{props.convention.con_nom_operation}</td>
         <td>{props.convention.con_nom_responsable}</td>
-        <td>{dateFormat(props.convention.date_debut, "dd-mm-yyyy")}</td>
-        <td>{dateFormat(props.convention.date_fin, "dd-mm-yyyy")}</td>
+        <td>{dateIsDefined(props.convention.con_date_debut)}</td>
+        <td>{dateIsDefined(props.convention.con_date_fin)}</td>
         <td>{props.convention.con_montant} €</td>
         <td>{props.convention.con_montant_encaisse} €</td>
         <td>{props.convention.con_piece_jointes}</td>
         <td>{props.convention.con_categories}</td>
         <td>{props.convention.con_partenaires}</td>
         <td>
-            <Link className="btn btn-outline-warning" to={`/edit/${props.convention._id}`}>Modifier</Link>
+            <Link className="btn btn-outline-warning" to={`/update/convention/${props.convention._id}`}>Modifier</Link>
         </td>
     </tr>
 );

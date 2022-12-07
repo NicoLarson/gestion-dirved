@@ -72,6 +72,16 @@ recordRoutes.route("/show/responsable/:id").get(function (req, res) {
       res.json(result);
     });
 });
+recordRoutes.route("/show/convention/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  db_connect
+    .collection("conventions")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+});
 
 recordRoutes.route("/update/responsable/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
@@ -93,6 +103,40 @@ recordRoutes.route("/update/responsable/:id").post(function (req, response) {
 });
 
 // TODO
+
+recordRoutes.route("/update/convention/:id").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  let newvalues = {
+    $set: {
+      res_nom: req.body.res_nom,
+      con_num_operation: req.body.con_num_operation,
+      con_nom_operation: req.body.con_nom_operation,
+      con_responsable: {
+        con_nom_responsable: req.body.con_nom_responsable,
+        con_prenom_responsable: req.body.con_prenom_responsable,
+        con_fonction: req.body.con_fonction,
+        con_email_responsable: req.body.con_email_responsable,
+      },
+      con_date_debut: req.body.con_date_debut,
+      con_date_fin: req.body.con_date_fin,
+      con_montant: req.body.con_montant,
+      con_montant_encaisse: req.body.con_montant_encaisse,
+      con_piece_jointes: req.body.con_piece_jointes,
+      con_categories: req.body.con_categories,
+      con_partenaires: req.body.con_partenaires,
+      con_date_creation: req.body.con_date_creation,
+    },
+  };
+  db_connect
+    .collection("conventions")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.json(res);
+    });
+});
+
 
 // This section will help you create a new record.
 recordRoutes.route("/add/convention").post((req, res, next) => {
