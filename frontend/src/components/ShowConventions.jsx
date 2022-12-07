@@ -11,11 +11,24 @@ const dateIsDefined = (date) => {
     }
 }
 
+const showResponsableName = (responsable) => {
+    console.log("TEST showResponsableName")
+    try {
+        if (responsable !== null) {
+            console.log(responsable.con_nom_responsable)
+        }
+    } catch (e) {
+        console.error("Erreur: " + e)
+        return 0
+    }
+    return responsable["con_nom_responsable"]
+}
+
 const Convention = (props) => (
     <tr>
         <td>{props.convention.con_num_operation}</td>
         <td>{props.convention.con_nom_operation}</td>
-        <td>{props.convention.con_nom_responsable}</td>
+        <td>{showResponsableName(props.convention.con_responsable)}</td>
         <td>{dateIsDefined(props.convention.con_date_debut)}</td>
         <td>{dateIsDefined(props.convention.con_date_fin)}</td>
         <td>{props.convention.con_montant} €</td>

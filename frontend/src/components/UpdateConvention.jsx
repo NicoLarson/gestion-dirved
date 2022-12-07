@@ -9,7 +9,7 @@ export default function UpdateConvention() {
         con_responsable: {
             con_nom_responsable: '',
             con_prenom_responsable: '',
-            con_fonction: '',
+            con_fonction_responsable: '',
             con_email_responsable: '',
         },
         con_date_debut: '',
@@ -67,7 +67,7 @@ export default function UpdateConvention() {
             con_responsable: {
                 con_nom_responsable: form.con_nom_responsable,
                 con_prenom_responsable: form.con_prenom_responsable,
-                con_fonction: form.con_fonction,
+                con_fonction_responsable: form.con_fonction_responsable,
                 con_email_responsable: form.con_email_responsable,
             },
             con_date_debut: form.con_date_debut,

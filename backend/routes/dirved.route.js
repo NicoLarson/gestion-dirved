@@ -109,7 +109,6 @@ recordRoutes.route("/update/convention/:id").post(function (req, response) {
   let myquery = { _id: ObjectId(req.params.id) };
   let newvalues = {
     $set: {
-      res_nom: req.body.res_nom,
       con_num_operation: req.body.con_num_operation,
       con_nom_operation: req.body.con_nom_operation,
       con_responsable: {
@@ -125,9 +124,11 @@ recordRoutes.route("/update/convention/:id").post(function (req, response) {
       con_piece_jointes: req.body.con_piece_jointes,
       con_categories: req.body.con_categories,
       con_partenaires: req.body.con_partenaires,
-      con_date_creation: req.body.con_date_creation,
+      con_date_mise_a_jour: new Date(),
     },
   };
+
+  console.log(newvalues.con_nom_responsable)
   db_connect
     .collection("conventions")
     .updateOne(myquery, newvalues, function (err, res) {
