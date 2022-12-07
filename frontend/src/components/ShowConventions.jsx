@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
+import './ShowConventions.scss';
+
+// const haveResponsable = (convention) => {
+//     if (convention.con_responsable.con_nom_responsable) {
+//         return convention.con_responsable.con_nom_responsable
+//     } else {
+//         return "Pas de responsable"
+//     }
+// }
 const Convention = (props) => (
     <tr>
-        <td>{props.convention.num_operation}</td>
-        <td>{props.convention.nom_responsable}</td>
+        <td>{props.convention.con_num_operation}</td>
+        <td>{props.convention.con_nom_operation}</td>
+        <td>{props.convention.con_nom_responsable}</td>
         <td>{dateFormat(props.convention.date_debut, "dd-mm-yyyy")}</td>
         <td>{dateFormat(props.convention.date_fin, "dd-mm-yyyy")}</td>
-        <td>{props.convention.montant} €</td>
-        <td>{props.convention.montant_encaise} €</td>
-        <td>{props.convention.piece_jointe}</td>
-        <td>{props.convention.categorie}</td>
-        <td>{props.convention.partenaire}</td>
+        <td>{props.convention.con_montant} €</td>
+        <td>{props.convention.con_montant_encaisse} €</td>
+        <td>{props.convention.con_piece_jointes}</td>
+        <td>{props.convention.con_categories}</td>
+        <td>{props.convention.con_partenaires}</td>
         <td>
-            <Link className="btn btn-link" to={`/edit/${props.convention._id}`}>Edit</Link> |
-            <button className="btn btn-link"
-                onClick={() => {
-                    props.deleteConvention(props.convention._id);
-                }}
-            >
-                Delete
-            </button>
+            <Link className="btn btn-outline-warning" to={`/edit/${props.convention._id}`}>Modifier</Link>
         </td>
     </tr>
 );
@@ -73,12 +76,13 @@ export default function ConventionList() {
 
     // This following section will display the table with the conventions of individuals.
     return (
-        <div>
-            <h3>Convention List</h3>
-            <table className="table table-striped" style={{ marginTop: 20 }}>
+        <div className="ShowConvention">
+            <h3>Conventions</h3>
+            <table className="table table-hover" style={{ marginTop: 20 }}>
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>
+                        <th>Opération </th>
                         <th>Responsable</th>
                         <th>Date de début</th>
                         <th>Date de fin</th>
@@ -87,6 +91,7 @@ export default function ConventionList() {
                         <th>Pieces jointes</th>
                         <th>Catégories</th>
                         <th>Partenaires</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>{conventionList()}</tbody>

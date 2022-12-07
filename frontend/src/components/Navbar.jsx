@@ -42,6 +42,8 @@ export default function Navbar() {
           </ul></dd>
         </dl>
       </nav>
+      <div className="invisible-block"></div>
     </div>
+
   );
 }

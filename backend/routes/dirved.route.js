@@ -110,8 +110,8 @@ recordRoutes.route("/add/convention").post((req, res, next) => {
     con_montant: Number,
     con_montant_encaisse: Number,
     con_piece_jointes: String,
-    con_categories: [String],
-    con_partenaires: [String],
+    con_categories: String,
+    con_partenaires: String,
     con_date_creation: Date,
   });
 
