@@ -1,12 +1,6 @@
 div#root {
-    min-height: 100vh;
     display: flex;
     flex-direction: row;
-
-    .navbar {
-        position: fixed;
-    }
-    .display{
-        margin-left: 16rem;
-    }
+    min-height: 100vh;
+    background-color: #ecf0f1;
 }

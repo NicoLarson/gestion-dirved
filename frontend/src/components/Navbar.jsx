@@ -2,95 +2,45 @@ import React from 'react';
 import './Navbar.scss';
 // We import NavLink to utilize the react router.
 import { NavLink } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // Here, we display our Navbar
 export default function Navbar() {
   return (
     <div>
       <nav className="navbar">
         <NavLink className="navbar-brand" to="/">
-          <img src="https://www.daeu.fr/app/uploads/2018/11/Universite-de-Guyane_logo.png"></img>
+          <img className='logo' src="https://www.daeu.fr/app/uploads/2018/11/Universite-de-Guyane_logo.png"></img>
         </NavLink>
-        <h2>Conventions</h2>
-        <ul>
-          <li className="nav-item">
-            <NavLink className="button btn btn-info" to="/create">
-              Rechercher
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-success" to="/convention/show/conventions">
-              Afficher
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-primary" to="/convention/create">
-              Ajouter
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-warning" to="/create">
-              Mise à jour
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              className="button btn btn-danger"
-              to="/convention/search/delete"
-            >
-              Supprimer
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              className="button btn btn-secondary"
-              to="/convention/add/responsable"
-            >
-              Ajouter <br />
-              Responsable
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              className="button btn btn-secondary"
-              to="/convention/show/responsables"
-            >
-              Afficher <br />
-              Responsable
-            </NavLink>
-          </li>
-        </ul>
-        <h2>Paiements</h2>
-        <ul>
-          <li className="nav-item">
-            <NavLink className="button btn btn-info" to="/create">
-              Rechercher
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-success" to="/create">
-              Afficher
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-primary" to="/create">
-              Ajouter
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="button btn btn-warning" to="/create">
-              Mise à jour
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink
-              className="button btn btn-danger"
-              to="/convention/search/delete"
-            >
-              Supprimer
-            </NavLink>
-          </li>
-        </ul>
+        <dl className='menu'>
+          <dt><i class="fa-solid fa-flask"></i> Convention</dt>
+          <dd>
+            <ul>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/convention/show/conventions">
+                  <i class="fa-solid fa-list"></i> Afficher
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/convention/create">
+                  <i class="fa-solid fa-plus"></i> Ajouter
+                </NavLink>
+              </li>
+            </ul>
+          </dd>
+          <dt><i class="fa-solid fa-money-bill-1-wave"></i> Paiement</dt>
+          <dd>  <ul>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/create">
+                <i class="fa-solid fa-list"></i> Afficher
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/create">
+                <i class="fa-solid fa-plus"></i> Ajouter
+              </NavLink>
+            </li>
+          </ul></dd>
+        </dl>
       </nav>
     </div>
   );
