@@ -6,8 +6,10 @@ import './App.scss';
 
 import Navbar from '../components/Navbar';
 import Home from '../pages/Home/Home';
-import ConventionList from '../components/ShowConventions';
-import CreateConvention from '../components/AddConvention';
+import ShowConventions from '../components/ShowConventions';
+import AddConvention from '../components/AddConvention';
+import ShowPaiements from '../components/ShowPaiements';
+import AddPaiement from '../components/AddPaiement';
 import AddResponsable from '../components/AddResponsable';
 import ShowResponsable from '../components/ShowResponsables';
 import UpdateResponsable from '../components/UpdateResponsable';
@@ -20,8 +22,10 @@ export default function App() {
       <div className="display">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/convention/create" element={<CreateConvention />} />
-          <Route path="/show/conventions" element={<ConventionList />} />
+          <Route path="/show/conventions" element={<ShowConventions />} />
+          <Route path="/add/convention" element={<AddConvention />} />
+          <Route path="/show/paiement" element={<ShowPaiements />} />
+          <Route path="/add/paiement" element={<AddPaiement />} />
           <Route path="/convention/add/responsable" element={<AddResponsable />} />
           <Route path="/convention/show/responsables" element={<ShowResponsable />} />
           <Route path="/convention/update/responsable/:id" element={<UpdateResponsable />} />

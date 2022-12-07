@@ -21,7 +21,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/convention/create">
+                <NavLink className="nav-link" to="/add/convention">
                   <i class="fa-solid fa-plus"></i> Ajouter
                 </NavLink>
               </li>
@@ -30,12 +30,12 @@ export default function Navbar() {
           <dt><i class="fa-solid fa-money-bill-1-wave"></i> Paiement</dt>
           <dd>  <ul>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/create">
+              <NavLink className="nav-link" to="/show/paiements">
                 <i class="fa-solid fa-list"></i> Afficher
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/create">
+              <NavLink className="nav-link" to="/add/paiement">
                 <i class="fa-solid fa-plus"></i> Ajouter
               </NavLink>
             </li>

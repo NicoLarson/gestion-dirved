@@ -104,6 +104,50 @@ recordRoutes.route("/update/responsable/:id").post(function (req, response) {
 
 // TODO
 
+recordRoutes.route("/add/paiement").post((req, res, next) => {
+  const dbConnect = dbo.getDb();
+
+  const Responsable = new mongoose.model("Responsable", {
+    pai_num_operation: String,
+    pai_prestatire: String,
+    pai_devis_piece_jointe: String,
+    pai_devis_status: String,
+    pai_bc_piece_jointe: String,
+    pai_bc_status: String,
+    pai_facture_piece_jointe: String,
+    pai_facture_status: String,
+    pai_csf_piece_jointe: String,
+    pai_csf_status: String,
+    pai_commentaire: String,
+    pai_date_creation: Date,
+  });
+  const matchResponsable = new Responsable({
+    pai_num_operation: req.body.pai_num_operation,
+    pai_prestatire: req.body.pai_prestatire,
+    pai_devis_piece_jointe: req.body.pai_devis_piece_jointe,
+    pai_devis_status: req.body.pai_devis_status,
+    pai_bc_piece_jointe: req.body.pai_bc_piece_jointe,
+    pai_bc_status: req.body.pai_bc_status,
+    pai_facture_piece_jointe: req.body.pai_facture_piece_jointe,
+    pai_facture_status: req.body.pai_facture_status,
+    pai_csf_piece_jointe: req.body.pai_csf_piece_jointe,
+    pai_csf_status: req.body.pai_csf_status,
+    pai_commentaire: req.body.pai_commentaire,
+    pai_date_creation: new Date(),
+  });
+
+  dbConnect
+    .collection("paiements")
+    .insertOne(matchResponsable, function (err, result) {
+      if (err) {
+        res.status(400).send("Error inserting matches!");
+      } else {
+        console.log(`Added a new match with id ${result.insertedId}`);
+        console.log(req.file, req.body);
+        res.status(204).send();
+      }
+    });
+});
 recordRoutes.route("/update/convention/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };

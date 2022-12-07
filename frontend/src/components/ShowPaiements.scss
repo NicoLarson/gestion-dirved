@@ -1,4 +1,4 @@
-.ShowConvention {
+.ShowPaiements {
     background-color: #fafafa;
     width: 100%;
     padding: 2rem;
@@ -17,20 +17,20 @@
         margin-bottom: 2rem;
 
         thead {
+            color: rgb(180, 180, 180);
 
             tr {
-                color: #fafafa;
-                background-color: #16a085;
-                border-radius: 1rem;
-                top: 0;
+                background-color: #9ca3af;
+                /* Stick to the left */
+                left: 0;
                 position: sticky;
-                z-index: 1;
-                  
+                z-index: 2;
+
                 th {
                     padding: 1rem;
                     text-align: center;
                     font-size: 1.6rem;
-                    font-weight: bold;
+                    font-weight: bolder;
                 }
             }
         }
