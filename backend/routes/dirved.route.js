@@ -58,9 +58,11 @@ recordRoutes.route("/update/responsable/:id").post(responsable_controller.update
 /*
   *  PRESTATAIRE
 */
-// TODO: Afficher prestatires
+// Afficher prestatires
+recordRoutes.route("/show/prestataires").get(prestataire_controller.show_prestataires);
+
 // TODO: Afficher un prestataire
-// TODO: Ajouter prestataire
+// Ajouter prestataire
 recordRoutes.route("/create/prestataire").post(prestataire_controller.create_prestataire);
 
 // TODO: Mise a jour d'un prestataire

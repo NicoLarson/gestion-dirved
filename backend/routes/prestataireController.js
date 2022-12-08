@@ -1,8 +1,18 @@
 const Prestataire = require("../models/Prestataire.js")
-const mongoose = require("mongoose");
 const dbo = require("../conn");
 
 exports.show_prestataires = (req, res) => {
+    const dbConnect = dbo.getDb();
+    dbConnect
+        .collection("prestataires")
+        .find({})
+        .toArray(function (err, result) {
+            if (err) {
+                res.status(400).send("Error fetching prestataires!");
+            } else {
+                res.json(result);
+            }
+        })
 }
 
 exports.show_one_prestataire = (req, res) => {

@@ -35,6 +35,11 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink className="nav-link" to="/show/prestataires">
+                <i class="fa-solid fa-list"></i> Prestataires 
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" to="/add/paiement">
                 <i class="fa-solid fa-plus"></i> Ajouter
               </NavLink>

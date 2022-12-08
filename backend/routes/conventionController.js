@@ -7,7 +7,7 @@ exports.show_conventions = (req, res) => {
     dbConnect
         .collection("conventions")
         .find({})
-        .toArray(function (err, result) {
+        .toArray((err, result) => {
             if (err) {
                 res.status(400).send("Error fetching conventions!");
             } else {
@@ -21,7 +21,7 @@ exports.show_one_convention = (req, res) => {
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect
         .collection("conventions")
-        .findOne(myquery, function (err, result) {
+        .findOne(myquery, (err, result) => {
             if (err) throw err;
             res.json(result);
         });
