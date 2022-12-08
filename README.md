@@ -29,6 +29,13 @@ npm run install:frontend
 npm run start:backend
 npm run start:frontend
 ```
+## Database
+
+mongodb atlas
+
+## API
+
+heroku
 
 ## Author
 
@@ -37,10 +44,6 @@ npm run start:frontend
 * Website: nicolasyang.dev
 * Github: [@NicoLarson](https://github.com/NicoLarson)
 * LinkedIn: [@nicolas-yang-dev](https://linkedin.com/in/nicolas-yang-dev)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/NicoLarson/gestion-dirved/issues). You can also take a look at the [contributing guide](https://github.com/NicoLarson/gestion-dirved/blob/master/CONTRIBUTING.md).
 
 ## Show your support
 
