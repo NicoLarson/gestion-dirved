@@ -1,127 +1,72 @@
 const express = require("express");
 const recordRoutes = express.Router();
-const dbo = require("../db/conn");
-const mongoose = require("mongoose");
+const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
+const Operation = require("../models/Operation.js")
+const Convention = require("../models/Convention.js")
 
-// DONE
-recordRoutes.route("/show/conventions").get(async function (_req, res) {
-  const dbConnect = dbo.getDb();
+const convention_controller = require("./conventionController.js")
+const responsable_controller = require("./responsableController.js")
 
-  dbConnect
-    .collection("conventions")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) {
-        res.status(400).send("Error fetching conventions!");
-      } else {
-        res.json(result);
-      }
-    });
-});
 
-recordRoutes.route("/add/responsable").post((req, res, next) => {
-  const dbConnect = dbo.getDb();
+/*
+  *  CONVENTION
+*/
+// TODO: Ajouter une convention 
 
-  const Responsable = new mongoose.model("Responsable", {
-    res_nom: String,
-    res_prenom: String,
-    res_email: String,
-  });
-  const matchResponsable = new Responsable({
-    res_nom: req.body.res_nom,
-    res_prenom: req.body.res_prenom,
-    res_email: req.body.res_email,
-  });
+// Afficher conventions
+recordRoutes.route("/show/conventions").get(convention_controller.show_conventions);
 
-  dbConnect
-    .collection("responsables")
-    .insertOne(matchResponsable, function (err, result) {
-      if (err) {
-        res.status(400).send("Error inserting matches!");
-      } else {
-        console.log(`Added a new match with id ${result.insertedId}`);
-        console.log(req.file, req.body);
-        res.status(204).send();
-      }
-    });
-});
+// Afficher une convention
+recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
 
-recordRoutes.route("/show/responsable").get(async function (req, res) {
-  const dbConnect = dbo.getDb();
-  dbConnect
-    .collection("responsables")
-    .find({})
-    .limit(50)
-    .toArray(function (err, result) {
-      if (err) {
-        res.status(400).send("Error fetching listings!");
-      } else {
-        res.json(result);
-      }
-    })
-});
+// Mettre à jour une convention
+recordRoutes.route("/update/convention/:id").post(convention_controller.add_convention);
 
-recordRoutes.route("/show/responsable/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect
-    .collection("responsables")
-    .findOne(myquery, function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
-});
-recordRoutes.route("/show/convention/:id").get(function (req, res) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  db_connect
-    .collection("conventions")
-    .findOne(myquery, function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
-});
+// TODO: Supprimer une convention 
 
-recordRoutes.route("/update/responsable/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  let newvalues = {
-    $set: {
-      res_nom: req.body.res_nom,
-      res_prenom: req.body.res_prenom,
-      res_email: req.body.res_email,
-    },
-  };
-  db_connect
-    .collection("responsables")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err;
-      console.log("1 document updated");
-      response.json(res);
-    });
-});
 
-// TODO
+/*
+  *  RESPONSABLE
+*/
+// Afficher responsable
+recordRoutes.route("/show/responsables").get(responsable_controller.show_responsables);
+
+// Afficher un responsable
+recordRoutes.route("/show/responsable/:id").get(responsable_controller.show_one_responsable);
+
+// Ajouter un responsable
+recordRoutes.route("/add/responsable").post(responsable_controller.add_responsable);
+
+// Mise à jour d'un responsable	
+recordRoutes.route("/update/responsable/:id").post(responsable_controller.update_responsable);
+
+// TODO: Supprimer un responsable
+
+
+/*
+  *  PAIEMENT
+*/
+// TODO: Afficher paiement
+// TODO: Afficher un paiement
+// TODO: Ajouter paiement
+// TODO: Mise a jour d'un paieemnt
+// TODO: Supprimer un paiement
+
+
+/*
+  *  PRESTATAIRE
+*/
+// TODO: Afficher prestatires
+// TODO: Afficher un prestataire
+// TODO: Ajouter prestataire
+// TODO: Mise a jour d'un prestataire
+// TODO: Supprimer un prestataire
 
 recordRoutes.route("/add/paiement").post((req, res, next) => {
   const dbConnect = dbo.getDb();
 
-  const Responsable = new mongoose.model("Responsable", {
-    pai_num_operation: String,
-    pai_prestatire: String,
-    pai_devis_piece_jointe: String,
-    pai_devis_status: String,
-    pai_bc_piece_jointe: String,
-    pai_bc_status: String,
-    pai_facture_piece_jointe: String,
-    pai_facture_status: String,
-    pai_csf_piece_jointe: String,
-    pai_csf_status: String,
-    pai_commentaire: String,
-    pai_date_creation: Date,
-  });
-  const matchResponsable = new Responsable({
+  const matchResponsable = new Operation({
     pai_num_operation: req.body.pai_num_operation,
     pai_prestatire: req.body.pai_prestatire,
     pai_devis_piece_jointe: req.body.pai_devis_piece_jointe,
@@ -148,62 +93,10 @@ recordRoutes.route("/add/paiement").post((req, res, next) => {
       }
     });
 });
-recordRoutes.route("/update/convention/:id").post(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId(req.params.id) };
-  let newvalues = {
-    $set: {
-      con_num_operation: req.body.con_num_operation,
-      con_nom_operation: req.body.con_nom_operation,
-      con_responsable: {
-        con_nom_responsable: req.body.con_nom_responsable,
-        con_prenom_responsable: req.body.con_prenom_responsable,
-        con_fonction: req.body.con_fonction,
-        con_email_responsable: req.body.con_email_responsable,
-      },
-      con_date_debut: req.body.con_date_debut,
-      con_date_fin: req.body.con_date_fin,
-      con_montant: req.body.con_montant,
-      con_montant_encaisse: req.body.con_montant_encaisse,
-      con_piece_jointes: req.body.con_piece_jointes,
-      con_categories: req.body.con_categories,
-      con_partenaires: req.body.con_partenaires,
-      con_date_mise_a_jour: new Date(),
-    },
-  };
-
-  console.log(newvalues.con_nom_responsable)
-  db_connect
-    .collection("conventions")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err;
-      console.log("1 document updated");
-      response.json(res);
-    });
-});
 
 
 // This section will help you create a new record.
 recordRoutes.route("/add/convention").post((req, res, next) => {
-  const Convention = new mongoose.model("Convention", {
-    con_num_operation: String,
-    con_nom_operation: String,
-    con_responsable: {
-      con_nom_responsable: String,
-      con_prenom_responsable: String,
-      con_fonction: String,
-      con_email_responsable: String,
-    },
-    con_date_debut: Date,
-    con_date_fin: Date,
-    con_montant: Number,
-    con_montant_encaisse: Number,
-    con_piece_jointes: String,
-    con_categories: String,
-    con_partenaires: String,
-    con_date_creation: Date,
-  });
-
   const dbConnect = dbo.getDb();
   const matchConvention = new Convention({
     con_num_operation: req.body.con_num_operation,

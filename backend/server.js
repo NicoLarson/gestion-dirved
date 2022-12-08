@@ -4,7 +4,7 @@ require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 const cors = require("cors");
 // get MongoDB driver connection
-const dbo = require("./db/conn");
+const dbo = require("./conn");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
