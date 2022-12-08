@@ -27,7 +27,7 @@ exports.show_one_convention = (req, res) => {
         });
 }
 
-exports.add_convention = (req, res) => {
+exports.create_convention = (req, res) => {
 
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };

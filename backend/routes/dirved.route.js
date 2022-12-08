@@ -7,6 +7,7 @@ const Convention = require("../models/Convention.js")
 
 const convention_controller = require("./conventionController.js")
 const responsable_controller = require("./responsableController.js")
+const prestataire_controller = require("./prestataireController.js")
 
 
 /*
@@ -21,7 +22,7 @@ recordRoutes.route("/show/conventions").get(convention_controller.show_conventio
 recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
 
 // Mettre à jour une convention
-recordRoutes.route("/update/convention/:id").post(convention_controller.add_convention);
+recordRoutes.route("/update/convention/:id").post(convention_controller.create_convention);
 
 // TODO: Supprimer une convention 
 
@@ -36,7 +37,7 @@ recordRoutes.route("/show/responsables").get(responsable_controller.show_respons
 recordRoutes.route("/show/responsable/:id").get(responsable_controller.show_one_responsable);
 
 // Ajouter un responsable
-recordRoutes.route("/add/responsable").post(responsable_controller.add_responsable);
+recordRoutes.route("/create/responsable").post(responsable_controller.create_responsable);
 
 // Mise à jour d'un responsable	
 recordRoutes.route("/update/responsable/:id").post(responsable_controller.update_responsable);
@@ -60,10 +61,12 @@ recordRoutes.route("/update/responsable/:id").post(responsable_controller.update
 // TODO: Afficher prestatires
 // TODO: Afficher un prestataire
 // TODO: Ajouter prestataire
+recordRoutes.route("/create/prestataire").post(prestataire_controller.create_prestataire);
+
 // TODO: Mise a jour d'un prestataire
 // TODO: Supprimer un prestataire
 
-recordRoutes.route("/add/paiement").post((req, res, next) => {
+recordRoutes.route("/create/paiement").post((req, res, next) => {
   const dbConnect = dbo.getDb();
 
   const matchResponsable = new Operation({
@@ -96,7 +99,7 @@ recordRoutes.route("/add/paiement").post((req, res, next) => {
 
 
 // This section will help you create a new record.
-recordRoutes.route("/add/convention").post((req, res, next) => {
+recordRoutes.route("/create/convention").post((req, res, next) => {
   const dbConnect = dbo.getDb();
   const matchConvention = new Convention({
     con_num_operation: req.body.con_num_operation,

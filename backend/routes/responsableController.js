@@ -31,7 +31,7 @@ exports.show_one_responsable = (req, res) => {
         });
 }
 
-exports.add_responsable = (req, res) => {
+exports.create_responsable = (req, res) => {
     const dbConnect = dbo.getDb();
 
     const matchResponsable = new Responsable({
