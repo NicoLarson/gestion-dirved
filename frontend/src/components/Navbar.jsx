@@ -39,6 +39,11 @@ export default function Navbar() {
                 <i class="fa-solid fa-plus"></i> Ajouter
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/create/prestataire">
+                <i class="fa-solid fa-plus"></i> Prestataire
+              </NavLink>
+            </li>
           </ul></dd>
         </dl>
       </nav>

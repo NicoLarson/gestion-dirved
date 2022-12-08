@@ -14,6 +14,7 @@ import AddResponsable from '../components/AddResponsable';
 import ShowResponsable from '../components/ShowResponsables';
 import UpdateResponsable from '../components/UpdateResponsable';
 import UpdateConvention from '../components/UpdateConvention';
+import CreatePrestataire from '../components/CreatePrestataire';
 
 export default function App() {
   return (
@@ -30,6 +31,8 @@ export default function App() {
           <Route path="/convention/show/responsables" element={<ShowResponsable />} />
           <Route path="/convention/update/responsable/:id" element={<UpdateResponsable />} />
           <Route path="/update/convention/:id" element={<UpdateConvention />} />
+          <Route path="/create/prestataire" element={<CreatePrestataire />} />
+
         </Routes>
       </div>
     </Router>
