@@ -65,7 +65,7 @@ exports.update_responsable = (req, res) => {
     };
     db_connect
         .collection("responsables")
-        .updateOne(myquery, newvalues, function (err, res) {
+        .updateOne(myquery, newvalues, (err, res) => {
             if (err) throw err;
             console.log("1 document updated");
             response.json(res);

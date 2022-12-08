@@ -61,11 +61,14 @@ recordRoutes.route("/update/responsable/:id").post(responsable_controller.update
 // Afficher prestatires
 recordRoutes.route("/show/prestataires").get(prestataire_controller.show_prestataires);
 
-// TODO: Afficher un prestataire
+// Afficher un prestataire
+recordRoutes.route("/show/prestataire/:id").get(prestataire_controller.show_one_prestataire);
+
 // Ajouter prestataire
 recordRoutes.route("/create/prestataire").post(prestataire_controller.create_prestataire);
 
-// TODO: Mise a jour d'un prestataire
+// Mise a jour d'un prestataire
+recordRoutes.route("/update/prestataire/:id").post(prestataire_controller.update_prestataire);
 // TODO: Supprimer un prestataire
 
 recordRoutes.route("/create/paiement").post((req, res, next) => {

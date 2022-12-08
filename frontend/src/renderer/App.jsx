@@ -16,6 +16,7 @@ import UpdateResponsable from '../components/UpdateResponsable';
 import UpdateConvention from '../components/UpdateConvention';
 import CreatePrestataire from '../components/CreatePrestataire';
 import ShowPrestataires from '../components/ShowPrestataires';
+import UpdatePrestataire from '../components/UpdatePrestataire';
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/update/convention/:id" element={<UpdateConvention />} />
           <Route path="/create/prestataire" element={<CreatePrestataire />} />
           <Route path="/show/prestataires" element={<ShowPrestataires />} />
+          <Route path="/update/prestataire/:id" element={<UpdatePrestataire />} />
         </Routes>
       </div>
     </Router>
