@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import dateFormat, { masks } from "dateformat";
 
 export default function UpdateConvention() {
     const [form, setForm] = useState({
         con_num_operation: '',
         con_nom_operation: '',
-        con_responsable: {
-            con_nom_responsable: '',
-            con_prenom_responsable: '',
-            con_fonction_responsable: '',
-            con_email_responsable: '',
-        },
+        con_nom_responsable: '',
+        con_prenom_responsable: '',
+        con_fonction_responsable: '',
+        con_email_responsable: '',
         con_date_debut: '',
         con_date_fin: '',
         con_montant: '',
@@ -64,12 +61,10 @@ export default function UpdateConvention() {
         const editedConvention = {
             con_num_operation: form.con_num_operation,
             con_nom_operation: form.con_nom_operation,
-            con_responsable: {
-                con_nom_responsable: form.con_nom_responsable,
-                con_prenom_responsable: form.con_prenom_responsable,
-                con_fonction_responsable: form.con_fonction_responsable,
-                con_email_responsable: form.con_email_responsable,
-            },
+            con_nom_responsable: form.con_nom_responsable,
+            con_prenom_responsable: form.con_prenom_responsable,
+            con_fonction_responsable: form.con_fonction_responsable,
+            con_email_responsable: form.con_email_responsable,
             con_date_debut: form.con_date_debut,
             con_date_fin: form.con_date_fin,
             con_montant: form.con_montant,
@@ -80,6 +75,8 @@ export default function UpdateConvention() {
         };
 
         // This will send a post request to update the data in the database.
+        navigate('/show/conventions/')
+
         await fetch(
             `http://localhost:5000/update/convention/${params.id}`,
             {
@@ -89,9 +86,8 @@ export default function UpdateConvention() {
                     'Content-Type': 'application/json',
                 },
             }
-        );
+        )
 
-        navigate('/show/conventions');
     }
 
     // This following section will display the form that takes input from the user to update the data.
@@ -108,7 +104,9 @@ export default function UpdateConvention() {
                             className="form-control"
                             id="con_num_operation"
                             value={form.con_num_operation}
-                            onChange={(e) => updateForm({ con_num_operation: e.target.value })}
+                            onChange={(e) => updateForm({
+                                con_num_operation: e.target.value
+                            })}
                         />
                     </div>
                     <div className="form-group">
@@ -242,7 +240,7 @@ export default function UpdateConvention() {
                     <div className="form-group">
                         <input
                             type="submit"
-                            value="Ajouter"
+                            value="Mis à jour"
                             className="btn btn-outline-success"
                         />
                     </div>

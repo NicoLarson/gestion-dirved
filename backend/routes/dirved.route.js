@@ -2,6 +2,7 @@ const express = require("express");
 const recordRoutes = express.Router();
 const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
+
 const Operation = require("../models/Operation.js")
 const Convention = require("../models/Convention.js")
 
@@ -22,7 +23,7 @@ recordRoutes.route("/show/conventions").get(convention_controller.show_conventio
 recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
 
 // Mettre à jour une convention
-recordRoutes.route("/update/convention/:id").post(convention_controller.create_convention);
+recordRoutes.route("/update/convention/:id").post(convention_controller.update_convention);
 
 // TODO: Supprimer une convention 
 

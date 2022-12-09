@@ -72,7 +72,6 @@ exports.update_prestataire = (req, res) => {
         .updateOne(myquery, newvalues, (err, res) => {
             if (err) throw err;
             console.log("1 document updated");
-            response.json(res);
         });
 }
 
