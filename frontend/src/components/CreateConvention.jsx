@@ -55,7 +55,7 @@ export default function CreateConvention() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div className='AddConvention'>
+    <div className='CreateConvention'>
       <h2>Ajouter Convention</h2>
       <fieldset className='form-group'>
         <legend>Convention</legend>
