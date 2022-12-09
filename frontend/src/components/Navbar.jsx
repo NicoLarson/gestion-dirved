@@ -21,7 +21,7 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/add/convention">
+                <NavLink className="nav-link" to="/create/convention">
                   <i class="fa-solid fa-plus"></i> Ajouter
                 </NavLink>
               </li>

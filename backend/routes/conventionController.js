@@ -29,7 +29,7 @@ exports.show_one_convention = (req, res) => {
 }
 
 exports.update_convention = (req, res) => {
-console.log(req.body.con_nom_responsable)
+    console.log(req.body.con_nom_responsable)
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
     let newvalues = {
@@ -64,4 +64,30 @@ console.log(req.body.con_nom_responsable)
 }
 
 exports.create_convention = (req, res) => {
+    const dbConnect = dbo.getDb();
+    const matchConvention = new Convention({
+        con_num_operation: req.body.con_num_operation,
+        con_nom_operation: req.body.con_nom_operation,
+        con_responsable: {
+            con_nom_responsable: req.body.con_nom_responsable,
+            con_prenom_responsable: req.body.con_prenom_responsable,
+            con_fonction_responsable: req.body.con_fonction_responsable,
+            con_email_responsable: req.body.con_email_responsable,
+        },
+        con_date_debut: req.body.con_date_debut,
+        con_date_fin: req.body.con_date_fin,
+        con_montant: req.body.con_montant,
+        con_montant_encaisse: req.body.con_montant_encaisse,
+        con_piece_jointes: req.body.con_piece_jointes,
+        con_categories: req.body.con_categories,
+        con_partenaires: req.body.con_partenaires,
+        con_date_creation: new Date(),
+    })
+    dbConnect.collection("conventions").insertOne(matchConvention, (err, _result) => {
+        if (err) {
+            res.status(400).send("Error creating convention!");
+        } else {
+            res.status(201).send("Convention created!");
+        }
+    })
 }

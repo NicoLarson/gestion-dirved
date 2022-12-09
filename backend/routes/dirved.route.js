@@ -15,6 +15,7 @@ const prestataire_controller = require("./prestataireController.js")
   *  CONVENTION
 */
 // TODO: Ajouter une convention 
+recordRoutes.route("/create/convention").get(convention_controller.create_convention);
 
 // Afficher conventions
 recordRoutes.route("/show/conventions").get(convention_controller.show_conventions);

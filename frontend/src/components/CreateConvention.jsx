@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import './AddConvention.scss';
+import './CreateConvention.scss';
 
-export default function AddConvention() {
+export default function CreateConvention() {
   const [form, setForm] = useState({
     con_num_operation: '',
     con_nom_operation: '',
@@ -37,7 +37,7 @@ export default function AddConvention() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newConvention = { ...form };
 
-    await fetch('http://localhost:5000/add/convention', {
+    await fetch('http://localhost:5000/create/convention', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
