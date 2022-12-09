@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-export default function AddPaiement() {
+import './CreatePaiement.scss'
+export default function CreatePaiement() {
   const [form, setForm] = useState({
     pai_num_operation: '',
-    pai_prestatire: '',
+    pai_prestataire: '',
     pai_devis_piece_jointe: '',
     pai_devis_status: '',
     pai_bc_piece_jointe: '',
@@ -31,7 +31,7 @@ export default function AddPaiement() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newPaiement = { ...form };
 
-    await fetch('http://localhost:5000/add/paiement', {
+    await fetch('http://localhost:5000/create/paiement', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ export default function AddPaiement() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div className='AddConvention'>
+    <div className='CreatePaiement'>
       <h2>Ajouter Paiement</h2>
       <fieldset className='form-group'>
         <legend>Operation</legend>

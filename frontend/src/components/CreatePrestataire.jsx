@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import './CreatePrestataire.scss'
 
-export default function AddPrestataire() {
+export default function CreatePrestataire() {
     const [form, setForm] = useState({
         pre_nom: "",
         pre_type: "",
@@ -44,7 +45,7 @@ export default function AddPrestataire() {
 
     // This following section will display the form that takes the input from the user.
     return (
-        <div className='AddConvention'>
+        <div className='CreatePrestataire'>
             <h2>Ajouter Prestataire</h2>
             <fieldset className='form-group'>
                 <legend>Prestataire</legend>

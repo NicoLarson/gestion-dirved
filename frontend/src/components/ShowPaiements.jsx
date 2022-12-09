@@ -11,19 +11,6 @@ const dateIsDefined = (date) => {
     }
 }
 
-const showResponsableName = (responsable) => {
-    console.log("TEST showResponsableName")
-    try {
-        if (responsable["con_nom_responsable"] !== null) {
-            console.log(responsable)
-        }
-    } catch (e) {
-        console.error("Erreur: " + e)
-        return 0
-    }
-    return responsable["con_nom_responsable"]
-}
-
 const timeLeft = (date) => {
     try {
         new Date(date)
@@ -55,22 +42,40 @@ const timeLeftClassName = (daysLeft) => {
     }
 }
 
+const statusPaiement = (paiement) => {
+    let status = "?"
+    const devis_status = paiement.pai_devis_status;
+    const bc_status = paiement.pai_bc_status;
+    const facture_status = paiement.pai_facture_status;
+    const csf_status = paiement.pai_csf_status;
+
+    if (devis_status === false) {
+        status = "Devis non joint"
+    } else if (devis_status === true) {
+        status = "Devis joint"
+    } else if (devis_status === true && bc_status === false) {
+        status = "Bon de commande non joint"
+    } else if (devis_status === true && bc_status === true) {
+        status = "Bon de commande joint"
+    } else if (devis_status === true && bc_status === true && facture_status === false) {
+        status = "Facture non joint"
+    } else if (devis_status === true && bc_status === true && facture_status === true) {
+        status = "Facture joint"
+    } else if (devis_status === true && bc_status === true && facture_status === true && csf_status === false) {
+        status = "CSF non joint"
+    } else if (devis_status === true && bc_status === true && facture_status === true && csf_status === true) {
+        status = "CSF joint"
+    }
+    return status
+}
+
 const Paiement = (props) => (
     <tr>
-        <td>{props.paiement.con_num_operation}</td>
-        <td>{props.paiement.con_nom_operation}</td>
-        <td>{showResponsableName(props.paiement.con_responsable)}</td>
-        <td>{dateIsDefined(props.paiement.con_date_debut)}</td>
-        <td>{dateIsDefined(props.paiement.con_date_fin)}</td>
-        <td>
-            <span className={timeLeftClassName(timeLeft(props.paiement.con_date_fin))}>{timeLeft(props.paiement.con_date_fin)}</span>
-        </td>
-
-        <td>{props.paiement.con_montant} €</td>
-        <td>{props.paiement.con_montant_encaisse} €</td>
-        <td>{props.paiement.con_piece_jointes}</td>
-        <td>{props.paiement.con_categories}</td>
-        <td>{props.paiement.con_partenaires}</td>
+        <td>{props.paiement.pai_num_operation}</td>
+        <td>{props.paiement.pai_nom_operation}</td>
+        <td>{props.paiement.pai_montant}</td>
+        <td>{dateIsDefined(props.paiement.pai_date_fin)}</td>
+        <td>{statusPaiement(props.paiement)}</td>
         <td>
             <Link className="btn btn-outline-warning" to={`/update/paiement/${props.paiement._id}`}>Modifier</Link>
         </td>
@@ -125,22 +130,16 @@ export default function PaiementList() {
 
     // This following section will display the table with the paiements of individuals.
     return (
-        <div className="ShowPaiement">
+        <div className="ShowPaiements">
             <h3>Paiements</h3>
             <table className="table table-hover" style={{ marginTop: 20 }}>
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>
-                        <th>Opération </th>
-                        <th>Responsable</th>
-                        <th>Date de début</th>
-                        <th>Date de fin</th>
-                        <th>Temps restant</th>
+                        <th>Prestatire </th>
                         <th>Montant</th>
-                        <th>Montant encaissé</th>
-                        <th>Pieces jointes</th>
-                        <th>Catégories</th>
-                        <th>Partenaires</th>
+                        <th>Date</th>
+                        <th>Status </th>
                         <th></th>
                     </tr>
                 </thead>

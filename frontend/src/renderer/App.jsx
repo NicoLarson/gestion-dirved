@@ -12,7 +12,7 @@ import CreateConvention from '../components/CreateConvention'
 import UpdateConvention from '../components/UpdateConvention'
 
 import ShowPaiements from '../components/ShowPaiements'
-import AddPaiement from '../components/AddPaiement'
+import AddPaiement from '../components/CreatePaiement'
 
 import AddResponsable from '../components/AddResponsable'
 import ShowResponsable from '../components/ShowResponsables'
@@ -38,7 +38,7 @@ export default function App() {
           <Route path="/show/prestataires" element={<ShowPrestataires />} />
           <Route path="/update/prestataire/:id" element={<UpdatePrestataire />} />
 
-          <Route path="/show/paiement" element={<ShowPaiements />} />
+          <Route path="/show/paiements" element={<ShowPaiements />} />
           <Route path="/add/paiement" element={<AddPaiement />} />
           <Route path="/convention/add/responsable" element={<AddResponsable />} />
           <Route path="/convention/show/responsables" element={<ShowResponsable />} />

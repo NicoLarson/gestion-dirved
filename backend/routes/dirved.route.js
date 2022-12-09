@@ -3,76 +3,53 @@ const recordRoutes = express.Router();
 const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
 
-const Operation = require("../models/Operation.js")
+const Operation = require("../models/Paiement.js")
 const Convention = require("../models/Convention.js")
 
 const convention_controller = require("./conventionController.js")
 const responsable_controller = require("./responsableController.js")
 const prestataire_controller = require("./prestataireController.js")
-
+const paiement_controller = require("./paiementController.js")
 
 /*
   *  CONVENTION
 */
-// TODO: Ajouter une convention 
 recordRoutes.route("/create/convention").get(convention_controller.create_convention);
-
-// Afficher conventions
 recordRoutes.route("/show/conventions").get(convention_controller.show_conventions);
-
-// Afficher une convention
 recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
-
-// Mettre à jour une convention
 recordRoutes.route("/update/convention/:id").post(convention_controller.update_convention);
-
 // TODO: Supprimer une convention 
-
 
 /*
   *  RESPONSABLE
 */
-// Afficher responsable
 recordRoutes.route("/show/responsables").get(responsable_controller.show_responsables);
-
-// Afficher un responsable
 recordRoutes.route("/show/responsable/:id").get(responsable_controller.show_one_responsable);
-
-// Ajouter un responsable
 recordRoutes.route("/create/responsable").post(responsable_controller.create_responsable);
-
-// Mise à jour d'un responsable	
 recordRoutes.route("/update/responsable/:id").post(responsable_controller.update_responsable);
-
 // TODO: Supprimer un responsable
-
 
 /*
   *  PAIEMENT
 */
-// TODO: Afficher paiement
-// TODO: Afficher un paiement
+recordRoutes.route("/show/paiements").get(paiement_controller.show_paiements)
+recordRoutes.route("/show/paiement/:id").get(paiement_controller.show_one_paiement);
 // TODO: Ajouter paiement
-// TODO: Mise a jour d'un paieemnt
+recordRoutes.route("/create/paiement").post(paiement_controller.create_paiement)
+// TODO: Mise a jour d'un paiement
 // TODO: Supprimer un paiement
-
 
 /*
   *  PRESTATAIRE
 */
-// Afficher prestatires
 recordRoutes.route("/show/prestataires").get(prestataire_controller.show_prestataires);
-
-// Afficher un prestataire
 recordRoutes.route("/show/prestataire/:id").get(prestataire_controller.show_one_prestataire);
-
-// Ajouter prestataire
 recordRoutes.route("/create/prestataire").post(prestataire_controller.create_prestataire);
-
-// Mise a jour d'un prestataire
 recordRoutes.route("/update/prestataire/:id").post(prestataire_controller.update_prestataire);
 // TODO: Supprimer un prestataire
 
+
+// ----------------------------------------------------
 recordRoutes.route("/create/paiement").post((req, res, next) => {
   const dbConnect = dbo.getDb();
 
