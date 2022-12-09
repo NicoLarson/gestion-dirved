@@ -41,38 +41,33 @@ const timeLeftClassName = (daysLeft) => {
         return "badge rounded-pill bg-light";
     }
 }
-
+// TODO: gestion des status
 const statusPaiement = (paiement) => {
-    let status = "?"
+
     const devis_status = paiement.pai_devis_status;
     const bc_status = paiement.pai_bc_status;
     const facture_status = paiement.pai_facture_status;
     const csf_status = paiement.pai_csf_status;
-
-    if (devis_status === false) {
-        status = "Devis non joint"
-    } else if (devis_status === true) {
-        status = "Devis joint"
-    } else if (devis_status === true && bc_status === false) {
-        status = "Bon de commande non joint"
-    } else if (devis_status === true && bc_status === true) {
-        status = "Bon de commande joint"
-    } else if (devis_status === true && bc_status === true && facture_status === false) {
-        status = "Facture non joint"
-    } else if (devis_status === true && bc_status === true && facture_status === true) {
-        status = "Facture joint"
-    } else if (devis_status === true && bc_status === true && facture_status === true && csf_status === false) {
-        status = "CSF non joint"
-    } else if (devis_status === true && bc_status === true && facture_status === true && csf_status === true) {
-        status = "CSF joint"
+    let status = devis_status
+    if (devis_status === "En attente") {
+        status = "Devis " + devis_status
+    } else if (devis_status === "Signé" && bc_status === "En attente") {
+        status = "BC " + bc_status
+    } else if (devis_status === "Signé" && bc_status === "Validé" && facture_status === "En attente") {
+        status = facture_status
+    } else if (devis_status === "Signé" && bc_status === "Signé" && facture_status === "Signé" && csf_status === "En attente") {
+        status = csf_status
+    } else if (devis_status === "Signé" && bc_status === "Signé" && facture_status === "Signé" && csf_status === "Signé") {
+        status = "Terminé"
     }
+
     return status
 }
 
 const Paiement = (props) => (
     <tr>
         <td>{props.paiement.pai_num_operation}</td>
-        <td>{props.paiement.pai_nom_operation}</td>
+        <td>{props.paiement.pai_prestataire}</td>
         <td>{props.paiement.pai_montant}</td>
         <td>{dateIsDefined(props.paiement.pai_date_fin)}</td>
         <td>{statusPaiement(props.paiement)}</td>
@@ -136,7 +131,7 @@ export default function PaiementList() {
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>
-                        <th>Prestatire </th>
+                        <th>Prestataire </th>
                         <th>Montant</th>
                         <th>Date</th>
                         <th>Status </th>

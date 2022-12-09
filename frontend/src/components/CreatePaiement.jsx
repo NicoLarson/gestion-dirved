@@ -1,7 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router';
 import './CreatePaiement.scss'
+
+// TODO Gérer les champs (obligatoires, format, etc.)
+
 export default function CreatePaiement() {
+  const [prestataires, setPrestataires] = useState([]);
+  // This method fetches the prestataires from the database.
+  useEffect(() => {
+    async function getPrestataires() {
+      const response = await fetch(`http://localhost:5000/show/prestataires/`);
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const prestataires = await response.json();
+      setPrestataires(prestataires);
+    }
+
+    getPrestataires();
+
+    return;
+  }, [prestataires.length]);
+
   const [form, setForm] = useState({
     pai_num_operation: '',
     pai_prestataire: '',
@@ -64,14 +88,14 @@ export default function CreatePaiement() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="pai_prestatire">Prestataire</label>
-            <input
-              type="text"
-              className="form-control"
-              id="pai_prestatire"
-              value={form.pai_prestatire}
-              onChange={(e) => updateForm({ pai_prestatire: e.target.value })}
-            />
+            <label htmlFor="pai_prestataire">Prestataire</label>
+            <select name="pai_prestataire" id="pai_prestataire" value={form.pai_prestataire}
+              onChange={(e) => updateForm({ pai_prestataire: e.target.value })}>
+              {prestataires.map((prestataire) => (
+                <option value={prestataire._id}>{prestataire.pre_nom}</option>
+              ))}
+            </select>
+
           </div>
           <div className="form-group">
             <label htmlFor="pai_devis_piece_jointe">Devis</label>
@@ -85,43 +109,25 @@ export default function CreatePaiement() {
           </div>
           <div className="form-group">
             <label htmlFor="pai_devis_status">Status</label>
-            <div>
-              <input type="radio" id="pai_devis_status" name="drone" value={form.pai_devis_status}
-                onChange={(e) => updateForm({ pai_devis_status: e.target.value })} />
-              <label htmlFor="pai_devis_status">En cours</label>
-            </div>
-
-            <div>
-              <input type="radio" id="pai_devis_status" name="drone" value={form.pai_devis_status} onChange={(e) => updateForm({ pai_devis_status: e.target.value })} />
-              <label htmlFor="pai_devis_status">Termine</label>
-            </div>
-
-            <div>
-              <input type="radio" id="pai_devis_status" name="drone" value={form.pai_devis_status} onChange={(e) => updateForm({ pai_devis_status: e.target.value })} />
-              <label htmlFor="pai_devis_status">En retard</label>
-            </div>
+            <select name="pai_devis_status" id="pai_devis_status" value={form.pai_devis_status}
+              onChange={(e) => updateForm({ pai_devis_status: e.target.value })}>
+              <option value="En attente">En attente</option>
+              <option value="Signé">Signé</option>
+            </select>
 
           </div>
-          <div className="form-group">
+          <div className="form-group" >
             <label htmlFor="pai_bc_piece_jointe">Bon de commande</label>
-            <input
-              type="file"
-              className="form-control"
-              id="pai_bc_piece_jointe"
-              value={form.pai_bc_piece_jointe}
-              onChange={(e) => updateForm({ pai_bc_piece_jointe: e.target.value })}
-            />
           </div>
 
           <div className="form-group">
             <label htmlFor="pai_bc_status">Status: bon de commande</label>
-            <input
-              type="text"
-              className="form-control"
-              id="pai_bc_status"
-              value={form.pai_bc_status}
-              onChange={(e) => updateForm({ pai_bc_status: e.target.value })}
-            />
+            <select name="pai_bc_status" id="pai_bc_status" value={form.pai_bc_status}
+              onChange={(e) => updateForm({ pai_bc_status: e.target.value })}>
+              <option value="En attente">En attente</option>
+              <option value="En cours">En cours</option>
+              <option value="Validé">Validé</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="pai_facture_piece_jointe">Facture</label>
@@ -135,13 +141,11 @@ export default function CreatePaiement() {
           </div>
           <div className="form-group">
             <label htmlFor="pai_facture_status">Status: facture</label>
-            <input
-              type="text"
-              className="form-control"
-              id="pai_facture_status"
-              value={form.pai_facture_status}
-              onChange={(e) => updateForm({ pai_facture_status: e.target.value })}
-            />
+            <select name="pai_facture_status" id="pai_facture_status" value={form.pai_facture_status}
+              onChange={(e) => updateForm({ pai_facture_status: e.target.value })}>
+              <option value="En attente">En attente</option>
+              <option value="Validé">Validé</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="pai_csf_piece_jointe">CSF</label>
@@ -155,14 +159,11 @@ export default function CreatePaiement() {
           </div>
           <div className="form-group">
             <label htmlFor="pai_csf_status">Status: CSF</label>
-            <input
-              name="pai_csf_status"
-              type="text"
-              className="form-control"
-              id="pai_csf_status"
-              value={form.pai_csf_status}
-              onChange={(e) => updateForm({ pai_csf_status: e.target.value })}
-            />
+            <select name="pai_csf_status" id="pai_csf_status" value={form.pai_csf_status}
+              onChange={(e) => updateForm({ pai_csf_status: e.target.value })}>
+              <option value="En attente">En attente</option>
+              <option value="Signé">Signé</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="pai_commentaire">Commentaire</label>

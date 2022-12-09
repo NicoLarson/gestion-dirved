@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import dateFormat, { masks } from "dateformat";
 import './ShowPrestataires.scss';
-
-const dateIsDefined = (date) => {
-    if (date === null) {
-        return "?";
-    } else {
-        return dateFormat(date, "dd-mm-yyyy")
-    }
-}
 
 const Prestataire = (props) => (
     <tr>
