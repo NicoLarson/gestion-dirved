@@ -1,5 +1,6 @@
 const Prestataire = require("../models/Prestataire.js")
 const dbo = require("../conn");
+const ObjectId = require("mongodb").ObjectId;
 
 exports.show_prestataires = (req, res) => {
     const dbConnect = dbo.getDb();
@@ -20,7 +21,7 @@ exports.show_one_prestataire = (req, res) => {
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect
         .collection("prestataires")
-        .findOne(myquery, function (err, result) {
+        .findOne(myquery, (err, result) => {
             if (err) throw err;
             res.json(result);
         });
@@ -37,6 +38,8 @@ exports.create_prestataire = (req, res) => {
         pre_date_creation: new Date(),
         pre_rib: req.body.pre_rib,
         pre_kbis: req.body.pre_kbis,
+        pre_kbis: req.body.pre_kbis,
+        pre_commentaire: req.body.pre_commentaire,
     });
 
     dbConnect
@@ -65,6 +68,7 @@ exports.update_prestataire = (req, res) => {
             pre_date_update: new Date(),
             pre_rib: req.body.pre_rib,
             pre_kbis: req.body.pre_kbis,
+            pre_commentaire: req.body.pre_commentaire,
         },
     };
     db_connect

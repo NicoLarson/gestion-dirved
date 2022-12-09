@@ -10,6 +10,7 @@ export default function UpdatePrestataire() {
         pre_email: "",
         pre_rib: "",
         pre_kbis: "",
+        pre_commentaire: "",
     });
 
     const params = useParams();
@@ -21,7 +22,6 @@ export default function UpdatePrestataire() {
             const response = await fetch(
                 `http://localhost:5000/show/prestataire/${params.id.toString()}`
             );
-
             if (!response.ok) {
                 const message = `An error has occurred: ${response.statusText}`;
                 window.alert(message);
@@ -34,6 +34,7 @@ export default function UpdatePrestataire() {
                 navigate('/');
                 return;
             }
+            console.log(record);
 
             setForm(record);
         }
@@ -53,9 +54,15 @@ export default function UpdatePrestataire() {
     async function onSubmit(e) {
         e.preventDefault();
         const editedPrestataire = {
-            res_nom: form.res_nom,
-            res_prenom: form.res_prenom,
-            res_email: form.res_email,
+            pre_nom: form.pre_nom,
+            pre_type: form.pre_type,
+            pre_adresse: form.pre_adresse,
+            pre_telephone: form.pre_telephone,
+            pre_email: form.pre_email,
+            pre_rib: form.pre_rib,
+            pre_kbis: form.pre_kbis,
+            pre_commentaire: form.pre_commentaire,
+
         };
 
         // This will send a post request to update the data in the database.
@@ -149,6 +156,17 @@ export default function UpdatePrestataire() {
                             onChange={(e) => updateForm({ pre_kbis: e.target.value })}
                         />
                     </div>
+                    {/* TODO : gérer mise à jour de commentaires */}
+                    {/* <div className="form-group">
+                        <label htmlFor="pre_commentaire">Commentaire</label>
+                        <input
+                            type="file"
+                            className="form-control"
+                            id="pre_commentaire"
+                            value={form.pre_commentaire}
+                            onChange={(e) => updateForm({ pre_commentaire: e.target.value })}
+                        />
+                    </div> */}
                     <div className="form-group">
                         <input
                             type="submit"

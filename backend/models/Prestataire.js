@@ -10,6 +10,7 @@ const prestataireSchema = new Schema({
     pre_date_creation: Date,
     pre_rib: String,
     pre_kbis: String,
+    pre_commentaire: String,
 });
 
 const Prestataire = mongoose.model("Prestataire", prestataireSchema);
