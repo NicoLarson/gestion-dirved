@@ -5,10 +5,12 @@ export default function UpdateConvention() {
     const [form, setForm] = useState({
         con_num_operation: '',
         con_nom_operation: '',
-        con_nom_responsable: '',
-        con_prenom_responsable: '',
-        con_fonction_responsable: '',
-        con_email_responsable: '',
+        con_responsable: {
+            con_nom_responsable: '',
+            con_prenom_responsable: '',
+            con_fonction_responsable: '',
+            con_email_responsable: ''
+        },
         con_date_debut: '',
         con_date_fin: '',
         con_montant: '',
@@ -40,7 +42,7 @@ export default function UpdateConvention() {
                 navigate('/');
                 return;
             }
-
+            console.log(record)
             setForm(record);
         }
 
@@ -137,7 +139,7 @@ export default function UpdateConvention() {
                                 type="text"
                                 className="form-control"
                                 id="con_prenom_responsable"
-                                value={form.con_prenom_responsable}
+                                value={form.con_responsable.con_prenom_responsable}
                                 onChange={(e) => updateForm({ con_prenom_responsable: e.target.value })}
                             />
                         </div>
@@ -147,7 +149,7 @@ export default function UpdateConvention() {
                                 type="text"
                                 className="form-control"
                                 id="con_fonction_responsable"
-                                value={form.con_fonction_responsable}
+                                value={form.con_responsable.con_fonction_responsable}
                                 onChange={(e) => updateForm({ con_fonction_responsable: e.target.value })}
                             />
                         </div>
@@ -157,7 +159,7 @@ export default function UpdateConvention() {
                                 type="text"
                                 className="form-control"
                                 id="con_email_responsable"
-                                value={form.con_email_responsable}
+                                value={form.con_responsable.con_email_responsable}
                                 onChange={(e) => updateForm({ con_email_responsable: e.target.value })}
                             />
                         </div>

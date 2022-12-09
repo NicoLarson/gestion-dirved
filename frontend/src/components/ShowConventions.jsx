@@ -21,7 +21,7 @@ const showResponsableName = (responsable) => {
         console.error("Erreur: " + e)
         return 0
     }
-    return responsable["con_nom_responsable"]
+    return responsable["con_nom_responsable"] + " " + responsable["con_prenom_responsable"] 
 }
 
 const timeLeft = (date) => {
@@ -59,8 +59,7 @@ const Convention = (props) => (
     <tr>
         <td>{props.convention.con_num_operation}</td>
         <td>{props.convention.con_nom_operation}</td>
-        <td>??</td>
-        {/* <td>{showResponsableName(props.convention.con_responsable)}</td> */}
+        <td>{showResponsableName(props.convention.con_responsable)}</td>
         <td>{dateIsDefined(props.convention.con_date_debut)}</td>
         <td>{dateIsDefined(props.convention.con_date_fin)}</td>
         <td>
