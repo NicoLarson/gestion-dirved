@@ -95,7 +95,6 @@ export default function CreatePrestation() {
                 <option value={prestataire._id}>{prestataire.pre_nom}</option>
               ))}
             </select>
-
           </div>
           <div className="form-group">
             <label htmlFor="pai_devis_piece_jointe">Devis</label>

@@ -34,8 +34,6 @@ recordRoutes.route("/create/prestation").post(prestation_controller.create_prest
 recordRoutes.route("/update/prestation/:id").post(prestation_controller.update_prestation);
 // TODO: Supprimer un prestation
 
-recordRoutes.route("/test_upload").post(prestation_controller.test_upload)
-
 /*
   *  PRESTATAIRE
 */

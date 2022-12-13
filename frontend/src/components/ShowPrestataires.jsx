@@ -9,9 +9,9 @@ const Prestataire = (props) => (
         <td>{props.prestataire.pre_adresse}</td>
         <td>{props.prestataire.pre_telephone}</td>
         <td>{props.prestataire.pre_email}</td>
-        <td>{props.prestataire.pre_rib}</td>
-        <td>{props.prestataire.pre_kbis}</td>
-        <td>{props.prestataire.pre_commentaire}</td>
+        <td> <button>Afficher</button> </td>
+        <td> <button>Afficher</button> </td>
+        <td>{props.prestataire.pre_description}</td>
         <td>
             <Link className="btn btn-outline-warning" to={`/update/prestataire/${props.prestataire._id}`}>Modifier</Link>
         </td>
@@ -73,7 +73,7 @@ export default function ShowPrestataires() {
                     <tr>
                         <th>Nom </th>
                         <th>Type </th>
-                        <th>Email</th>
+                        <th>Adresse</th>
                         <th>Téléphone</th>
                         <th>Email</th>
                         <th>RIB</th>

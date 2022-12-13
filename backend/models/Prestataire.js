@@ -8,8 +8,18 @@ const prestataireSchema = new Schema({
     pre_telephone: String,
     pre_email: String,
     pre_date_creation: Date,
-    pre_rib: String,
-    pre_kbis: String,
+    pre_rib: {
+        pre_rib_old_file_name: String,
+        pre_rib_old_file_path: String,
+        pre_rib_new_file_name: String,
+        pre_rib_new_file_path: String,
+    },
+    pre_kbis: {
+        pre_kbis_old_file_name: String,
+        pre_kbis_old_file_path: String,
+        pre_kbis_new_file_name: String,
+        pre_kbis_new_file_path: String,
+    },
     pre_commentaire: String,
 });
 

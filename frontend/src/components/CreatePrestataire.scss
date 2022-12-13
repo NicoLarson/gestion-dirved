@@ -5,6 +5,9 @@
     box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
     max-width: 60rem;
 
+    div{
+        margin-bottom: 1.2rem;
+    }
     h2 {
         font-size: 3.2rem;
     }
@@ -28,6 +31,10 @@
     input[type="submit"] {
         margin-top: 2rem;
         font-size: 2rem;
+    }
+    .textarea-container{
+        display: flex;
+        flex-direction: column;
     }
 
 }

@@ -1,124 +1,123 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './CreatePrestataire.scss'
-
+import axios from "axios";
+// TODO Drag and drop file upload
 export default function CreatePrestataire() {
-    const [form, setForm] = useState({
-        pre_nom: "",
-        pre_type: "",
-        pre_adresse: "",
-        pre_telephone: "",
-        pre_email: "",
-        pre_rib: "",
-        pre_kbis: "",
-    });
     const navigate = useNavigate();
 
-    // These methods will update the state properties.
-    function updateForm(value) {
-        return setForm((prev) => {
-            return { ...prev, ...value };
-        });
-    }
-
-    // This function will handle the submission.
-    async function onSubmit(e) {
+    const handleFormSubmit = (e) => {
         e.preventDefault();
+        const form = e.target
+        const formData = new FormData(form);
 
-        // When a post request is sent to the create url, we'll add a new record to the database.
-        const newPrestataire = { ...form };
+        const pre_nom = formData.get('pre_nom');
+        const pre_type = formData.get('pre_type');
+        const pre_adresse = formData.get('pre_adresse');
+        const pre_telephone = formData.get('pre_telephone');
+        const pre_email = formData.get('pre_email');
+        const pre_rib = formData.get('pre_rib');
+        const pre_kbis = formData.get('pre_kbis');
+        const pre_description = formData.get('pre_description');
+        const data = {
+            pre_nom,
+            pre_type,
+            pre_adresse,
+            pre_telephone,
+            pre_email,
+            pre_rib,
+            pre_rib_file_name: pre_rib.name,
+            pre_rib_file_path: pre_rib.path,
+            pre_kbis,
+            pre_kbis_file_name: pre_kbis.name,
+            pre_kbis_file_path: pre_kbis.path,
+            pre_description
+        }
 
-        await fetch('http://localhost:5000/create/prestataire', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newPrestataire),
-        }).catch((error) => {
-            window.alert(error);
-            return;
-        });
 
-        setForm({ name: '', position: '', level: '' });
+        axios.post('http://localhost:5000/create/prestataire', data)
+            .then(res => {
+                console.log(res);
+            }
+            )
+            .catch(err => {
+                console.log(err);
+            }
+            )
         navigate('/');
-    }
 
+    }
     // This following section will display the form that takes the input from the user.
     return (
         <div className='CreatePrestataire'>
             <h2>Ajouter Prestataire</h2>
             <fieldset className='form-group'>
                 <legend>Prestataire</legend>
-                <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>
+                <form onSubmit={handleFormSubmit} method="post" className='form-group row'>
                     <div className="form-group">
                         <label htmlFor="pre_nom">Nom</label>
                         <input
+                            name="pre_nom"
                             type="text"
                             className="form-control"
-                            id="pre_nom"
-                            value={form.pre_nom}
-                            onChange={(e) => updateForm({ pre_nom: e.target.value })}
-                        />
+                            id="pre_nom" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_type">Type</label>
                         <input
+                            name="pre_type"
                             type="text"
                             className="form-control"
                             id="pre_type"
-                            value={form.pre_type}
-                            onChange={(e) => updateForm({ pre_type: e.target.value })}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_adresse">Adresse</label>
                         <input
+                            name="pre_adresse"
                             type="text"
                             className="form-control"
                             id="pre_adresse"
-                            value={form.pre_adresse}
-                            onChange={(e) => updateForm({ pre_adresse: e.target.value })}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_telephone">Telephone</label>
                         <input
+                            name="pre_telephone"
                             type="text"
                             className="form-control"
                             id="pre_telephone"
-                            value={form.pre_telephone}
-                            onChange={(e) => updateForm({ pre_telephone: e.target.value })}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_email">Email</label>
                         <input
+                            name="pre_email"
                             type="email"
                             className="form-control"
                             id="pre_email"
-                            value={form.pre_email}
-                            onChange={(e) => updateForm({ pre_email: e.target.value })}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_rib">RIB</label>
                         <input
+                            name="pre_rib"
                             type="file"
                             className="form-control"
                             id="pre_rib"
-                            value={form.pre_rib}
-                            onChange={(e) => updateForm({ pre_rib: e.target.value })}
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="pre_kbis">KBIS</label>
                         <input
+                            name="pre_kbis"
                             type="file"
                             className="form-control"
                             id="pre_kbis"
-                            value={form.pre_kbis}
-                            onChange={(e) => updateForm({ pre_kbis: e.target.value })}
                         />
+                    </div>
+                    <div className="form-group textarea-container">
+                        <label htmlFor="pre_description">Description</label>
+                        <textarea name="pre_description" id="pre_description" rows="10"></textarea>
                     </div>
                     <div className="form-group">
                         <input
