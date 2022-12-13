@@ -2,7 +2,7 @@ const { ObjectID } = require('bson');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const paiementSchema = new Schema({
+const prestationSchema = new Schema({
     pai_num_operation: String,
     pai_prestataire: ObjectID,
     pai_devis_piece_jointe: String,
@@ -17,6 +17,6 @@ const paiementSchema = new Schema({
     pai_date_creation: Date,
 });
 
-const Paiement = mongoose.model("Paiement", paiementSchema);
+const Prestation = mongoose.model("Prestation", prestationSchema);
 
-module.exports = Paiement
+module.exports = Prestation

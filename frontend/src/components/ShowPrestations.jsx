@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
-import './ShowPaiements.scss';
+import './ShowPrestations.scss';
 
 const dateIsDefined = (date) => {
     if (date === null) {
@@ -42,12 +42,12 @@ const timeLeftClassName = (daysLeft) => {
     }
 }
 // TODO: gestion des status
-const statusPaiement = (paiement) => {
+const statusPrestation = (prestation) => {
 
-    const devis_status = paiement.pai_devis_status;
-    const bc_status = paiement.pai_bc_status;
-    const facture_status = paiement.pai_facture_status;
-    const csf_status = paiement.pai_csf_status;
+    const devis_status = prestation.pai_devis_status;
+    const bc_status = prestation.pai_bc_status;
+    const facture_status = prestation.pai_facture_status;
+    const csf_status = prestation.pai_csf_status;
     let status = devis_status
     if (devis_status === "En attente") {
         status = "Devis " + devis_status
@@ -87,26 +87,26 @@ const displayPrestataireName = (prestataire) => {
         }
     }
 }
-const Paiement = (props) => (
+const Prestation = (props) => (
     <tr>
-        <td>{props.paiement.pai_num_operation}</td>
-        <td>{displayPrestataireName(props.paiement.pai_prestataire)}</td>
-        <td>{props.paiement.pai_montant}</td>
-        <td>{dateIsDefined(props.paiement.pai_date_fin)}</td>
-        <td>{statusPaiement(props.paiement)}</td>
+        <td>{props.prestation.pai_num_operation}</td>
+        <td>{displayPrestataireName(props.prestation.pai_prestataire)}</td>
+        <td>{props.prestation.pai_montant}</td>
+        <td>{dateIsDefined(props.prestation.pai_date_fin)}</td>
+        <td>{statusPrestation(props.prestation)}</td>
         <td>
-            <Link className="btn btn-outline-warning" to={`/update/paiement/${props.paiement._id}`}>Modifier</Link>
+            <Link className="btn btn-outline-warning" to={`/update/prestation/${props.prestation._id}`}>Modifier</Link>
         </td>
     </tr>
 );
 
-export default function PaiementList() {
-    const [paiements, setPaiements] = useState([]);
+export default function PrestationList() {
+    const [prestations, setPrestations] = useState([]);
 
-    // This method fetches the paiements from the database.
+    // This method fetches the prestations from the database.
     useEffect(() => {
-        async function getPaiements() {
-            const response = await fetch(`http://localhost:5000/show/paiements/`);
+        async function getPrestations() {
+            const response = await fetch(`http://localhost:5000/show/prestations/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
@@ -114,42 +114,42 @@ export default function PaiementList() {
                 return;
             }
 
-            const paiements = await response.json();
-            setPaiements(paiements);
+            const prestations = await response.json();
+            setPrestations(prestations);
         }
 
-        getPaiements();
+        getPrestations();
 
         return;
-    }, [paiements.length]);
+    }, [prestations.length]);
 
-    // This method will delete a paiement
-    async function deletePaiement(id) {
-        await fetch(`http://localhost:5000/paiement/delete/${id}`, {
+    // This method will delete a prestation
+    async function deletePrestation(id) {
+        await fetch(`http://localhost:5000/prestation/delete/${id}`, {
             method: "DELETE"
         });
 
-        const newPaiements = paiements.filter((el) => el._id !== id);
-        setPaiements(newPaiements);
+        const newPrestations = prestations.filter((el) => el._id !== id);
+        setPrestations(newPrestations);
     }
 
-    // This method will map out the paiements on the table
-    function paiementList() {
-        return paiements.map((paiement) => {
+    // This method will map out the prestations on the table
+    function prestationList() {
+        return prestations.map((prestation) => {
             return (
-                <Paiement
-                    paiement={paiement}
-                    deletePaiement={() => deletePaiement(paiement._id)}
-                    key={paiement._id}
+                <Prestation
+                    prestation={prestation}
+                    deletePrestation={() => deletePrestation(prestation._id)}
+                    key={prestation._id}
                 />
             );
         });
     }
 
-    // This following section will display the table with the paiements of individuals.
+    // This following section will display the table with the prestations of individuals.
     return (
-        <div className="ShowPaiements">
-            <h3>Paiements</h3>
+        <div className="ShowPrestations">
+            <h3>Prestations</h3>
             <table className="table table-hover" style={{ marginTop: 20 }}>
                 <thead>
                     <tr>
@@ -161,7 +161,7 @@ export default function PaiementList() {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>{paiementList()}</tbody>
+                <tbody>{prestationList()}</tbody>
             </table>
         </div>
     );

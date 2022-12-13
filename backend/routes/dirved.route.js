@@ -3,13 +3,13 @@ const recordRoutes = express.Router();
 const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
 
-const Operation = require("../models/Paiement.js")
+const Operation = require("../models/Prestation.js")
 const Convention = require("../models/Convention.js")
 
 const convention_controller = require("./conventionController.js")
 const responsable_controller = require("./responsableController.js")
 const prestataire_controller = require("./prestataireController.js")
-const paiement_controller = require("./paiementController.js")
+const prestation_controller = require("./prestationController.js")
 
 /*
   *  CONVENTION
@@ -32,12 +32,12 @@ recordRoutes.route("/update/responsable/:id").post(responsable_controller.update
 /*
   *  PAIEMENT
 */
-recordRoutes.route("/show/paiements").get(paiement_controller.show_paiements)
-recordRoutes.route("/show/paiement/:id").get(paiement_controller.show_one_paiement);
-recordRoutes.route("/create/paiement").post(paiement_controller.create_paiement)
-// TODO: Mise a jour d'un paiement
-recordRoutes.route("/update/paiement/:id").post(paiement_controller.update_paiement);
-// TODO: Supprimer un paiement
+recordRoutes.route("/show/prestations").get(prestation_controller.show_prestations)
+recordRoutes.route("/show/prestation/:id").get(prestation_controller.show_one_prestation);
+recordRoutes.route("/create/prestation").post(prestation_controller.create_prestation)
+// TODO: Mise a jour d'un prestation
+recordRoutes.route("/update/prestation/:id").post(prestation_controller.update_prestation);
+// TODO: Supprimer un prestation
 
 /*
   *  PRESTATAIRE
@@ -50,7 +50,7 @@ recordRoutes.route("/update/prestataire/:id").post(prestataire_controller.update
 
 
 // ----------------------------------------------------
-recordRoutes.route("/create/paiement").post((req, res, next) => {
+recordRoutes.route("/create/prestation").post((req, res, next) => {
   const dbConnect = dbo.getDb();
 
   const matchResponsable = new Operation({
@@ -69,7 +69,7 @@ recordRoutes.route("/create/paiement").post((req, res, next) => {
   });
 
   dbConnect
-    .collection("paiements")
+    .collection("prestations")
     .insertOne(matchResponsable, function (err, result) {
       if (err) {
         res.status(400).send("Error inserting matches!");
@@ -117,10 +117,10 @@ recordRoutes.route("/create/convention").post((req, res, next) => {
     });
 });
 
-recordRoutes.route("/paiement/list").get(async function (_req, res) {
+recordRoutes.route("/prestation/list").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
-    .collection("paiements")
+    .collection("prestations")
     .find({})
     .toArray(function (err, result) {
       if (err) {
@@ -143,11 +143,11 @@ recordRoutes.get("/conventions/:id", (req, res, next) => {
   }
 });
 
-recordRoutes.route("/paiements/:id").get(async function (_req, res) {
+recordRoutes.route("/prestations/:id").get(async function (_req, res) {
   let db_connect = dbo.getDb();
   if (db_connect) {
     db_connect
-      .collection("paiements")
+      .collection("prestations")
       .findOne({ num_operation: req.params.id }, (err, result) => {
         if (err) throw err;
         res.json(result);

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router';
-import './CreatePaiement.scss'
+import './CreatePrestation.scss'
 
 // TODO Gérer les champs (obligatoires, format, etc.)
-
-export default function CreatePaiement() {
+// TODO ajouter champ montant
+export default function CreatePrestation() {
   const [prestataires, setPrestataires] = useState([]);
   // This method fetches the prestataires from the database.
   useEffect(() => {
@@ -53,14 +53,14 @@ export default function CreatePaiement() {
     e.preventDefault();
 
     // When a post request is sent to the create url, we'll add a new record to the database.
-    const newPaiement = { ...form };
+    const newPrestation = { ...form };
 
-    await fetch('http://localhost:5000/create/paiement', {
+    await fetch('http://localhost:5000/create/prestation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newPaiement),
+      body: JSON.stringify(newPrestation),
     }).catch((error) => {
       window.alert(error);
       return;
@@ -72,8 +72,8 @@ export default function CreatePaiement() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div className='CreatePaiement'>
-      <h2>Ajouter Paiement</h2>
+    <div className='CreatePrestation'>
+      <h2>Ajouter Prestation</h2>
       <fieldset className='form-group'>
         <legend>Operation</legend>
         <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>

@@ -12,7 +12,7 @@ export default function Navbar() {
           <img className='logo' src="https://www.daeu.fr/app/uploads/2018/11/Universite-de-Guyane_logo.png"></img>
         </NavLink>
         <dl className='menu'>
-          <dt><i class="fa-solid fa-flask"></i> Convention</dt>
+          <dt><i class="fa-solid fa-flask"></i> Conventions</dt>
           <dd>
             <ul>
               <li className="nav-item">
@@ -27,20 +27,20 @@ export default function Navbar() {
               </li>
             </ul>
           </dd>
-          <dt><i class="fa-solid fa-money-bill-1-wave"></i> Paiement</dt>
+          <dt><i class="fa-solid fa-money-bill-1-wave"></i> Prestations</dt>
           <dd>  <ul>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/show/paiements">
+              <NavLink className="nav-link" to="/show/prestations">
                 <i class="fa-solid fa-list"></i> Afficher
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/show/prestataires">
-                <i class="fa-solid fa-list"></i> Prestataires 
+                <i class="fa-solid fa-list"></i> Prestataires
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/create/paiement">
+              <NavLink className="nav-link" to="/create/prestation">
                 <i class="fa-solid fa-plus"></i> Ajouter
               </NavLink>
             </li>

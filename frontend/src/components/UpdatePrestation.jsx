@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import "./UpdatePaiement.scss"
-export default function UpdatePaiement() {
+import "./UpdatePrestation.scss"
+
+// TODO AJOUTER CHAMP Montant
+export default function UpdatePrestation() {
     const [prestataires, setPrestataires] = useState([]);
     // This method fetches the prestataires from the database.
     useEffect(() => {
@@ -44,7 +46,7 @@ export default function UpdatePaiement() {
         async function fetchData() {
             const id = params.id.toString();
             const response = await fetch(
-                `http://localhost:5000/show/paiement/${params.id.toString()}`
+                `http://localhost:5000/show/prestation/${params.id.toString()}`
             );
             if (!response.ok) {
                 const message = `An error has occurred: ${response.statusText}`;
@@ -77,7 +79,7 @@ export default function UpdatePaiement() {
 
     async function onSubmit(e) {
         e.preventDefault();
-        const editedPaiement = {
+        const editedPrestation = {
             pai_num_operation: form.pai_num_operation,
             pai_prestataire: form.pai_prestataire,
             pai_devis_piece_jointe: form.pai_devis_piece_jointe,
@@ -91,14 +93,14 @@ export default function UpdatePaiement() {
             pai_commentaire: form.pai_commentaire,
 
         };
-        navigate('/show/paiements');
+        navigate('/show/prestations');
 
         // This will send a post request to update the data in the database.
         await fetch(
-            `http://localhost:5000/update/paiement/${params.id}`,
+            `http://localhost:5000/update/prestation/${params.id}`,
             {
                 method: 'POST',
-                body: JSON.stringify(editedPaiement),
+                body: JSON.stringify(editedPrestation),
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -108,8 +110,8 @@ export default function UpdatePaiement() {
 
     // This following section will display the form that takes input from the user to update the data.
     return (
-        <div className='UpdatePaiement'>
-            <h2>Modifier Paiement</h2>
+        <div className='UpdatePrestation'>
+            <h2>Modifier Prestation</h2>
             <fieldset className='form-group'>
                 <legend>Operation</legend>
                 <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>

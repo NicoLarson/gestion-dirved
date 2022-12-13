@@ -1,34 +1,34 @@
-const Paiement = require("../models/Paiement.js")
+const Prestation = require("../models/Prestation.js")
 const mongoose = require("mongoose");
 const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
 
-exports.show_paiements = (req, res) => {
+exports.show_prestations = (req, res) => {
     const dbConnect = dbo.getDb();
     dbConnect
-        .collection("paiements")
+        .collection("prestations")
         .find({})
         .toArray((err, result) => {
             if (err) {
-                res.status(400).send("Error fetching paiements!");
+                res.status(400).send("Error fetching prestations!");
             } else {
                 res.json(result);
             }
         })
 }
 
-exports.show_one_paiement = (req, res) => {
+exports.show_one_prestation = (req, res) => {
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
     db_connect
-        .collection("paiements")
+        .collection("prestations")
         .findOne(myquery, (err, result) => {
             if (err) throw err;
             res.json(result);
         });
 }
 
-exports.update_paiement = (req, res) => {
+exports.update_prestation = (req, res) => {
     console.log(req.body.con_nom_responsable)
     let db_connect = dbo.getDb();
     let myquery = { _id: ObjectId(req.params.id) };
@@ -49,7 +49,7 @@ exports.update_paiement = (req, res) => {
         },
     }
     db_connect
-        .collection("paiements")
+        .collection("prestations")
         .updateOne(myquery, newvalues, (err, _result) => {
             if (err) {
                 res.status(400).send(`Error updating likes on listing with id ${myquery.id}!`);
@@ -59,9 +59,9 @@ exports.update_paiement = (req, res) => {
         });
 }
 
-exports.create_paiement = (req, res) => {
+exports.create_prestation = (req, res) => {
     const dbConnect = dbo.getDb();
-    const matchPaiement = new Paiement({
+    const matchPrestation = new Prestation({
         pai_num_operation: req.body.pai_num_operation,
         pai_prestataire: req.body.pai_prestataire,
         pai_devis_piece_jointe: req.body.pai_devis_piece_jointe,
@@ -75,11 +75,11 @@ exports.create_paiement = (req, res) => {
         pai_commentaire: req.body.pai_commentaire,
         pai_date_creation: new Date(),
     })
-    dbConnect.collection("paiements").insertOne(matchPaiement, (err, _result) => {
+    dbConnect.collection("prestations").insertOne(matchPrestation, (err, _result) => {
         if (err) {
-            res.status(400).send("Error creating paiement!");
+            res.status(400).send("Error creating prestation!");
         } else {
-            res.status(201).send("Paiement created!");
+            res.status(201).send("Prestation created!");
         }
     })
 }

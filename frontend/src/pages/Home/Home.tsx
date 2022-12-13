@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import "./Home.scss"
 const Home: FunctionComponent = () => {
   const [conventions, setConventions] = useState([]);
-  const [paiements, setPaiements] = useState([]);
+  const [prestations, setPrestations] = useState([]);
   // This method fetches the conventions from the database.
   useEffect(() => {
     async function getConventions() {
@@ -19,25 +19,25 @@ const Home: FunctionComponent = () => {
     return;
   }, [conventions.length]);
   useEffect(() => {
-    async function getPaiements() {
-      const response = await fetch(`http://localhost:5000/paiement/list`);
+    async function getPrestations() {
+      const response = await fetch(`http://localhost:5000/prestation/list`);
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
         window.alert(message);
         return;
       }
-      const paiements = await response.json();
-      setPaiements(paiements);
+      const prestations = await response.json();
+      setPrestations(prestations);
     }
-    getPaiements();
+    getPrestations();
     return;
-  }, [paiements.length]);
+  }, [prestations.length]);
 
   return (
     <div className="appGestion">
       <h1>Gestion DiRVED</h1>
       <h2>Conventions enregistré {conventions.length}</h2>
-      <h2>Paiement enregistré {paiements.length}</h2>
+      <h2>Prestation enregistré {prestations.length}</h2>
     </div>
   )
 }

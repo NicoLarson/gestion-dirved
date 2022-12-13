@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
 import './ShowConventions.scss';
+// TODO Ajouter avenant
+// TODO Ajouter alert par email
 
 const dateIsDefined = (date) => {
     if (date === null) {
@@ -21,7 +23,7 @@ const showResponsableName = (responsable) => {
         console.error("Erreur: " + e)
         return 0
     }
-    return responsable["con_nom_responsable"] + " " + responsable["con_prenom_responsable"] 
+    return responsable["con_nom_responsable"] + " " + responsable["con_prenom_responsable"]
 }
 
 const timeLeft = (date) => {
@@ -136,7 +138,7 @@ export default function ConventionList() {
                         <th>Date de début</th>
                         <th>Date de fin</th>
                         <th>Temps restant</th>
-                        <th>Montant</th>
+                        <th>Coût total opération</th>
                         <th>Montant encaissé</th>
                         <th>Pieces jointes</th>
                         <th>Catégories</th>
