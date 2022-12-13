@@ -1,7 +1,7 @@
 const Prestation = require("../models/Prestation.js")
-const mongoose = require("mongoose");
 const dbo = require("../conn");
 const ObjectId = require("mongodb").ObjectId;
+const fs = require('fs');
 
 exports.show_prestations = (req, res) => {
     const dbConnect = dbo.getDb();
@@ -60,6 +60,7 @@ exports.update_prestation = (req, res) => {
 }
 
 exports.create_prestation = (req, res) => {
+
     const dbConnect = dbo.getDb();
     const matchPrestation = new Prestation({
         pai_num_operation: req.body.pai_num_operation,
@@ -82,4 +83,25 @@ exports.create_prestation = (req, res) => {
             res.status(201).send("Prestation created!");
         }
     })
+}
+
+exports.test_upload = (req, res) => {
+    const dbConnect = dbo.getDb();
+
+    console.log(req.body.devisFileName)
+    const newPath = 'Z:\\NICOLAS\\DiRVED\\' + new Date().getUTCFullYear() + new Date().getUTCMonth() + new Date().getUTCDate() + new Date().getUTCHours() + new Date().getUTCMinutes() + new Date().getUTCSeconds() + '.' + req.body.devisFileName.split('.').pop();
+    console.log("NEW PATH: " + newPath)
+
+    fs.copyFile(req.body.devisFilePath, newPath, (err) => {
+        if (err) throw err;
+        console.log('source.txt was copied to destination.txt');
+    });
+
+    // dbConnect.collection("prestations").insertOne(matchTest, (err, _result) => {
+    //     if (err) {
+    //         res.status(400).send("Error creating prestation!");
+    //     } else {
+    //         res.status(201).send("Prestation created!");
+    //     }
+    // })
 }

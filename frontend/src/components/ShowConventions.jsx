@@ -14,13 +14,11 @@ const dateIsDefined = (date) => {
 }
 
 const showResponsableName = (responsable) => {
-    console.log("TEST showResponsableName")
     try {
         if (responsable["con_nom_responsable"] !== null) {
-            console.log(responsable)
         }
     } catch (e) {
-        console.error("Erreur: " + e)
+        // console.error("Erreur: " + e)
         return 0
     }
     return responsable["con_nom_responsable"] + " " + responsable["con_prenom_responsable"]
@@ -29,7 +27,6 @@ const showResponsableName = (responsable) => {
 const timeLeft = (date) => {
     try {
         new Date(date)
-        console.log(new Date(date))
     } catch (e) {
         console.error("Erreur: " + e)
         return 0
