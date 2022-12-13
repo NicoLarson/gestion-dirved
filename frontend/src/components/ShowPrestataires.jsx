@@ -66,7 +66,7 @@ export default function ShowPrestataires() {
 
     // This following section will display the table with the prestataires of individuals.
     return (
-        <div className="ShowPrestataire">
+        <div className="ShowPrestataires">
             <h3>Prestataires</h3>
             <table className="table table-hover" style={{ marginTop: 20 }}>
                 <thead>

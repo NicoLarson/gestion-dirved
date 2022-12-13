@@ -34,9 +34,9 @@ recordRoutes.route("/update/responsable/:id").post(responsable_controller.update
 */
 recordRoutes.route("/show/paiements").get(paiement_controller.show_paiements)
 recordRoutes.route("/show/paiement/:id").get(paiement_controller.show_one_paiement);
-// TODO: Ajouter paiement
 recordRoutes.route("/create/paiement").post(paiement_controller.create_paiement)
 // TODO: Mise a jour d'un paiement
+recordRoutes.route("/update/paiement/:id").post(paiement_controller.update_paiement);
 // TODO: Supprimer un paiement
 
 /*

@@ -63,11 +63,34 @@ const statusPaiement = (paiement) => {
 
     return status
 }
+// TODO Affichage des prestataires
+const displayPrestataireName = (prestataire) => {
+    const [prestataires, setPrestataires] = useState([]);
+    useEffect(() => {
+        async function getPrestataires() {
+            const response = await fetch(`http://localhost:5000/show/prestataires/`);
 
+            if (!response.ok) {
+                const message = `An error occurred: ${response.statusText}`;
+                window.alert(message);
+                return;
+            }
+            const prestataires = await response.json();
+            setPrestataires(prestataires);
+        }
+        getPrestataires();
+    }, [prestataires.length]);
+
+    for (let i = 0; i < prestataires.length; i++) {
+        if (prestataires[i]._id === prestataire) {
+            return prestataires[i].pre_nom
+        }
+    }
+}
 const Paiement = (props) => (
     <tr>
         <td>{props.paiement.pai_num_operation}</td>
-        <td>{props.paiement.pai_prestataire}</td>
+        <td>{displayPrestataireName(props.paiement.pai_prestataire)}</td>
         <td>{props.paiement.pai_montant}</td>
         <td>{dateIsDefined(props.paiement.pai_date_fin)}</td>
         <td>{statusPaiement(props.paiement)}</td>

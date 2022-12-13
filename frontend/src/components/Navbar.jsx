@@ -40,7 +40,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/add/paiement">
+              <NavLink className="nav-link" to="/create/paiement">
                 <i class="fa-solid fa-plus"></i> Ajouter
               </NavLink>
             </li>

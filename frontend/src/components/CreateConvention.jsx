@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import './CreateConvention.scss';
-
+// TODO Ajouter documents
 export default function CreateConvention() {
   const [form, setForm] = useState({
     con_num_operation: '',
@@ -178,8 +178,9 @@ export default function CreateConvention() {
               onChange={(e) => updateForm({ con_piece_jointes: e.target.value })}
             />
           </div>
+          {/* TODO Gérer plusieurs catégories (ex: Font structurels; Institutionnels doivent ce mettre dans un tableau dans Mongodb) */}
           <div className="form-group">
-            <label htmlFor="con_categories">Catégorie</label>
+            <label htmlFor="con_categories">Catégories</label>
             <input
               type="text"
               className="form-control"
@@ -188,8 +189,9 @@ export default function CreateConvention() {
               onChange={(e) => updateForm({ con_categories: e.target.value })}
             />
           </div>
+          {/* TODO Gérer plusieurs Partenaires (ex: CNRS; CNES doivent ce mettre dans un tableau Mongodb  ) */}
           <div className="form-group">
-            <label htmlFor="con_partenaires">Partenaire</label>
+            <label htmlFor="con_partenaires">Partenaires</label>
             <input
               type="text"
               className="form-control"
