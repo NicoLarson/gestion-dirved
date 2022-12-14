@@ -57,8 +57,7 @@ exports.create_prestataire = (req, res) => {
             console.log(req.body.pre_kbis_file_path + 'was copied to destination ' + kbisNewFilePath)
         })
     }
-
-
+    
     const matchPrestataire = new Prestataire({
         pre_nom: req.body.pre_nom,
         pre_type: req.body.pre_type,
@@ -67,14 +66,14 @@ exports.create_prestataire = (req, res) => {
         pre_email: req.body.pre_email,
         pre_date_creation: new Date(),
         pre_rib: {
-            pre_rib_old_file_name: req.body.pre_rib_file_name,
-            pre_rib_old_file_path: req.body.pre_rib_file_path,
+            pre_rib_file_name: req.body.pre_rib_file_name,
+            pre_rib_file_path: req.body.pre_rib_file_path,
             pre_rib_new_file_name: ribNewFileName,
             pre_rib_new_file_path: ribNewFilePath,
         },
         pre_kbis: {
-            pre_kbis_old_file_name: req.body.pre_kbis_file_name,
-            pre_kbis_old_file_path: req.body.pre_kbis_file_path,
+            pre_kbis_file_name: req.body.pre_kbis_file_name,
+            pre_kbis_file_path: req.body.pre_kbis_file_path,
             pre_kbis_new_file_name: kbisNewFileName,
             pre_kbis_new_file_path: kbisNewFilePath,
         },

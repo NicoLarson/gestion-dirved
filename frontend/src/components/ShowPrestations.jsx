@@ -63,13 +63,11 @@ const statusPrestation = (prestation) => {
 
     return status
 }
-// TODO Affichage des prestataires
 const displayPrestataireName = (prestataire) => {
     const [prestataires, setPrestataires] = useState([]);
     useEffect(() => {
         async function getPrestataires() {
             const response = await fetch(`http://localhost:5000/show/prestataires/`);
-
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
                 window.alert(message);
@@ -91,7 +89,7 @@ const Prestation = (props) => (
     <tr>
         <td>{props.prestation.pai_num_operation}</td>
         <td>{displayPrestataireName(props.prestation.pai_prestataire)}</td>
-        <td>{props.prestation.pai_montant}</td>
+        <td>{props.prestation.pai_montant} €</td>
         <td>{dateIsDefined(props.prestation.pai_date_fin)}</td>
         <td>{statusPrestation(props.prestation)}</td>
         <td>
@@ -103,7 +101,6 @@ const Prestation = (props) => (
 export default function PrestationList() {
     const [prestations, setPrestations] = useState([]);
 
-    // This method fetches the prestations from the database.
     useEffect(() => {
         async function getPrestations() {
             const response = await fetch(`http://localhost:5000/show/prestations/`);

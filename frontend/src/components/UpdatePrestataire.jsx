@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
+import "./UpdatePrestataire.scss"
 
 export default function UpdatePrestataire() {
     const [form, setForm] = useState({
@@ -38,13 +39,11 @@ export default function UpdatePrestataire() {
         return;
     }, [params.id, navigate]);
 
-    // These methods will update the state properties.
     function updateForm(value) {
         return setForm((prev) => {
             return { ...prev, ...value };
         });
     }
-
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -74,9 +73,8 @@ export default function UpdatePrestataire() {
         );
     }
 
-    // This following section will display the form that takes input from the user to update the data.
     return (
-        <div className='UpdatePrestation'>
+        <div className='UpdatePrestataire'>
             <h2>Modifier prestataire</h2>
             <fieldset className='form-group'>
                 <legend>Prestataire</legend>

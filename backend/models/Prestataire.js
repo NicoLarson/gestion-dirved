@@ -9,14 +9,14 @@ const prestataireSchema = new Schema({
     pre_email: String,
     pre_date_creation: Date,
     pre_rib: {
-        pre_rib_old_file_name: String,
-        pre_rib_old_file_path: String,
+        pre_rib_file_name: String,
+        pre_rib_file_path: String,
         pre_rib_new_file_name: String,
         pre_rib_new_file_path: String,
     },
     pre_kbis: {
-        pre_kbis_old_file_name: String,
-        pre_kbis_old_file_path: String,
+        pre_kbis_file_name: String,
+        pre_kbis_file_path: String,
         pre_kbis_new_file_name: String,
         pre_kbis_new_file_path: String,
     },

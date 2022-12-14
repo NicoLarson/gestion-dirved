@@ -1,15 +1,12 @@
 import { useNavigate } from 'react-router';
 import './CreatePrestataire.scss'
-import axios from "axios";
-// TODO Drag and drop file upload
+
 export default function CreatePrestataire() {
     const navigate = useNavigate();
-
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         const form = e.target
         const formData = new FormData(form);
-
         const pre_nom = formData.get('pre_nom');
         const pre_type = formData.get('pre_type');
         const pre_adresse = formData.get('pre_adresse');
@@ -33,20 +30,21 @@ export default function CreatePrestataire() {
             pre_description
         }
 
-
-        axios.post('http://localhost:5000/create/prestataire', data)
-            .then(res => {
-                console.log(res);
-            }
-            )
-            .catch(err => {
-                console.log(err);
-            }
-            )
+        await fetch('http://localhost:5000/create/prestataire', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }).catch((error) => {
+            window.alert(error);
+            return;
+        });
         navigate('/');
 
+
     }
-    // This following section will display the form that takes the input from the user.
+
     return (
         <div className='CreatePrestataire'>
             <h2>Ajouter Prestataire</h2>
@@ -97,6 +95,7 @@ export default function CreatePrestataire() {
                             id="pre_email"
                         />
                     </div>
+                    {/* TODO Drag and drop file upload */}
                     <div className="form-group">
                         <label htmlFor="pre_rib">RIB</label>
                         <input
