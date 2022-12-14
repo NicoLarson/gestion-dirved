@@ -3,44 +3,38 @@ import { useParams, useNavigate } from 'react-router';
 
 export default function UpdatePrestataire() {
     const [form, setForm] = useState({
-        pre_nom: "",
-        pre_type: "",
-        pre_adresse: "",
-        pre_telephone: "",
-        pre_email: "",
-        pre_rib: "",
-        pre_kbis: "",
-        pre_commentaire: "",
+        pre_nom: '',
+        pre_type: '',
+        pre_adresse: '',
+        pre_telephone: '',
+        pre_email: '',
+        pre_rib: '',
+        pre_kbis: '',
     });
 
     const params = useParams();
     const navigate = useNavigate();
 
+    // This method fetches the prestataires from the database.
     useEffect(() => {
         async function fetchData() {
             const id = params.id.toString();
-            const response = await fetch(
-                `http://localhost:5000/show/prestataire/${params.id.toString()}`
-            );
+            const response = await fetch(`http://localhost:5000/show/prestataire/${params.id.toString()}`);
+
             if (!response.ok) {
                 const message = `An error has occurred: ${response.statusText}`;
                 window.alert(message);
                 return;
             }
-
             const record = await response.json();
             if (!record) {
                 window.alert(`Record with id ${id} not found`);
                 navigate('/');
                 return;
             }
-            console.log(record);
-
             setForm(record);
         }
-
         fetchData();
-
         return;
     }, [params.id, navigate]);
 
@@ -50,6 +44,7 @@ export default function UpdatePrestataire() {
             return { ...prev, ...value };
         });
     }
+
 
     async function onSubmit(e) {
         e.preventDefault();
@@ -64,6 +59,7 @@ export default function UpdatePrestataire() {
             pre_commentaire: form.pre_commentaire,
 
         };
+        navigate('/show/prestataires');
 
         // This will send a post request to update the data in the database.
         await fetch(
@@ -76,102 +72,94 @@ export default function UpdatePrestataire() {
                 },
             }
         );
-        navigate('/show/prestataires');
     }
 
     // This following section will display the form that takes input from the user to update the data.
     return (
-        <div>
-            <h2>Ajouter Prestataire</h2>
+        <div className='UpdatePrestation'>
+            <h2>Modifier prestataire</h2>
             <fieldset className='form-group'>
                 <legend>Prestataire</legend>
-                <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>
-                    <div className="form-group">
-                        <label htmlFor="pre_nom">Nom</label>
+                <form onSubmit={onSubmit} method='post' enctype='multipart/form-data' className='form-group row'>
+                    <div className='form-group'>
+                        <label htmlFor='pre_nom'>Nom</label>
                         <input
-                            type="text"
-                            className="form-control"
-                            id="pre_nom"
+                            type='text'
+                            className='form-control'
+                            id='pre_nom'
                             value={form.pre_nom}
                             onChange={(e) => updateForm({ pre_nom: e.target.value })}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_type">Type</label>
+                    <div className='form-group'>
+                        <label htmlFor='pre_type'>Type</label>
                         <input
-                            type="text"
-                            className="form-control"
-                            id="pre_type"
+                            type='text'
+                            className='form-control'
+                            id='pre_type'
                             value={form.pre_type}
                             onChange={(e) => updateForm({ pre_type: e.target.value })}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_adresse">Adresse</label>
+                    <div className='form-group'>
+                        <label htmlFor='pre_adresse'>Adresse</label>
                         <input
-                            type="text"
-                            className="form-control"
-                            id="pre_adresse"
+                            type='text'
+                            className='form-control'
+                            id='pre_adresse'
                             value={form.pre_adresse}
                             onChange={(e) => updateForm({ pre_adresse: e.target.value })}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_telephone">Telephone</label>
+                    <div className='form-group'>
+                        <label htmlFor='pre_telephone'>Telephone</label>
                         <input
-                            type="text"
-                            className="form-control"
-                            id="pre_telephone"
+                            type='text'
+                            className='form-control'
+                            id='pre_telephone'
                             value={form.pre_telephone}
                             onChange={(e) => updateForm({ pre_telephone: e.target.value })}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_email">Email</label>
+                    <div className='form-group'>
+                        <label htmlFor='pre_email'>Email</label>
                         <input
-                            type="email"
-                            className="form-control"
-                            id="pre_email"
+                            type='email'
+                            className='form-control'
+                            id='pre_email'
                             value={form.pre_email}
                             onChange={(e) => updateForm({ pre_email: e.target.value })}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_rib">RIB</label>
+                    {/* TODO Gérer mise à jour des documents */}
+                    <div className='form-group'>
+                        <label htmlFor='pre_rib'>RIB</label>
+                        <p>{form.pre_rib.pre_rib_old_file_name}</p>
                         <input
-                            type="file"
-                            className="form-control"
-                            id="pre_rib"
-                            value={form.pre_rib}
-                            onChange={(e) => updateForm({ pre_rib: e.target.value })}
+                            name='pre_rib'
+                            type='file'
+                            className='form-control'
+                            id='pre_rib'
+                            onChange={(e) => updateForm({ pre_rib: e.target.files })}
+                            disabled
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="pre_kbis">KBIS</label>
+                    <div className='form-group'>
+                        <label htmlFor='pre_kbis'>KBIS</label>
+                        <p>{form.pre_kbis.pre_kbis_old_file_name} </p>
                         <input
-                            type="file"
-                            className="form-control"
-                            id="pre_kbis"
-                            value={form.pre_kbis}
-                            onChange={(e) => updateForm({ pre_kbis: e.target.value })}
+                            type='file'
+                            className='form-control'
+                            id='pre_kbis'
+                            disabled
                         />
                     </div>
-                    {/* TODO : gérer mise à jour de commentaires */}
-                    {/* <div className="form-group">
-                        <label htmlFor="pre_commentaire">Commentaire</label>
+
+                    <div className='form-group'>
                         <input
-                            type="file"
-                            className="form-control"
-                            id="pre_commentaire"
-                            value={form.pre_commentaire}
-                            onChange={(e) => updateForm({ pre_commentaire: e.target.value })}
-                        />
-                    </div> */}
-                    <div className="form-group">
-                        <input
-                            type="submit"
-                            value="Ajouter"
-                            className="btn btn-outline-success"
+                            type='submit'
+                            value='Mise à jour'
+                            className='btn btn-outline-warning'
                         />
                     </div>
                 </form>

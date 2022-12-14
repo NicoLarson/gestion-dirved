@@ -97,7 +97,7 @@ exports.create_prestataire = (req, res) => {
 exports.update_prestataire = (req, res) => {
     let db_connect = dbo.getDb()
     let myquery = { _id: ObjectId(req.params.id) }
-    let newvalues = {
+    let newValues = {
         $set: {
             pre_nom: req.body.pre_nom,
             pre_type: req.body.pre_type,
@@ -112,7 +112,7 @@ exports.update_prestataire = (req, res) => {
     }
     db_connect
         .collection("prestataires")
-        .updateOne(myquery, newvalues, (err, res) => {
+        .updateOne(myquery, newValues, (err, res) => {
             if (err) throw err
             console.log("1 document updated")
         })
