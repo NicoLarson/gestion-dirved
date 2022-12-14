@@ -138,17 +138,22 @@ export default function UpdatePrestation() {
                 </div>
                 <div className="form-group">
                     <label htmlFor="pai_devis">Devis</label>
+                    {/* FIXME Mise à jour en du bon de commande en fonction du fichier devis */}
                     <input
                         name="pai_devis"
                         type="file"
                         className="form-control"
                         id="pai_devis"
+                        onChange={(e) => {
+                            updateForm({ pai_devis: e.target.files })
+                        }
+                        }
                     />
                 </div>
                 <div className="form-group">
                     <label htmlFor="pai_devis_status">Status</label>
                     <select name="pai_devis_status" id="pai_devis_status" value={form.pai_devis_status}
-                        onChange={(e) => updateForm({ pai_devis_status: e.target.value })}>
+                        onChange={(e) => updateForm({ pai_devis_status: e.target.files[0] })}>
                         <option value="En attente">En attente</option>
                         <option value="Accepté">Accepté</option>
                         <option value="Refusé">Refusé</option>
@@ -161,6 +166,12 @@ export default function UpdatePrestation() {
                         type="file"
                         className="form-control"
                         id="pai_bc"
+                        onChange={(e) => {
+                            console.log(form.pai_devis.value)
+                            updateForm({ pai_bc: e.target.value })
+                        }}
+                        // FIXME Mise à jour en fonction du status de devis
+                        disabled={form.pai_devis == null || form.pai_devis == "" ? true : false}
                     />
                 </div>
                 <div className="form-group">
@@ -179,7 +190,8 @@ export default function UpdatePrestation() {
                         type="file"
                         className="form-control"
                         id="pai_facture"
-                    />
+                        onChange={(e) => updateForm({ pai_facture: e.target.value })}
+                        disabled />
                 </div>
                 <div className="form-group">
                     <label htmlFor="pai_facture_status">Status</label>
