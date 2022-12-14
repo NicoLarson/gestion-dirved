@@ -104,7 +104,7 @@ export default function UpdatePrestation() {
     return (
         <div className='UpdatePrestation'>
             <h2>Modifier prestation</h2>
-            <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>
+            <form onSubmit={onSubmit} method="post" encType="multipart/form-data" className='form-group row'>
                 <div className="form-group">
                     <label htmlFor="pai_num_operation">Numéro d'opération</label>
                     <input

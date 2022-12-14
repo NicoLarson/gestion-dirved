@@ -12,41 +12,41 @@ export default function Navbar() {
           <img className='logo' src="https://www.daeu.fr/app/uploads/2018/11/Universite-de-Guyane_logo.png"></img>
         </NavLink>
         <dl className='menu'>
-          <dt><i class="fa-solid fa-flask"></i> Conventions</dt>
+          <dt><i className="fa-solid fa-flask"></i> Conventions</dt>
           <dd>
             <ul>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/show/conventions">
-                  <i class="fa-solid fa-list"></i> Afficher
+                  <i className="fa-solid fa-list"></i> Afficher
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/create/convention">
-                  <i class="fa-solid fa-plus"></i> Ajouter
+                  <i className="fa-solid fa-plus"></i> Ajouter
                 </NavLink>
               </li>
             </ul>
           </dd>
-          <dt><i class="fa-solid fa-money-bill-1-wave"></i> Prestations</dt>
+          <dt><i className="fa-solid fa-money-bill-1-wave"></i> Prestations</dt>
           <dd>  <ul>
             <li className="nav-item">
               <NavLink className="nav-link" to="/show/prestations">
-                <i class="fa-solid fa-list"></i> Afficher
+                <i className="fa-solid fa-list"></i> Afficher
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/show/prestataires">
-                <i class="fa-solid fa-list"></i> Prestataires
+                <i className="fa-solid fa-list"></i> Prestataires
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/create/prestation">
-                <i class="fa-solid fa-plus"></i> Ajouter
+                <i className="fa-solid fa-plus"></i> Ajouter
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/create/prestataire">
-                <i class="fa-solid fa-plus"></i> Prestataire
+                <i className="fa-solid fa-plus"></i> Prestataire
               </NavLink>
             </li>
           </ul></dd>

@@ -78,7 +78,7 @@ export default function UpdatePrestataire() {
             <h2>Modifier prestataire</h2>
             <fieldset className='form-group'>
                 <legend>Prestataire</legend>
-                <form onSubmit={onSubmit} method='post' enctype='multipart/form-data' className='form-group row'>
+                <form onSubmit={onSubmit} method='post' encType='multipart/form-data' className='form-group row'>
                     <div className='form-group'>
                         <label htmlFor='pre_nom'>Nom</label>
                         <input

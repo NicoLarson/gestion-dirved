@@ -59,7 +59,7 @@ export default function CreateConvention() {
       <h2>Ajouter Convention</h2>
       <fieldset className='form-group'>
         <legend>Convention</legend>
-        <form onSubmit={onSubmit} method="post" enctype="multipart/form-data" className='form-group row'>
+        <form onSubmit={onSubmit} method="post" encType="multipart/form-data" className='form-group row'>
           <div className="form-group">
             <label htmlFor="con_num_operation">Numéro d'opération</label>
             <input

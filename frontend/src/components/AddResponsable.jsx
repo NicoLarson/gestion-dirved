@@ -42,7 +42,7 @@ export default function AddResponsable() {
   return (
     <div>
       <h3>Ajouter un responsable</h3>
-      <form onSubmit={onSubmit} method="post" enctype="multipart/form-data">
+      <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
         <div className="form-group">
           <label htmlFor="res_nom">Nom</label>
           <input
