@@ -1,5 +1,4 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import "./Home.scss"
 const Home: FunctionComponent = () => {
   const [conventions, setConventions] = useState([]);
   const [prestations, setPrestations] = useState([]);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
-import './ShowConventions.scss';
 // TODO Ajouter avenant
 // TODO Ajouter alert par email
 
@@ -44,13 +43,13 @@ const timeLeft = (date) => {
 
 const timeLeftClassName = (daysLeft) => {
     if (daysLeft < 0) {
-        return "badge rounded-pill bg-danger";
+        return "badge badge-ghost";
     } else if (daysLeft < 30) {
-        return "badge rounded-pill bg-warning";
+        return "badge badge-warning";
     } else if (daysLeft > 30) {
-        return "badge rounded-pill bg-success";
+        return "badge badge-success";
     } else {
-        return "badge rounded-pill bg-light";
+        return "badge badge-light";
     }
 }
 
@@ -71,7 +70,7 @@ const Convention = (props) => (
         <td>{props.convention.con_categories}</td>
         <td>{props.convention.con_partenaires}</td>
         <td>
-            <Link className="btn btn-outline-warning" to={`/update/convention/${props.convention._id}`}>Modifier</Link>
+            <Link to={`/update/convention/${props.convention._id}`}>Modifier</Link>
         </td>
     </tr>
 );
@@ -124,9 +123,9 @@ export default function ConventionList() {
 
     // This following section will display the table with the conventions of individuals.
     return (
-        <div className="ShowConvention">
-            <h3>Conventions</h3>
-            <table className="table table-hover" style={{ marginTop: 20 }}>
+        <div className="overflow-x-auto">
+            <h3 className="text-4xl font-bold">Conventions</h3>
+            <table className="table table-compact table-zebra w-full">
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>

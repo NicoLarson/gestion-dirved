@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import "./UpdatePrestation.scss"
 
 // TODO AJOUTER CHAMP Montant
 export default function UpdatePrestation() {

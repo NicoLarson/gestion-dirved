@@ -1,7 +1,5 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom'
-import '../assets/css/reset.css'
-import '../assets/css/theme.css'
-import '../assets/css/style.css'
+import '../../dist/output.css'
 import './App.scss'
 
 import Navbar from '../components/Navbar'
@@ -26,7 +24,7 @@ import UpdatePrestataire from '../components/UpdatePrestataire'
 export default function App() {
   return (
     <Router>
-      <Navbar></Navbar>
+      <Navbar className="fixed"></Navbar>
       <div className="display">
         <Routes>
           <Route path="/" element={<Home />} />

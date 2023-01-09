@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import "./UpdatePrestataire.scss"
 
 export default function UpdatePrestataire() {
     const [form, setForm] = useState({

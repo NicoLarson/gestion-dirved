@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router';
-import './CreatePrestataire.scss'
 
 export default function CreatePrestataire() {
     const navigate = useNavigate();

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import dateFormat, { masks } from "dateformat";
-import './ShowPrestations.scss';
 
 const dateIsDefined = (date) => {
     if (date === null) {

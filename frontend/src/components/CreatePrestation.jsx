@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router';
-import './CreatePrestation.scss'
 
 // TODO Ajouter condition "disable" les champs si le devis est uploader on peut uploader le bs etc
 const CreatePrestation = () => {

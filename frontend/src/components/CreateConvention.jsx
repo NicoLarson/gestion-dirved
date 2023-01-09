@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import './CreateConvention.scss';
 // TODO Ajouter documents
 export default function CreateConvention() {
   const [form, setForm] = useState({

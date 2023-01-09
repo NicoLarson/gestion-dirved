@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import './ShowPrestataires.scss';
 
 // TODO afficher RIB et KBIS avec bouton pour les afficher
 
