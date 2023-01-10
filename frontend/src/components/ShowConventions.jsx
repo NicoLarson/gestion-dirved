@@ -70,7 +70,7 @@ const Convention = (props) => (
         <td>{props.convention.con_categories}</td>
         <td>{props.convention.con_partenaires}</td>
         <td>
-            <Link to={`/update/convention/${props.convention._id}`}>Modifier</Link>
+            <Link className="btn btn-warning btn-outline btn-xs" to={`/update/convention/${props.convention._id}`}>Modifier</Link>
         </td>
     </tr>
 );
@@ -124,8 +124,8 @@ export default function ConventionList() {
     // This following section will display the table with the conventions of individuals.
     return (
         <div className="overflow-x-auto">
-            <h3 className="text-4xl font-bold">Conventions</h3>
-            <table className="table table-compact table-zebra w-full">
+            <h3 className="text-4xl font-bold m-8">Conventions</h3>
+            <table className="table table-compact w-full">
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>

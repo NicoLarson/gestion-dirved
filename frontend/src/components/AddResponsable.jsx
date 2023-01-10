@@ -40,44 +40,48 @@ export default function AddResponsable() {
 
   // This following section will display the form that takes the input from the user.
   return (
-    <div>
-      <h3>Ajouter un responsable</h3>
+    <div className='card card-body bg-base-100 shadow-xl'>
+      <h3 className="card-title">Ajouter un responsable</h3>
       <form onSubmit={onSubmit} method="post" encType="multipart/form-data">
-        <div className="form-group">
+        <div >
           <label htmlFor="res_nom">Nom</label>
           <input
+            className='input input-bordered input-sm w-full'
             type="text"
-            className="form-control"
+
             id="res_nom"
             value={form.res_nom}
             onChange={(e) => updateForm({ res_nom: e.target.value })}
           />
         </div>
-        <div className="form-group">
+        <div >
           <label htmlFor="res_prenom">Prénom</label>
           <input
+            className='input input-bordered input-sm w-full'
             type="text"
-            className="form-control"
+
             id="res_prenom"
             value={form.res_prenom}
             onChange={(e) => updateForm({ res_prenom: e.target.value })}
           />
         </div>
-        <div className="form-group">
+        <div >
           <label htmlFor="res_email">Email</label>
           <input
+            className='input input-bordered input-sm w-full'
             type="email"
-            className="form-control"
+
             id="res_email"
             value={form.res_email}
             onChange={(e) => updateForm({ res_email: e.target.value })}
           />
         </div>
-        <div className="form-group">
+        <div >
           <input
+              className='btn btn-primary btn-sm mt-4 mb-4' 
             type="submit"
             value="Ajouter responsable"
-            className="btn btn-primary"
+
           />
         </div>
       </form>

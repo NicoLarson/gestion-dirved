@@ -92,7 +92,7 @@ const Prestation = (props) => (
         <td>{dateIsDefined(props.prestation.pai_date_fin)}</td>
         <td>{statusPrestation(props.prestation)}</td>
         <td>
-            <Link className="btn btn-outline-warning" to={`/update/prestation/${props.prestation._id}`}>Modifier</Link>
+            <Link className="btn btn-warning btn-outline btn-xs" to={`/update/prestation/${props.prestation._id}`}>Modifier</Link>
         </td>
     </tr>
 );
@@ -144,9 +144,9 @@ export default function PrestationList() {
 
     // This following section will display the table with the prestations of individuals.
     return (
-        <div className="ShowPrestations">
-            <h3>Prestations</h3>
-            <table className="table table-hover" style={{ marginTop: 20 }}>
+        <div className="overflow-x-auto">
+            <h3 className="text-4xl font-bold m-8">Prestations</h3>
+            <table className="table table-compact w-full">
                 <thead>
                     <tr>
                         <th>Numéro d'opération </th>

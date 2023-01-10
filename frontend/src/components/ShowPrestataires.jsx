@@ -10,11 +10,11 @@ const Prestataire = (props) => (
         <td>{props.prestataire.pre_adresse}</td>
         <td>{props.prestataire.pre_telephone}</td>
         <td>{props.prestataire.pre_email}</td>
-        <td> <button>Afficher</button> </td>
-        <td> <button>Afficher</button> </td>
+        <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
+        <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
         <td>{props.prestataire.pre_description}</td>
         <td>
-            <Link className="btn btn-outline-warning" to={`/update/prestataire/${props.prestataire._id}`}>Modifier</Link>
+            <Link className="btn btn-warning btn-outline btn-xs" to={`/update/prestataire/${props.prestataire._id}`}>Modifier</Link>
         </td>
     </tr>
 );
@@ -67,9 +67,9 @@ export default function ShowPrestataires() {
 
     // This following section will display the table with the prestataires of individuals.
     return (
-        <div className="ShowPrestataires">
-            <h3>Prestataires</h3>
-            <table className="table table-hover" style={{ marginTop: 20 }}>
+        <div className="overflow-x-auto">
+            <h3 className="text-4xl font-bold m-8">Prestataires</h3>
+            <table className="table table-compact w-full">
                 <thead>
                     <tr>
                         <th>Nom </th>

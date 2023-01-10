@@ -101,21 +101,22 @@ export default function UpdatePrestation() {
     }
 
     return (
-        <div className='UpdatePrestation'>
-            <h2>Modifier prestation</h2>
-            <form onSubmit={onSubmit} method="post" encType="multipart/form-data" className='form-group row'>
-                <div className="form-group">
-                    <label htmlFor="pai_num_operation">Numéro d'opération</label>
+        <div className='card card-body bg-base-100 shadow-xl'>
+            <h2 className="card-title">Modifier prestation</h2>
+            <form onSubmit={onSubmit} method="post" encType="multipart/form-data" >
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_num_operation">Numéro d'opération</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className='input input-bordered input-sm w-full max-w-xs'
+
                         id="pai_num_operation"
                         value={form.pai_num_operation}
                         onChange={(e) => updateForm({ pai_num_operation: e.target.value })}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_prestataire">Prestataire</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_prestataire">Prestataire</label>
                     <select name="pai_prestataire" id="pai_prestataire" value={form.pai_prestataire}
                         onChange={(e) => updateForm({ pai_prestataire: e.target.value })}>
                         {prestataires.map((prestataire) => (
@@ -123,25 +124,25 @@ export default function UpdatePrestation() {
                         ))}
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_montant">Montant</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_montant">Montant</label>
                     <input
                         type="number"
                         min="0"
                         step="0.01"
-                        className="form-control"
+                        className='input input-bordered input-sm w-full max-w-xs'
                         id="pai_montant"
                         value={form.pai_montant}
                         onChange={(e) => updateForm({ pai_montant: e.target.value })}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_devis">Devis</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_devis">Devis</label>
                     {/* FIXME Mise à jour en du bon de commande en fonction du fichier devis */}
                     <input
                         name="pai_devis"
                         type="file"
-                        className="form-control"
+                        className="file-input file-input-sm w-full max-w-xs"
                         id="pai_devis"
                         onChange={(e) => {
                             updateForm({ pai_devis: e.target.files })
@@ -149,8 +150,8 @@ export default function UpdatePrestation() {
                         }
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_devis_status">Status</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_devis_status">Status</label>
                     <select name="pai_devis_status" id="pai_devis_status" value={form.pai_devis_status}
                         onChange={(e) => updateForm({ pai_devis_status: e.target.files[0] })}>
                         <option value="En attente">En attente</option>
@@ -158,12 +159,12 @@ export default function UpdatePrestation() {
                         <option value="Refusé">Refusé</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_bc">Bon de commande</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_bc">Bon de commande</label>
                     <input
                         name="pai_bc"
                         type="file"
-                        className="form-control"
+                        className="file-input file-input-sm w-full max-w-xs"
                         id="pai_bc"
                         onChange={(e) => {
                             console.log(form.pai_devis.value)
@@ -173,8 +174,8 @@ export default function UpdatePrestation() {
                         disabled={form.pai_devis == null || form.pai_devis == "" ? true : false}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_bc_status">Status</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_bc_status">Status</label>
                     <select name="pai_bc_status" id="pai_bc_status" value={form.pai_bc_status}
                         onChange={(e) => updateForm({ pai_bc_status: e.target.value })}>
                         <option value="En attente">En attente</option>
@@ -182,57 +183,57 @@ export default function UpdatePrestation() {
                         <option value="Validé">Validé</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_facture">Facture</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_facture">Facture</label>
                     <input
                         name="pai_facture"
                         type="file"
-                        className="form-control"
+                        className="file-input file-input-sm w-full max-w-xs"
                         id="pai_facture"
                         onChange={(e) => updateForm({ pai_facture: e.target.value })}
                         disabled />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_facture_status">Status</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_facture_status">Status</label>
                     <select name="pai_facture_status" id="pai_facture_status" value={form.pai_facture_status}
                         onChange={(e) => updateForm({ pai_facture_status: e.target.value })}>
                         <option value="En attente">En attente</option>
                         <option value="Validé">Validé</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_csf">CSF</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_csf">CSF</label>
                     <input
                         name="pai_csf"
                         type="file"
-                        className="form-control"
+                        className="file-input file-input-sm w-full max-w-xs"
                         id="pai_csf"
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_csf_status">Status</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_csf_status">Status</label>
                     <select name="pai_csf_status" id="pai_csf_status" value={form.pai_csf_status}
                         onChange={(e) => updateForm({ pai_csf_status: e.target.value })}>
                         <option value="En attente">En attente</option>
                         <option value="Signé">Signé</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="pai_commentaire">Commentaire</label>
+                <div className='form-group' >
+                    <label className='label' htmlFor="pai_commentaire">Commentaire</label>
                     <textarea
                         name="pai_commentaire"
                         type="text"
-                        className="form-control"
+                        className='input input-bordered input-sm w-full max-w-xs'
+
                         id="pai_commentaire"
                         value={form.pai_commentaire}
                         onChange={(e) => updateForm({ pai_commentaire: e.target.value })}
                     />
                 </div>
-                <div className="form-group">
+                <div >
                     <input
                         type="submit"
                         value="Ajouter"
-                        className="btn btn-outline-success"
                     />
                 </div>
             </form>

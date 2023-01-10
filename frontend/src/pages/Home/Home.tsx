@@ -33,11 +33,26 @@ const Home: FunctionComponent = () => {
   }, [prestations.length]);
 
   return (
-    <div className="appGestion">
-      <h1>Gestion DiRVED</h1>
-      <h2>Conventions enregistré {conventions.length}</h2>
-      <h2>Prestation enregistré {prestations.length}</h2>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content text-center">
+        <div className="max-w-md">
+          <h1 className="text-5xl font-bold">Gestion DiRVED</h1>
+          <div className="stats stats-vertical lg:stats-horizontal shadow mt-8">
+            <div className="stat">
+              <div className="stat-title">Conventions enregistré </div>
+              <div className="stat-value">{conventions.length}</div>
+              {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
+            </div>
+            <div className="stat">
+              <div className="stat-title">Prestation enregistré</div>
+              <div className="stat-value">{prestations.length}</div>
+              {/* <div className="stat-desc">↗︎ 400 (22%)</div> */}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   )
 }
 

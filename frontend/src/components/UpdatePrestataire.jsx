@@ -73,90 +73,95 @@ export default function UpdatePrestataire() {
     }
 
     return (
-        <div className='UpdatePrestataire'>
-            <h2>Modifier prestataire</h2>
-            <fieldset className='form-group'>
-                <legend>Prestataire</legend>
-                <form onSubmit={onSubmit} method='post' encType='multipart/form-data' className='form-group row'>
-                    <div className='form-group'>
-                        <label htmlFor='pre_nom'>Nom</label>
+        <div className='card card-body bg-base-100 shadow-xl'>
+            <h2 className="card-title">Modifier prestataire</h2>
+            <fieldset className='form-group' >
+                <legend className="card-title">Prestataire</legend>
+                <form onSubmit={onSubmit} method='post' encType='multipart/form-data' >
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_nom'>Nom</label>
                         <input
+                            className='input input-bordered input-sm w-full max-w-xs'
                             type='text'
-                            className='form-control'
+
                             id='pre_nom'
                             value={form.pre_nom}
                             onChange={(e) => updateForm({ pre_nom: e.target.value })}
                         />
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='pre_type'>Type</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_type'>Type</label>
                         <input
+                            className='input input-bordered input-sm w-full max-w-xs'
                             type='text'
-                            className='form-control'
+
                             id='pre_type'
                             value={form.pre_type}
                             onChange={(e) => updateForm({ pre_type: e.target.value })}
                         />
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='pre_adresse'>Adresse</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_adresse'>Adresse</label>
                         <input
+                            className='input input-bordered input-sm w-full max-w-xs'
                             type='text'
-                            className='form-control'
+
                             id='pre_adresse'
                             value={form.pre_adresse}
                             onChange={(e) => updateForm({ pre_adresse: e.target.value })}
                         />
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='pre_telephone'>Telephone</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_telephone'>Telephone</label>
                         <input
+                            className='input input-bordered input-sm w-full max-w-xs'
                             type='text'
-                            className='form-control'
+
                             id='pre_telephone'
                             value={form.pre_telephone}
                             onChange={(e) => updateForm({ pre_telephone: e.target.value })}
                         />
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='pre_email'>Email</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_email'>Email</label>
                         <input
+                            className='input input-bordered input-sm w-full max-w-xs'
                             type='email'
-                            className='form-control'
+
                             id='pre_email'
                             value={form.pre_email}
                             onChange={(e) => updateForm({ pre_email: e.target.value })}
                         />
                     </div>
                     {/* TODO Gérer mise à jour des documents */}
-                    <div className='form-group'>
-                        <label htmlFor='pre_rib'>RIB</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_rib'>RIB</label>
                         <p>{form.pre_rib.pre_rib_old_file_name}</p>
                         <input
+                            className="file-input file-input-sm w-full max-w-xs"
                             name='pre_rib'
                             type='file'
-                            className='form-control'
+
                             id='pre_rib'
                             onChange={(e) => updateForm({ pre_rib: e.target.files })}
                             disabled
                         />
                     </div>
-                    <div className='form-group'>
-                        <label htmlFor='pre_kbis'>KBIS</label>
+                    <div className='form-group' >
+                        <label className='label' htmlFor='pre_kbis'>KBIS</label>
                         <p>{form.pre_kbis.pre_kbis_old_file_name} </p>
                         <input
                             type='file'
-                            className='form-control'
+                            className="file-input file-input-sm w-full max-w-xs"
                             id='pre_kbis'
                             disabled
                         />
                     </div>
-
-                    <div className='form-group'>
+                    <div >
                         <input
                             type='submit'
                             value='Mise à jour'
-                            className='btn btn-outline-warning'
+                            className='btn btn-warning btn-sm mt-4 mb-4'
                         />
                     </div>
                 </form>

@@ -45,83 +45,92 @@ export default function CreatePrestataire() {
     }
 
     return (
-        <div className='CreatePrestataire'>
-            <h2>Ajouter Prestataire</h2>
+        <div className='card card-body bg-base-100 shadow-xl'>
+            <h2 className="card-title">Ajouter Prestataire</h2>
             <fieldset className='form-group'>
-                <legend>Prestataire</legend>
+                <legend className="card-title">Prestataire</legend>
                 <form onSubmit={handleFormSubmit} method="post" className='form-group row'>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_nom">Nom</label>
                         <input
+                            className='input input-bordered input-sm w-full '
                             name="pre_nom"
                             type="text"
-                            className="form-control"
+
                             id="pre_nom" />
                     </div>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_type">Type</label>
                         <input
+                            className='input input-bordered input-sm w-full '
                             name="pre_type"
                             type="text"
-                            className="form-control"
+
                             id="pre_type"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_adresse">Adresse</label>
                         <input
+                            className='input input-bordered input-sm w-full '
                             name="pre_adresse"
                             type="text"
-                            className="form-control"
+
                             id="pre_adresse"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_telephone">Telephone</label>
                         <input
+                            className='input input-bordered input-sm w-full '
                             name="pre_telephone"
                             type="text"
-                            className="form-control"
+
                             id="pre_telephone"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_email">Email</label>
                         <input
+                            className='input input-bordered input-sm w-full '
                             name="pre_email"
                             type="email"
-                            className="form-control"
+
                             id="pre_email"
                         />
                     </div>
                     {/* TODO Drag and drop file upload */}
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_rib">RIB</label>
                         <input
+                            className="file-input file-input-sm w-full max-w-xs"
                             name="pre_rib"
                             type="file"
-                            className="form-control"
                             id="pre_rib"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className='form-control'>
                         <label htmlFor="pre_kbis">KBIS</label>
                         <input
+                            className="file-input file-input-sm w-full max-w-xs"
                             name="pre_kbis"
                             type="file"
-                            className="form-control"
                             id="pre_kbis"
                         />
                     </div>
-                    <div className="form-group textarea-container">
-                        <label htmlFor="pre_description">Description</label>
-                        <textarea name="pre_description" id="pre_description" rows="10"></textarea>
+                    <div className='form-control' >
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea
+                            className='textarea textarea-bordered' name="pre_description"
+                            id="pre_description"></textarea>
                     </div>
-                    <div className="form-group">
+                    <div >
                         <input
+                            className='btn btn-primary btn-sm mt-4 mb-4'
                             type="submit"
                             value="Ajouter"
-                            className="btn btn-outline-success"
                         />
                     </div>
                 </form>

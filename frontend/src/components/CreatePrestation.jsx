@@ -76,111 +76,114 @@ const CreatePrestation = () => {
   }
 
   return (
-    <div className='CreatePrestation'>
-      <h2>Ajouter Prestation</h2>
+    <div className='card card-body bg-base-100 shadow-xl'>
+      <h2 className="card-title">Ajouter Prestation</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="form-group">
-          <label htmlFor="pai_num_operation">Numéro d'opération</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_num_operation">Numéro d'opération</label>
           <input
+            className='input input-bordered input-sm w-full '
             name="pai_num_operation"
             id="pai_num_operation"
             type="text"
-            className="form-control"
+
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_prestataire">Prestataire</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_prestataire">Prestataire</label>
           <select name="pai_prestataire" id="pai_prestataire">
             {prestataires.map((prestataire) => (
               <option value={prestataire._id}>{prestataire.pre_nom}</option>
             ))}
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_montant">Montant</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_montant">Montant</label>
           <input
+            className='input input-bordered input-sm w-full '
             name="pai_montant"
             id="pai_montant"
             type="number"
-            className="form-control"
+
             min="0"
             step="0.01"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_devis">Devis</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_devis">Devis</label>
           <input
             name="pai_devis"
             type="file"
-            className="form-control"
+            className="file-input file-input-sm w-full max-w-xs"
             id="pai_devis"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_devis_status">Status</label>
+        <div className="form-control">
+          <label className="label" htmlFor="pai_devis_status">Status</label>
           <select name="pai_devis_status" id="pai_devis_status">
             <option value="En attente">En attente</option>
             <option value="Signé">Signé</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_bc">Bon de commande</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_bc">Bon de commande</label>
           <input
             name="pai_bc"
             type="file"
-            className="form-control"
+            className="file-input file-input-sm w-full max-w-xs"
             id="pai_bc"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_bc_status">Status</label>
+        <div className="form-control">
+          <label className="label" htmlFor="pai_bc_status">Status</label>
           <select name="pai_bc_status" id="pai_bc_status">
             <option value="En attente">En attente</option>
             <option value="En cours">En cours</option>
             <option value="Validé">Validé</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_facture">Facture</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_facture">Facture</label>
           <input
+            className="file-input file-input-sm w-full max-w-xs"
             name="pai_facture"
             type="file"
-            className="form-control"
             id="pai_facture"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_facture_status">Status</label>
+        <div className="form-control">
+          <label className="label" htmlFor="pai_facture_status">Status</label>
           <select name="pai_facture_status" id="pai_facture_status">
             <option value="En attente">En attente</option>
             <option value="Validé">Validé</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_csf">CSF</label>
+        <div className="form-control">
+          <label className="label font-bold" htmlFor="pai_csf">CSF</label>
           <input
+            className="file-input file-input-sm w-full max-w-xs"
             name="pai_csf"
             type="file"
-            className="form-control"
             id="pai_csf"
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_csf_status">Status</label>
+        <div className="form-control">
+          <label className="label" htmlFor="pai_csf_status">Status</label>
           <select name="pai_csf_status" id="pai_csf_status">
             <option value="En attente">En attente</option>
             <option value="Signé">Signé</option>
           </select>
         </div>
-        <div className="form-group">
-          <label htmlFor="pai_commentaire">Commentaire</label>
+        <div className="form-control">
+          <label className="label" htmlFor="pai_commentaire">Commentaire</label>
           <textarea
+            className='textarea textarea-bordered'
             name="pai_commentaire"
             id="pai_commentaire"
-            className="form-control"
           />
         </div>
-        <input type="submit" value="Envoyer" />
+        <input
+          className='btn btn-primary btn-sm mt-4 mb-4' type="submit" value="Ajouter" />
       </form>
     </div>
   )
