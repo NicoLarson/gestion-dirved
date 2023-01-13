@@ -14,6 +14,7 @@ recordRoutes.route("/show/conventions").get(convention_controller.show_conventio
 recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
 recordRoutes.route("/update/convention/:id").post(convention_controller.update_convention);
 // TODO: Supprimer une convention 
+recordRoutes.route("/delete/convention/:id").delete(convention_controller.delete_convention);
 
 /*
   *  RESPONSABLE

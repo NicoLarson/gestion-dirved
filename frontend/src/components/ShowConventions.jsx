@@ -72,6 +72,9 @@ const Convention = (props) => (
         <td>
             <Link className="btn btn-warning btn-outline btn-xs" to={`/update/convention/${props.convention._id}`}>Modifier</Link>
         </td>
+        <td>
+            <button className="btn btn-danger btn-outline btn-xs" onClick={props.deleteConvention}>Supprimer</button>
+        </td>
     </tr>
 );
 
@@ -100,7 +103,7 @@ export default function ConventionList() {
 
     // This method will delete a convention
     async function deleteConvention(id) {
-        await fetch(`http://localhost:5000/convention/delete/${id}`, {
+        await fetch(`http://localhost:5000/delete/convention/${id}`, {
             method: "DELETE"
         });
 

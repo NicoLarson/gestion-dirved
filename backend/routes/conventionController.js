@@ -91,3 +91,21 @@ exports.create_convention = (req, res) => {
         }
     })
 }
+
+exports.delete_convention = (req, res) => {
+    let db_connect = dbo.getDb();
+    try {
+        let myquery = { _id: ObjectId(req.params.id) };
+        if (!myquery) {
+            return res.status(404).send({ error: 'Convention not found' });
+        }
+        db_connect
+            .collection("conventions")
+            .deleteOne(myquery, (err, result) => {
+                if (err) throw err;
+                res.json(result);
+            });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
