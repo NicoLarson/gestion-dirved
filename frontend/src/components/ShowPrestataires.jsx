@@ -16,6 +16,9 @@ const Prestataire = (props) => (
         <td>
             <Link className="btn btn-warning btn-outline btn-xs" to={`/update/prestataire/${props.prestataire._id}`}>Modifier</Link>
         </td>
+        <td>
+            <button className="btn btn-danger btn-outline btn-xs" onClick={props.deletePrestataire}>Supprimer</button>
+        </td>
     </tr>
 );
 
@@ -44,7 +47,7 @@ export default function ShowPrestataires() {
 
     // This method will delete a prestataire
     async function deletePrestataire(id) {
-        await fetch(`http://localhost:5000/prestataire/delete/${id}`, {
+        await fetch(`http://localhost:5000/delete/prestataire/${id}`, {
             method: "DELETE"
         });
 
@@ -79,7 +82,8 @@ export default function ShowPrestataires() {
                         <th>Email</th>
                         <th>RIB</th>
                         <th>KBIS</th>
-                        <th>Commentaire</th>
+                        <th>Description</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>

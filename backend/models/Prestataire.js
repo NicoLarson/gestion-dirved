@@ -20,7 +20,7 @@ const prestataireSchema = new Schema({
         pre_kbis_new_file_name: String,
         pre_kbis_new_file_path: String,
     },
-    pre_commentaire: String,
+    pre_description: String,
 });
 
 const Prestataire = mongoose.model("Prestataire", prestataireSchema);

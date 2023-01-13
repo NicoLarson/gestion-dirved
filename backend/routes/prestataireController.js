@@ -77,7 +77,7 @@ exports.create_prestataire = (req, res) => {
             pre_kbis_new_file_name: kbisNewFileName,
             pre_kbis_new_file_path: kbisNewFilePath,
         },
-        pre_commentaire: req.body.pre_commentaire,
+        pre_description: req.body.pre_description,
     })
 
     dbConnect
@@ -106,7 +106,7 @@ exports.update_prestataire = (req, res) => {
             pre_date_update: new Date(),
             pre_rib: req.body.pre_rib,
             pre_kbis: req.body.pre_kbis,
-            pre_commentaire: req.body.pre_commentaire,
+            pre_description: req.body.pre_description,
         },
     }
     db_connect
@@ -119,4 +119,19 @@ exports.update_prestataire = (req, res) => {
 
 
 exports.delete_prestataire = (req, res) => {
+    let db_connect = dbo.getDb();
+    try {
+        let myquery = { _id: ObjectId(req.params.id) };
+        if (!myquery) {
+            return res.status(404).send({ error: 'Prestataire not found' });
+        }
+        db_connect
+            .collection("prestataires")
+            .deleteOne(myquery, (err, result) => {
+                if (err) throw err;
+                res.json(result);
+            });
+    } catch (error) {
+        res.status(500).send(error);
+    }
 }

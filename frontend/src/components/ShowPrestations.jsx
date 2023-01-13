@@ -91,8 +91,12 @@ const Prestation = (props) => (
         <td>{props.prestation.pai_montant} €</td>
         <td>{dateIsDefined(props.prestation.pai_date_fin)}</td>
         <td>{statusPrestation(props.prestation)}</td>
+        <td>{statusPrestation(props.prestation)}</td>
         <td>
             <Link className="btn btn-warning btn-outline btn-xs" to={`/update/prestation/${props.prestation._id}`}>Modifier</Link>
+        </td>
+        <td>
+            <button className="btn btn-error btn-outline btn-xs" onClick={props.deletePrestation}>Supprimer</button>
         </td>
     </tr>
 );
@@ -121,7 +125,7 @@ export default function PrestationList() {
 
     // This method will delete a prestation
     async function deletePrestation(id) {
-        await fetch(`http://localhost:5000/prestation/delete/${id}`, {
+        await fetch(`http://localhost:5000/delete/prestation/${id}`, {
             method: "DELETE"
         });
 
@@ -154,6 +158,8 @@ export default function PrestationList() {
                         <th>Montant</th>
                         <th>Date</th>
                         <th>Status </th>
+                        <th>Commentaire </th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>

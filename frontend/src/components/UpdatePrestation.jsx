@@ -224,7 +224,6 @@ export default function UpdatePrestation() {
                         name="pai_commentaire"
                         type="text"
                         className='input input-bordered input-sm w-full max-w-xs'
-
                         id="pai_commentaire"
                         value={form.pai_commentaire}
                         onChange={(e) => updateForm({ pai_commentaire: e.target.value })}
@@ -232,8 +231,8 @@ export default function UpdatePrestation() {
                 </div>
                 <div >
                     <input
-                        type="submit"
-                        value="Ajouter"
+                        className='btn btn-warning btn-sm mt-4 mb-4' type="submit"
+                        value="Mise à jour"
                     />
                 </div>
             </form>

@@ -10,6 +10,7 @@ export default function UpdatePrestataire() {
         pre_email: '',
         pre_rib: '',
         pre_kbis: '',
+        pre_description: '',
     });
 
     const params = useParams();
@@ -54,7 +55,7 @@ export default function UpdatePrestataire() {
             pre_email: form.pre_email,
             pre_rib: form.pre_rib,
             pre_kbis: form.pre_kbis,
-            pre_commentaire: form.pre_commentaire,
+            pre_description: form.pre_description,
 
         };
         navigate('/show/prestataires');
@@ -141,7 +142,6 @@ export default function UpdatePrestataire() {
                             className="file-input file-input-sm w-full max-w-xs"
                             name='pre_rib'
                             type='file'
-
                             id='pre_rib'
                             onChange={(e) => updateForm({ pre_rib: e.target.files })}
                             disabled
@@ -156,6 +156,17 @@ export default function UpdatePrestataire() {
                             id='pre_kbis'
                             disabled
                         />
+                    </div>
+                    <div className='form-control' >
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea
+                            className='textarea textarea-bordered' name="pre_description"
+                            id="pre_description"
+                            value={form.pre_description}
+                            onChange={(e) => updateForm({ pre_description: e.target.value })}
+                            ></textarea>
                     </div>
                     <div >
                         <input

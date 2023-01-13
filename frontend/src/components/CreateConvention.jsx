@@ -62,27 +62,26 @@ export default function CreateConvention() {
               <label className='label' htmlFor="con_nom_responsable">Nom</label>
               <input
                 className='input input-bordered input-sm w-full max-w-xs' type="text"
-
                 id="con_nom_responsable"
                 value={form.con_nom_responsable}
                 onChange={(e) => updateForm({ con_nom_responsable: e.target.value })}
+                required
               />
             </div>
             <div >
               <label className='label' htmlFor="con_prenom_responsable">Prénom</label>
               <input
                 className='input input-bordered input-sm w-full max-w-xs' type="text"
-
                 id="con_prenom_responsable"
                 value={form.con_prenom_responsable}
                 onChange={(e) => updateForm({ con_prenom_responsable: e.target.value })}
+                required
               />
             </div>
             <div >
               <label className='label' htmlFor="con_fonction_responsable">Fonction</label>
               <input
                 className='input input-bordered input-sm w-full max-w-xs' type="text"
-
                 id="con_fonction_responsable"
                 value={form.con_fonction_responsable}
                 onChange={(e) => updateForm({ con_fonction_responsable: e.target.value })}
@@ -92,7 +91,6 @@ export default function CreateConvention() {
               <label className='label' htmlFor="con_email_responsable">Email</label>
               <input
                 className='input input-bordered input-sm w-full max-w-xs' type="text"
-
                 id="con_email_responsable"
                 value={form.con_email_responsable}
                 onChange={(e) => updateForm({ con_email_responsable: e.target.value })}
@@ -118,7 +116,6 @@ export default function CreateConvention() {
             <label className='label' htmlFor="con_nom_operation">Opération</label>
             <input
               className='input input-bordered input-sm w-full max-w-xs' type="text"
-
               id="con_nom_operation"
               value={form.con_nom_operation}
               onChange={(e) => updateForm({ con_nom_operation: e.target.value })}
@@ -129,7 +126,6 @@ export default function CreateConvention() {
             <label className='label' htmlFor="con_date_debut">Date de début</label>
             <input
               className='input input-bordered input-sm w-full max-w-xs' type="date"
-
               id="con_date_debut"
               value={form.con_date_debut}
               onChange={(e) => updateForm({ con_date_debut: e.target.value })}
@@ -139,7 +135,6 @@ export default function CreateConvention() {
             <label className='label' htmlFor="con_date_fin">Date de fin</label>
             <input
               className='input input-bordered input-sm w-full max-w-xs' type="date"
-
               id="con_date_fin"
               value={form.con_date_fin}
               onChange={(e) => updateForm({ con_date_fin: e.target.value })}
@@ -151,7 +146,6 @@ export default function CreateConvention() {
               className='input input-bordered input-sm w-full max-w-xs' type="number"
               min="0"
               step="any"
-
               id="con_montant"
               value={form.con_montant}
               onChange={(e) => updateForm({ con_montant: e.target.value })}
@@ -163,15 +157,12 @@ export default function CreateConvention() {
               className='input input-bordered input-sm w-full max-w-xs' type="number"
               min="0"
               step="any"
-
               id="con_montant_encaisse"
               value={form.con_montant_encaisse}
               onChange={(e) => updateForm({ con_montant_encaisse: e.target.value })}
             />
           </div>
           <div >
-
-
             <label className='label' htmlFor="con_piece_jointes">Pièce jointe</label>
             <input type="file"
               className="file-input file-input-sm w-full max-w-xs"
@@ -185,7 +176,6 @@ export default function CreateConvention() {
             <label className='label' htmlFor="con_categories">Catégories</label>
             <input
               className='input input-bordered input-sm w-full max-w-xs' type="text"
-
               id="con_categories"
               value={form.con_categories}
               onChange={(e) => updateForm({ con_categories: e.target.value })}
@@ -196,7 +186,6 @@ export default function CreateConvention() {
             <label className='label' htmlFor="con_partenaires">Partenaires</label>
             <input
               className='input input-bordered input-sm w-full max-w-xs' type="text"
-
               id="con_partenaires"
               value={form.con_partenaires}
               onChange={(e) => updateForm({ con_partenaires: e.target.value })}
@@ -206,7 +195,6 @@ export default function CreateConvention() {
             <input
               className='btn btn-primary btn-sm mt-4 mb-4' type="submit"
               value="Ajouter"
-
             />
           </div>
         </form>
