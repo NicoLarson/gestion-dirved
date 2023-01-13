@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 const Prestataire = (props) => (
     <tr>
-        <td>{props.prestataire.pre_nom}</td>
-        <td>{props.prestataire.pre_type}</td>
-        <td>{props.prestataire.pre_adresse}</td>
-        <td>{props.prestataire.pre_telephone}</td>
-        <td>{props.prestataire.pre_email}</td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_nom}</td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_type}</td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_adresse}</td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_telephone}</td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_email}</td>
         <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
         <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
         <td>{props.prestataire.pre_description}</td>

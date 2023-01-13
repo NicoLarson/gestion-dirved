@@ -56,3 +56,9 @@ This project is [ISC](https://github.com/NicoLarson/gestion-dirved/blob/master/L
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
+---
+
+## TODO
+- page detail convention
+- page detail prestation

@@ -56,24 +56,23 @@ const timeLeftClassName = (daysLeft) => {
 const Convention = (props) => (
     <tr>
         <td>{props.convention.con_num_operation}</td>
-        <td>{props.convention.con_nom_operation}</td>
+        <td className="max-w-xs overflow-auto">{props.convention.con_nom_operation}</td>
         <td>{showResponsableName(props.convention.con_responsable)}</td>
         <td>{dateIsDefined(props.convention.con_date_debut)}</td>
         <td>{dateIsDefined(props.convention.con_date_fin)}</td>
         <td>
             <span className={timeLeftClassName(timeLeft(props.convention.con_date_fin))}>{timeLeft(props.convention.con_date_fin)}</span>
         </td>
-
         <td>{props.convention.con_montant} €</td>
         <td>{props.convention.con_montant_encaisse} €</td>
         <td>{props.convention.con_piece_jointes}</td>
         <td>{props.convention.con_categories}</td>
-        <td>{props.convention.con_partenaires}</td>
+        <td className="max-w-xs overflow-auto">{props.convention.con_partenaires}</td>
         <td>
             <Link className="btn btn-warning btn-outline btn-xs" to={`/update/convention/${props.convention._id}`}>Modifier</Link>
         </td>
         <td>
-            <button className="btn btn-danger btn-outline btn-xs" onClick={props.deleteConvention}>Supprimer</button>
+            <button className="btn btn-error btn-outline btn-xs" onClick={props.deleteConvention}>Supprimer</button>
         </td>
     </tr>
 );
@@ -131,7 +130,7 @@ export default function ConventionList() {
             <table className="table table-compact w-full">
                 <thead>
                     <tr>
-                        <th>Numéro d'opération </th>
+                        <th>OPE</th>
                         <th>Opération </th>
                         <th>Responsable</th>
                         <th>Date de début</th>
@@ -142,6 +141,7 @@ export default function ConventionList() {
                         <th>Pieces jointes</th>
                         <th>Catégories</th>
                         <th>Partenaires</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
