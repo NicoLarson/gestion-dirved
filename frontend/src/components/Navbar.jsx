@@ -16,7 +16,7 @@ export default function Navbar() {
             <span>Convention</span>
           </li>
           <li>
-            <NavLink to="/show/conventions">
+            <NavLink to="/show/conventions/category">
               <i className="fa-solid fa-list"></i> Afficher
             </NavLink>
           </li>

@@ -752,6 +752,13 @@ html {
   flex-grow: 1;
 }
 
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
 .card figure {
   display: flex;
   align-items: center;
@@ -1366,27 +1373,6 @@ html {
   outline: 2px solid hsl(var(--p));
 }
 
-.btn-accent {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--a) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--a) / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: hsl(var(--ac) / var(--tw-text-opacity));
-}
-
-.btn-accent:hover,
-    .btn-accent.btn-active {
-  --tw-border-opacity: 1;
-  border-color: hsl(var(--af, var(--a)) / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--af, var(--a)) / var(--tw-bg-opacity));
-}
-
-.btn-accent:focus-visible {
-  outline: 2px solid hsl(var(--a));
-}
-
 .btn-info {
   --tw-border-opacity: 1;
   border-color: hsl(var(--in) / var(--tw-border-opacity));
@@ -1720,10 +1706,6 @@ html {
 
 .drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-primary {
   outline: 2px solid hsl(var(--p));
-}
-
-.drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-accent {
-  outline: 2px solid hsl(var(--a));
 }
 
 .drawer-toggle:focus-visible ~ .drawer-content .drawer-button.btn-info {
@@ -2406,14 +2388,6 @@ html {
   margin: 2rem;
 }
 
-.m-12 {
-  margin: 3rem;
-}
-
-.m-1 {
-  margin: 0.25rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
@@ -2446,8 +2420,8 @@ html {
   width: 14rem;
 }
 
-.w-1 {
-  width: 0.25rem;
+.w-96 {
+  width: 24rem;
 }
 
 .max-w-xs {
@@ -2458,16 +2432,20 @@ html {
   max-width: 28rem;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .overflow-auto {
   overflow: auto;
 }
 
-.overflow-x-auto {
-  overflow-x: auto;
+.overflow-hidden {
+  overflow: hidden;
 }
 
-.overscroll-auto {
-  overscroll-behavior: auto;
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .bg-base-100 {
@@ -2528,12 +2506,8 @@ html {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.hover\:overflow-scroll:hover {
-  overflow: scroll;
-}
-
-.hover\:overscroll-contain:hover {
-  overscroll-behavior: contain;
+.hover\:overflow-auto:hover {
+  overflow: auto;
 }
 
 @media (min-width: 1024px) {

@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 
 // TODO afficher RIB et KBIS avec bouton pour les afficher
 
+
 const Prestataire = (props) => (
+
     <tr>
         <td className="max-w-xs overflow-auto">{props.prestataire.pre_nom}</td>
         <td className="max-w-xs overflow-auto">{props.prestataire.pre_type}</td>
         <td className="max-w-xs overflow-auto">{props.prestataire.pre_adresse}</td>
         <td className="max-w-xs overflow-auto">{props.prestataire.pre_telephone}</td>
         <td className="max-w-xs overflow-auto">{props.prestataire.pre_email}</td>
-        <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
+        <td className="max-w-xs overflow-auto">{props.prestataire.pre_rib.pre_rib_new_file_path}</td>
+        <td>
+            <Link className="btn btn-info btn-outline btn-xs" to={`/openfile/${props.prestataire.pre_rib.pre_rib_new_file_path}`}>Afficher</Link>
+        </td>
         <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
         <td>{props.prestataire.pre_description}</td>
         <td>

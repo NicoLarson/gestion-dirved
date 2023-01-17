@@ -60,5 +60,12 @@ _This README was generated with ❤️ by [readme-md-generator](https://github.c
 ---
 
 ## TODO
+### Convention
+- page par catégorie
 - page detail convention
+  
+## Prestation
 - page detail prestation
+
+## Prestataire
+- page detail prestataire

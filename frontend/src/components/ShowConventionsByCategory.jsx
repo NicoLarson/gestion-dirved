@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router';
 import dateFormat, { masks } from "dateformat";
-// TODO Ajouter avenant
-// TODO Ajouter alert par email
 
 const dateIsDefined = (date) => {
     if (date === null) {
@@ -79,6 +78,10 @@ const Convention = (props) => (
 export default function ConventionList() {
     const [conventions, setConventions] = useState([]);
 
+    const params = useParams();
+    const navigate = useNavigate();
+
+    console.log("params: " + params.category)
     // This method fetches the conventions from the database.
     useEffect(() => {
         async function getConventions() {
@@ -112,20 +115,24 @@ export default function ConventionList() {
     // This method will map out the conventions on the table
     function conventionList() {
         return conventions.map((convention) => {
-            return (
-                <Convention
-                    convention={convention}
-                    deleteConvention={() => deleteConvention(convention._id)}
-                    key={convention._id}
-                />
-            );
+            console.log("convention.con_categories: " + convention.con_categories)
+            if (convention.con_categories === params.category) {
+                return (
+                    <Convention
+                        convention={convention}
+                        deleteConvention={() => deleteConvention(convention._id)}
+                        key={convention._id}
+                    />
+                );
+            }
+
         });
     }
 
     // This following section will display the table with the conventions of individuals.
     return (
         <div className="overflow-x-auto">
-            <h3 className="text-4xl font-bold m-8">Conventions</h3>
+            <h3 className="text-4xl font-bold m-8">CONVENTION BY CAT</h3>
             <table className="table table-compact w-full">
                 <thead>
                     <tr>
