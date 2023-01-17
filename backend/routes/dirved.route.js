@@ -34,4 +34,8 @@ recordRoutes.route("/delete/prestataire/:id").delete(prestataire_controller.dele
 
 // ----------------------------------------------------
 
+const fs = require('fs');
+
+recordRoutes.route('/files/:fileName').get(prestataire_controller.show_rib);
+
 module.exports = recordRoutes;

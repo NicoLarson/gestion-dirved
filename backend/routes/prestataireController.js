@@ -43,7 +43,7 @@ exports.create_prestataire = (req, res) => {
 
     if (req.body.pre_rib_file_path != null && req.body.pre_rib_file_path != undefined && req.body.pre_rib_file_path != "") {
         ribNewFileName = createName(req.body.pre_rib_file_name, 'rib')
-        ribNewFilePath = 'Z:\\NICOLAS\\DiRVED\\prestataires\\' + ribNewFileName
+        ribNewFilePath = 'files/' + ribNewFileName
         fs.copyFile(req.body.pre_rib_file_path, ribNewFilePath, (err) => {
             if (err) throw err
             console.log(req.body.pre_rib_file_path + 'was copied to destination ' + ribNewFilePath)
@@ -51,13 +51,13 @@ exports.create_prestataire = (req, res) => {
     }
     if (req.body.pre_kbis_file_path != null && req.body.pre_kbis_file_path != undefined && req.body.pre_kbis_file_path != "") {
         kbisNewFileName = createName(req.body.pre_kbis_file_name, 'kbis')
-        kbisNewFilePath = 'Z:\\NICOLAS\\DiRVED\\prestataires\\' + kbisNewFileName
+        kbisNewFilePath = 'files/' + kbisNewFileName
         fs.copyFile(req.body.pre_kbis_file_path, kbisNewFilePath, (err) => {
             if (err) throw err
             console.log(req.body.pre_kbis_file_path + 'was copied to destination ' + kbisNewFilePath)
         })
     }
-    
+
     const matchPrestataire = new Prestataire({
         pre_nom: req.body.pre_nom,
         pre_type: req.body.pre_type,
@@ -135,3 +135,18 @@ exports.delete_prestataire = (req, res) => {
         res.status(500).send(error);
     }
 }
+
+
+exports.show_rib = (req, res) => {
+    console.log("req.params.fileName => ", req.params.fileName)
+    const filePath = './files/' + req.params.fileName;
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        // send the pdf to the client
+        res.setHeader('Content-Type', 'application/pdf');
+        res.send(data);
+    });
+};

@@ -3,28 +3,54 @@ import { Link } from 'react-router-dom';
 
 // TODO afficher RIB et KBIS avec bouton pour les afficher
 
-const Prestataire = (props) => (
+const Prestataire = ({ prestataire: { pre_nom } }) => (
   <tr>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_nom}</td>
+     <td className="max-w-xs overflow-auto">{pre_nom}</td>
+
+  <td className="max-w-xs overflow-auto"> {props.prestataire.pre_nom}</td>
     <td className="max-w-xs overflow-auto">{props.prestataire.pre_type}</td>
     <td className="max-w-xs overflow-auto">{props.prestataire.pre_adresse}</td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_telephone}</td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_email}</td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_rib.pre_rib_new_file_path}</td>
-    <td>
-      <Link
-        className="btn btn-info btn-outline btn-xs"
-        to={`/openfile/${props.prestataire.pre_rib.pre_rib_new_file_path}`}>
-        Afficher
-      </Link>
+    <td className="max-w-xs overflow-auto">
+      {props.prestataire.pre_telephone}
     </td>
-    <td> <button className="btn btn-info btn-outline btn-xs">Afficher</button> </td>
+    <td className="max-w-xs overflow-auto">{props.prestataire.pre_email}</td>
+    <td>
+      {' '}
+      <a
+        className="btn btn-info btn-outline btn-xs"
+        href={`http://localhost:5000/${props.prestataire.pre_rib.pre_rib_new_file_path}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Afficher
+      </a>
+    </td>
+    <td>
+      <a
+        className="btn btn-info btn-outline btn-xs"
+        href={`http://localhost:5000/${props.prestataire.pre_rib.pre_kbis_new_file_path}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Afficher
+      </a>
+    </td>
     <td>{props.prestataire.pre_description}</td>
     <td>
-      <Link className="btn btn-warning btn-outline btn-xs" to={`/update/prestataire/${props.prestataire._id}`}>Modifier</Link>
+      <Link
+        className="btn btn-warning btn-outline btn-xs"
+        to={`/update/prestataire/${props.prestataire._id}`}
+      >
+        Modifier
+      </Link>
     </td>
     <td>
-      <button className="btn btn-danger btn-outline btn-xs" onClick={props.deletePrestataire}>Supprimer</button>
+      <button
+        className="btn btn-danger btn-outline btn-xs"
+        onClick={props.deletePrestataire}
+      >
+        Supprimer
+      </button>
     </td>
   </tr>
 );
@@ -55,7 +81,7 @@ export default function ShowPrestataires() {
   // This method will delete a prestataire
   async function deletePrestataire(id) {
     await fetch(`http://localhost:5000/delete/prestataire/${id}`, {
-      method: "DELETE"
+      method: 'DELETE',
     });
 
     const newPrestataires = prestataires.filter((el) => el._id !== id);
