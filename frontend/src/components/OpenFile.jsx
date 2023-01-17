@@ -1,24 +1,19 @@
 // create component who read a PDF file and display it
-import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router';
 
 
+const fs = require('fs');
+
 const OpenFile = () => {
-    const params = useParams();
-    const navigate = useNavigate();
+  const params = useParams();
+  // const navigate = useNavigate();
+  console.log('OpenFile.jsx useParams => ', params.path);
 
-    return (
-        <div>
-            <h2>TEST</h2>
-            <p>
-                {params.path}
-                <a href={params.path} onClick={window.open(params.path)}>Click</a>
-
-            </p>
-        </div>
-    );
-}
+  return (
+    <div>
+      <a href='http://localhost:1212/pdfs/test.pdf' target="_blank">Open PDF</a>
+    </div>
+  );
+};
 
 export default OpenFile;
-
-
