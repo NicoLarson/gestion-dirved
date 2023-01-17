@@ -2453,6 +2453,11 @@ html {
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
 
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+}
+
 .bg-warning {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--wa) / var(--tw-bg-opacity));
@@ -2461,11 +2466,6 @@ html {
 .bg-success {
   --tw-bg-opacity: 1;
   background-color: hsl(var(--su) / var(--tw-bg-opacity));
-}
-
-.bg-base-200 {
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
 }
 
 .p-2 {
@@ -2488,6 +2488,10 @@ html {
 
 .font-bold {
   font-weight: 700;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .shadow-xl {

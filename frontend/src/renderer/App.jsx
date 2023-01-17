@@ -30,7 +30,7 @@ export default function App() {
   return (
     <Router>
       <Navbar className="fixed"></Navbar>
-      <div className="display">
+      <div className="display w-full">
         <Routes>
           <Route path="/" element={<Home />} />
           {/* Convention */}

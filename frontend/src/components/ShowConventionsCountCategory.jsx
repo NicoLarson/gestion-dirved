@@ -66,9 +66,10 @@ export default function ShowConventionsCountCategory() {
     const displayCategories = Object.keys(categoryCount).map(key => {
         return (
             <div className="stat">
-                <Link className="btn btn-info btn-outline btn-xs" to={`/show/conventionsbycategory/${key}`}>{key}</Link>
-                <div className="stat-title">{key}</div>
-                <div className="stat-value">{categoryCount[key]}</div>
+                <Link className="uppercase" to={`/show/conventionsbycategory/${key}`}>{key}
+                    <div className="stat-value">{categoryCount[key]}</div>
+                </Link>
+
             </div>
         );
     });
@@ -78,7 +79,7 @@ export default function ShowConventionsCountCategory() {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content text-center">
                 <div>
-                    <h1 className="text-5xl font-bold">Convention CAT</h1>
+                    <h1 className="text-5xl font-bold uppercase">Conventions</h1>
                     <div className="stats stats-vertical lg:stats-horizontal shadow mt-8">
                         {displayCategories}
                     </div>

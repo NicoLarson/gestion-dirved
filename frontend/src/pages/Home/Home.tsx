@@ -1,4 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
+
+
 const Home: FunctionComponent = () => {
   const [conventions, setConventions] = useState([]);
   const [prestations, setPrestations] = useState([]);
@@ -38,13 +41,15 @@ const Home: FunctionComponent = () => {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Gestion DiRVED</h1>
           <div className="stats stats-vertical lg:stats-horizontal shadow mt-8">
+            <Link to={`/show/conventions/category`}>
+              <div className="stat">
+                <div className="stat-title uppercase">Conventions enregistré </div>
+                <div className="stat-value">{conventions.length}</div>
+                {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
+              </div>
+            </Link>
             <div className="stat">
-              <div className="stat-title">Conventions enregistré </div>
-              <div className="stat-value">{conventions.length}</div>
-              {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
-            </div>
-            <div className="stat">
-              <div className="stat-title">Prestation enregistré</div>
+              <div className="stat-title uppercase">Prestation enregistré</div>
               <div className="stat-value">{prestations.length}</div>
               {/* <div className="stat-desc">↗︎ 400 (22%)</div> */}
             </div>
