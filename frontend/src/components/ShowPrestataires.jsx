@@ -3,57 +3,59 @@ import { Link } from 'react-router-dom';
 
 // TODO afficher RIB et KBIS avec bouton pour les afficher
 
-const Prestataire = ({ prestataire: { pre_nom } }) => (
-  <tr>
-     <td className="max-w-xs overflow-auto">{pre_nom}</td>
-
-  <td className="max-w-xs overflow-auto"> {props.prestataire.pre_nom}</td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_type}</td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_adresse}</td>
-    <td className="max-w-xs overflow-auto">
-      {props.prestataire.pre_telephone}
-    </td>
-    <td className="max-w-xs overflow-auto">{props.prestataire.pre_email}</td>
-    <td>
-      {' '}
-      <a
-        className="btn btn-info btn-outline btn-xs"
-        href={`http://localhost:5000/${props.prestataire.pre_rib.pre_rib_new_file_path}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Afficher
-      </a>
-    </td>
-    <td>
-      <a
-        className="btn btn-info btn-outline btn-xs"
-        href={`http://localhost:5000/${props.prestataire.pre_rib.pre_kbis_new_file_path}`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Afficher
-      </a>
-    </td>
-    <td>{props.prestataire.pre_description}</td>
-    <td>
-      <Link
-        className="btn btn-warning btn-outline btn-xs"
-        to={`/update/prestataire/${props.prestataire._id}`}
-      >
-        Modifier
-      </Link>
-    </td>
-    <td>
-      <button
-        className="btn btn-danger btn-outline btn-xs"
-        onClick={props.deletePrestataire}
-      >
-        Supprimer
-      </button>
-    </td>
-  </tr>
-);
+const Prestataire = (props) => {
+  const { deletePrestataire } = props
+  const { _id, pre_nom, pre_type, pre_adresse, pre_telephone, pre_email, pre_description, pre_rib_new_file_path, pre_kbis_new_file_path } =
+    props.prestataire;
+  return (
+    <tr>
+      <td className="max-w-xs overflow-auto"> {pre_nom}</td>
+      <td className="max-w-xs overflow-auto">{pre_type}</td>
+      <td className="max-w-xs overflow-auto">{pre_adresse}</td>
+      <td className="max-w-xs overflow-auto">{pre_telephone}</td>
+      <td className="max-w-xs overflow-auto">{pre_email}</td>
+      <td>
+        {' '}
+        <a
+          className="btn btn-info btn-outline btn-xs"
+          href={`http://localhost:5000/${props.prestataire.pre_rib.pre_rib_new_file_path}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Afficher
+        </a>
+      </td>
+      <td>
+        <a
+          className="btn btn-info btn-outline btn-xs"
+          href={`http://localhost:5000/${props.prestataire.pre_kbis.pre_kbis_new_file_path}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Afficher
+        </a>
+      </td>
+      <td>{pre_description}</td>
+      <td>
+        <Link
+          className="btn btn-warning btn-outline btn-xs"
+          to={`/update/prestataire/${_id}`}
+        >
+          Modifier
+        </Link>
+      </td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-danger btn-outline btn-xs"
+          onClick={deletePrestataire}
+        >
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  );
+};
 
 export default function ShowPrestataires() {
   const [prestataires, setPrestataires] = useState([]);
@@ -68,14 +70,10 @@ export default function ShowPrestataires() {
         window.alert(message);
         return;
       }
-
-      const prestataires = await response.json();
-      setPrestataires(prestataires);
+      const prestatairesRes = await response.json();
+      setPrestataires(prestatairesRes);
     }
-
     getPrestataires();
-
-    return;
   }, [prestataires.length]);
 
   // This method will delete a prestataire
@@ -116,8 +114,8 @@ export default function ShowPrestataires() {
             <th>RIB</th>
             <th>KBIS</th>
             <th>Description</th>
-            <th></th>
-            <th></th>
+            <th> </th>
+            <th> </th>
           </tr>
         </thead>
         <tbody>{prestataireList()}</tbody>

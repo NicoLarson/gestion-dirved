@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
-
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home: FunctionComponent = () => {
   const [conventions, setConventions] = useState([]);
@@ -14,11 +13,10 @@ const Home: FunctionComponent = () => {
         window.alert(message);
         return;
       }
-      const conventions = await response.json();
-      setConventions(conventions);
+      const conventionsRes = await response.json();
+      setConventions(conventionsRes);
     }
     getConventions();
-    return;
   }, [conventions.length]);
   useEffect(() => {
     async function getPrestations() {
@@ -28,11 +26,10 @@ const Home: FunctionComponent = () => {
         window.alert(message);
         return;
       }
-      const prestations = await response.json();
-      setPrestations(prestations);
+      const prestationsRes = await response.json();
+      setPrestations(prestationsRes);
     }
     getPrestations();
-    return;
   }, [prestations.length]);
 
   return (
@@ -41,9 +38,11 @@ const Home: FunctionComponent = () => {
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Gestion DiRVED</h1>
           <div className="stats stats-vertical lg:stats-horizontal shadow mt-8">
-            <Link to={`/show/conventions/category`}>
+            <Link to="/show/conventions/category">
               <div className="stat">
-                <div className="stat-title uppercase">Conventions enregistré </div>
+                <div className="stat-title uppercase">
+                  Conventions enregistré{' '}
+                </div>
                 <div className="stat-value">{conventions.length}</div>
                 {/* <div className="stat-desc">Jan 1st - Feb 1st</div> */}
               </div>
@@ -57,8 +56,7 @@ const Home: FunctionComponent = () => {
         </div>
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Home
+export default Home;

@@ -8,6 +8,7 @@ const prestation_controller = require("./prestationController.js")
 /*
   *  CONVENTION
 */
+// TODO gestion des fichiers 
 recordRoutes.route("/create/convention").post(convention_controller.create_convention);
 recordRoutes.route("/show/conventions").get(convention_controller.show_conventions);
 recordRoutes.route("/show/convention/:id").get(convention_controller.show_one_convention);
@@ -17,6 +18,7 @@ recordRoutes.route("/delete/convention/:id").delete(convention_controller.delete
 /*
   *  PRESTATION
 */
+// TODO gestion des fichiers 
 recordRoutes.route("/show/prestations").get(prestation_controller.show_prestations)
 recordRoutes.route("/show/prestation/:id").get(prestation_controller.show_one_prestation);
 recordRoutes.route("/create/prestation").post(prestation_controller.create_prestation)
