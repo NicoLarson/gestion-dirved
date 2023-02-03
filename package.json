@@ -24,6 +24,7 @@
   "homepage": "https://github.com/NicoLarson/gestion-dirved#readme",
   "dependencies": {
     "concurrently": "^7.6.0",
-    "currently": "^0.0.8"
+    "currently": "^0.0.8",
+    "nodemailer": "^6.9.0"
   }
 }
