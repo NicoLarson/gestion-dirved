@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-// TODO afficher RIB et KBIS avec bouton pour les afficher
-
 const Prestataire = (props) => {
-  const { deletePrestataire } = props
-  const { _id, pre_nom, pre_type, pre_adresse, pre_telephone, pre_email, pre_description, pre_rib_new_file_path, pre_kbis_new_file_path } =
-    props.prestataire;
+  const { deletePrestataire } = props;
+  const {
+    _id,
+    pre_nom,
+    pre_type,
+    pre_adresse,
+    pre_telephone,
+    pre_email,
+    pre_description,
+    pre_rib_new_file_path,
+    pre_kbis_new_file_path,
+  } = props.prestataire;
   return (
     <tr>
       <td className="max-w-xs overflow-auto"> {pre_nom}</td>

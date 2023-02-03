@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import dateFormat, { masks } from 'dateformat';
+import dateFormat from 'dateformat';
 
 const dateIsDefined = (date) => {
   if (date === null) {
@@ -12,9 +12,7 @@ const dateIsDefined = (date) => {
 const timeLeft = (date) => {
   try {
     Date(date);
-    console.log(new Date(date));
   } catch (e) {
-    console.error(`Erreur: ${e}`);
     return 0;
   }
   if (date == null) {
@@ -25,19 +23,6 @@ const timeLeft = (date) => {
   const timeDiff = dateFin.getTime() - today.getTime();
   const daysLeft = Math.round(timeDiff / (1000 * 3600 * 24));
   return daysLeft;
-};
-
-const timeLeftClassName = (daysLeft) => {
-  if (daysLeft < 0) {
-    return 'badge rounded-pill bg-danger';
-  }
-  if (daysLeft < 30) {
-    return 'badge rounded-pill bg-warning';
-  }
-  if (daysLeft > 30) {
-    return 'badge rounded-pill bg-success';
-  }
-  return 'badge rounded-pill bg-light';
 };
 
 // TODO: gestion des status
@@ -96,7 +81,9 @@ const displayPrestataireName = (prestataire) => {
       return prestataires[i].pre_nom;
     }
   }
+  return 0;
 };
+
 const Prestation = (props) => {
   const { prestation, deletePrestation } = props;
   const { _id, pai_num_operation, pai_prestataire, pai_montant, pai_date_update, pai_commentaire } = props.prestation;

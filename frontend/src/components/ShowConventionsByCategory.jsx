@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router';
-import dateFormat, { masks } from 'dateformat';
+import { useParams } from 'react-router';
+import dateFormat from 'dateformat';
 
 const dateIsDefined = (date) => {
   if (date === null) {
@@ -10,21 +10,10 @@ const dateIsDefined = (date) => {
   return dateFormat(date, 'dd-mm-yyyy');
 };
 
-const showResponsableName = (responsable) => {
-  try {
-    if (responsable.con_nom_responsable !== null) {}
-  } catch (e) {
-    // console.error("Erreur: " + e)
-    return 0;
-  }
-  return `${responsable.con_nom_responsable} ${responsable.con_prenom_responsable}`;
-};
-
 const timeLeft = (date) => {
   try {
     Date(date);
   } catch (e) {
-    console.error(`Erreur: ${e}`);
     return 0;
   }
   if (date == null) {
@@ -85,6 +74,7 @@ const Convention = (props) => (
     </td>
     <td>
       <button
+        type="button"
         className="btn btn-error btn-outline btn-xs"
         onClick={props.deleteConvention}
       >
@@ -98,9 +88,7 @@ export default function ConventionList() {
   const [conventions, setConventions] = useState([]);
 
   const params = useParams();
-  const navigate = useNavigate();
 
-  console.log(`params: ${params.category}`);
   // This method fetches the conventions from the database.
   useEffect(() => {
     async function getConventions() {
@@ -158,9 +146,9 @@ export default function ConventionList() {
             <th>Temps restant</th>
             <th>CT OPE</th>
             <th>Encaissé</th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
+            <th>Détails</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
           </tr>
         </thead>
         <tbody>{conventionList()}</tbody>

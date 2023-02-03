@@ -42,13 +42,10 @@ export default function UpdateConvention() {
         navigate('/');
         return;
       }
-      console.log(record);
       setForm(record);
     }
 
     fetchData();
-
-    return;
   }, [params.id, navigate]);
 
   // These methods will update the state properties.
